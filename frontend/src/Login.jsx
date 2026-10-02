@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 
-function App() {
-  // Only two roles: 'customer' and 'merchant' (Merchant is also the system Admin)
+export default function Login() {
+
   const [role, setRole] = useState('merchant');
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail] = useState('');
