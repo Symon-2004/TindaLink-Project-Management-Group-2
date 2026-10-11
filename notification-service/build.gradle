@@ -1,0 +1,13 @@
+plugins {
+    id 'java-library'
+}
+
+group = 'com.tindalink_service'
+version = '0.0.1-SNAPSHOT'
+
+dependencies {
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

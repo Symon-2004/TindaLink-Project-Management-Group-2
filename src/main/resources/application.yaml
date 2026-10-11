@@ -1,8 +1,0 @@
-spring:
-  application:
-    name: tindalink
-
-data:
-  mongodb:
-  uri: mongodb//localhost27017//tindalink
-

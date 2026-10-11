@@ -1,1 +1,6 @@
 rootProject.name = 'tindalink'
+
+include('tindalink-service')
+include('transaction-service')
+include('notification-service')
+include('instagram-service')
