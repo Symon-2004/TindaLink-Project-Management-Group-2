@@ -1,59 +1,56 @@
-plugins {
-	id 'java'
-	id 'org.springframework.boot' version '4.1.0'
-	id 'io.spring.dependency-management' version '1.1.7'
+buildscript {
+    ext {
+        springBootVersion = '4.1.1'
+        javaVersion = '21'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+    }
 }
 
-group = 'com'
-version = '0.0.1-SNAPSHOT'
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
 
-java {
-	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
-	}
-}
+    repositories {
+        mavenCentral()
+    }
 
-repositories {
-	mavenCentral()
-}
+    // Dependencies that EVERY microservice will need
+    dependencies {
+        implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+        implementation 'org.springframework.boot:spring-boot-starter-mail'
+        implementation 'org.springframework.boot:spring-boot-starter-restclient'
+        implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+        implementation 'org.springframework.ai:spring-ai-starter-model-anthropic:2.0.1'
 
-ext {
-	set('springAiVersion', "2.0.0")
-}
+        //LOMBOK
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
 
-dependencies {
+        //TEST DEPENDENCIES
+        testImplementation 'org.springframework.boot:spring-boot-starter-data-mongodb-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-mail-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-restclient-test'
+        testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+        testCompileOnly 'org.projectlombok:lombok'
+        testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+        testAnnotationProcessor 'org.projectlombok:lombok'
 
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-	implementation 'org.springframework.boot:spring-boot-starter-mail'
-	implementation 'org.springframework.boot:spring-boot-starter-restclient'
-	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
-	implementation 'org.springframework.ai:spring-ai-starter-model-anthropic'
+        //SECURITY DEPENDENCIES
+//        implementation 'org.springframework.boot:spring-boot-starter-security'
+        implementation 'org.springframework.boot:spring-boot-starter-validation'
+        implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+        runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+        runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    }
 
-    //LOMBOK
-    compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-
-    //TEST DEPENDENCIES
-    testImplementation 'org.springframework.boot:spring-boot-starter-data-mongodb-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-mail-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-restclient-test'
-	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
-    testCompileOnly 'org.projectlombok:lombok'
-	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-	testAnnotationProcessor 'org.projectlombok:lombok'
-
-    //SECURITY DEPENDENCIES
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.boot:spring-boot-starter-validation'
-
-}
-
-dependencyManagement {
-	imports {
-		mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
-	}
-}
-
-tasks.named('test') {
-	useJUnitPlatform()
+    java {
+        sourceCompatibility = JavaVersion.toVersion(javaVersion)
+        targetCompatibility = JavaVersion.toVersion(javaVersion)
+    }
 }
