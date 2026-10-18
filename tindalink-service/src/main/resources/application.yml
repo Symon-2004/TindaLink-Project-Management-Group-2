@@ -8,3 +8,9 @@ spring:
   mongodb:
     uri: mongodb://localhost:27017/UserDatabase
     database: UserDatabase
+
+  inventory:
+    low-stock-treshold: 3
+
+
+

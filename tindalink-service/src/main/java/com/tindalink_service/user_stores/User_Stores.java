@@ -9,13 +9,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Document(collection = "user_stores")
 @CompoundIndex(name = "user_store_unique", def = "{'userId': 1, 'storeId':1}", unique = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class User_Stores {
+public class User_Stores implements Serializable {
 
     @Id
     private String Id;
