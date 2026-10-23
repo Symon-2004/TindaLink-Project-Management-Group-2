@@ -57,7 +57,7 @@ body, html, #root {
 }
 
 .tindalink-brand-title {
-  font-size: 38px;
+  font-size: 64px;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: #1e1b39;
@@ -71,7 +71,7 @@ body, html, #root {
 }
 
 .tindalink-brand-subtitle {
-  font-size: 15.5px;
+  font-size: 21px;
   font-weight: 600;
   color: #1f1c38;
   margin-bottom: 6px;
@@ -135,14 +135,15 @@ body, html, #root {
 /* Form Row: Label Beside Input, perfectly aligned */
 .tindalink-form-row {
   display: grid;
-  grid-template-columns: 135px 1fr;
-  align-items: center;
+  grid-template-columns: 1fr;
+  align-items: stretch;
   margin-bottom: 16px;
-  gap: 12px;
+  gap: 6px;
 }
 
 .tindalink-row-label {
-  text-align: right;
+  display: block;
+  text-align: left;
   font-size: 13px;
   font-weight: 700;
   color: #2b2842;
@@ -198,7 +199,8 @@ body, html, #root {
 
 /* Submit Action Row: Button perfectly proportional across the form */
 .tindalink-action-row {
-  margin-left: 147px;
+  width: 1005;
+  margin-left: 0px;
   margin-top: 4px;
 }
 
@@ -259,6 +261,7 @@ body, html, #root {
     padding: 36px 20px;
   }
   .tindalink-form-row {
+
     grid-template-columns: 1fr;
     gap: 6px;
   }
