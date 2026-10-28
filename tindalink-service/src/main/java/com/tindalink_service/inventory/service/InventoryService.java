@@ -97,9 +97,9 @@ public class InventoryService {
 
     private InventoryResponse toResponse(Inventory inventory){
         return InventoryResponse.builder()
-                .Id(inventory.getId())
+                .id(inventory.getId())
                 .productName(inventory.getProductName())
-                .StockQuantity(inventory.getStockQuantity())
+                .stockQuantity(inventory.getStockQuantity())
                 .status(inventory.getStatus())
                 .updatedAt(inventory.getUpdatedAt())
                 .build();

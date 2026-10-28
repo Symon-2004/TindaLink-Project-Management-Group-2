@@ -22,7 +22,7 @@ import java.time.Instant;
 public class Inventory implements Serializable {
 
     @Id
-    private String Id;
+    private String id;
 
     @Indexed(unique = true)
     private String productName;

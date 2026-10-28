@@ -10,11 +10,11 @@ import java.time.Instant;
 @Builder
 public class InventoryResponse {
 
-    private String Id;
+    private String id;
 
     private String productName;
 
-    private Integer StockQuantity;
+    private Integer stockQuantity;
 
     private InventoryStatus status;
 
