@@ -25,7 +25,7 @@ public class OrderProductsController {
 
     private final OrderProductsService orderProductsService;
 
-    @GetMapping("/order/{orderId")
+    @GetMapping("/order/{orderId}")
     public ResponseEntity<List<OrderProductsResponse>> getByOrder(@PathVariable String orderId){
 
         log.info(LoggerUtils.formatProcess(PROCESSING, RETRIEVING_ORDER_PRODUCTS));
