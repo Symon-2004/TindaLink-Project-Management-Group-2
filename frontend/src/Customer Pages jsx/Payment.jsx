@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
-import './Payment.css';
+import '../Customer Pages Styling/Payment.css';
 
 export default function Payment({
   totalAmount = 2048,
   onNavigateHome,
   onNavigateCheckout,
+  onNavigateConfirmOrder,
 }) {
   // Payment method selection ('gcash' | 'cod')
   const [selectedMethod, setSelectedMethod] = useState('gcash');
@@ -316,7 +317,10 @@ export default function Payment({
               <button
                 type="button"
                 className="payment-modal-secondary-btn"
-                onClick={() => setShowSuccessModal(false)}
+                onClick={() => {
+                  setShowSuccessModal(false);
+                  if (onNavigateConfirmOrder) onNavigateConfirmOrder();
+                }}
               >
                 View Order Details
               </button>

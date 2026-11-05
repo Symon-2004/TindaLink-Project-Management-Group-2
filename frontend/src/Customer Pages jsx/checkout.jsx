@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Checkout.css';
+import '../Customer Pages Styling/checkout.css';
 
 const DEFAULT_ORDER_ITEMS = [
   {
@@ -18,7 +18,7 @@ const DEFAULT_ORDER_ITEMS = [
   },
 ];
 
-export default function Checkout({ onNavigateCart, onNavigateHome }) {
+export default function Checkout({ onNavigateCart, onNavigateHome, onNavigatePayment }) {
   // Form state pre-filled as shown in CUS-05
   const [fullName, setFullName] = useState('Peachy Mahaleel M. Mangaoang');
   const [email, setEmail] = useState('peachy@email.com');
@@ -253,9 +253,8 @@ export default function Checkout({ onNavigateCart, onNavigateHome }) {
                 type="button"
                 className="checkout-modal-pay-btn"
                 onClick={() => {
-                  alert('Payment confirmed! Your order has been placed.');
                   setShowPaymentSuccess(false);
-                  if (onNavigateHome) onNavigateHome();
+                  if (onNavigatePayment) onNavigatePayment();
                 }}
               >
                 Pay ₱ {totalAmount.toLocaleString()} with GCash / Card

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './myorders.css';
+import '../Customer Pages Styling/myorders.css';
 
 const INITIAL_ORDERS = [
   {

@@ -1,5 +1,5 @@
 import React from 'react';
-import './orderconfirm.css';
+import '../Customer Pages Styling/orderconfirm.css';
 
 export default function OrderConfirm({
   orderNumber = 'TL-20260909-00124',

@@ -33,12 +33,18 @@ export default function App() {
               setUserSession(null);
               setCurrentPage('Login');
             }}
+            onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
           />
         );
       case 'Shop':
         return (
           <Shop
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
             onLogout={() => {
               setUserSession(null);
               setCurrentPage('Login');
@@ -50,6 +56,7 @@ export default function App() {
           <Cart
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateCheckout={() => setCurrentPage('Checkout')}
           />
         );
       case 'Checkout':
@@ -57,6 +64,7 @@ export default function App() {
           <Checkout
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigatePayment={() => setCurrentPage('Payment')}
           />
         );
       case 'Payment':
@@ -64,6 +72,7 @@ export default function App() {
           <Payment
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateCheckout={() => setCurrentPage('Checkout')}
+            onNavigateConfirmOrder={() => setCurrentPage('OrderConfirm')}
           />
         );
       case 'CustomerProfile':
@@ -103,7 +112,19 @@ export default function App() {
           />
         );
       default:
-        return <Dashboard onLogout={() => setCurrentPage('Login')} />;
+        return (
+          <Dashboard
+            user={userSession}
+            onLogout={() => {
+              setUserSession(null);
+              setCurrentPage('Login');
+            }}
+            onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
+          />
+        );
     }
   };
 
@@ -122,7 +143,7 @@ export default function App() {
 
   return (
     <div>
-      {/* Floating Dev Switcher */}
+      {/* Floating Dev Switcher (Persisted for quick preview & testing) */}
       <div
         style={{
           position: 'fixed',

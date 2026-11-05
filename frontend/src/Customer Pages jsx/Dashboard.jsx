@@ -1,7 +1,13 @@
 import { useState } from 'react';
-import './Dashboard.css';
+import '../Customer Pages Styling/Dashboard.css';
 
-export default function Dashboard({ onLogout }) {
+export default function Dashboard({
+  onLogout,
+  onNavigateShop,
+  onNavigateCart,
+  onNavigateProfile,
+  onNavigateOrders,
+}) {
   const [activeNav, setActiveNav] = useState('Home');
   const [searchQuery, setSearchQuery] = useState('');
   const [cartCount, setCartCount] = useState(2);
@@ -24,6 +30,13 @@ export default function Dashboard({ onLogout }) {
     { id: 3, name: 'Handmade Soy Candle', price: 299, rating: 4.9, bg: '#fef3c7' },
     { id: 4, name: 'Organic Gift Set', price: 650, rating: 4.7, bg: '#dcfce7' }
   ];
+
+  const handleNavClick = (item) => {
+    setActiveNav(item);
+    if (item === 'Shop' && onNavigateShop) {
+      onNavigateShop();
+    }
+  };
 
   return (
     <div className="tindalink-dashboard">
@@ -52,7 +65,7 @@ export default function Dashboard({ onLogout }) {
                 key={item}
                 type="button"
                 className={`tindalink-nav-link ${activeNav === item ? 'active' : ''}`}
-                onClick={() => setActiveNav(item)}
+                onClick={() => handleNavClick(item)}
               >
                 {item}
               </button>
@@ -76,7 +89,14 @@ export default function Dashboard({ onLogout }) {
           </div>
 
           {/* Cart Icon */}
-          <button type="button" className="tindalink-cart-btn" aria-label="Cart">
+          <button
+            type="button"
+            className="tindalink-cart-btn"
+            aria-label="Cart"
+            onClick={() => {
+              if (onNavigateCart) onNavigateCart();
+            }}
+          >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="20" height="20">
               <circle cx="9" cy="21" r="1" />
               <circle cx="20" cy="21" r="1" />
@@ -98,10 +118,35 @@ export default function Dashboard({ onLogout }) {
 
             {showAccountDropdown && (
               <div className="tindalink-account-dropdown">
-                <button type="button" onClick={() => alert('Profile')}>My Profile</button>
-                <button type="button" onClick={() => alert('Orders')}>My Orders</button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAccountDropdown(false);
+                    if (onNavigateProfile) onNavigateProfile();
+                  }}
+                >
+                  My Profile
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAccountDropdown(false);
+                    if (onNavigateOrders) onNavigateOrders();
+                  }}
+                >
+                  My Orders
+                </button>
                 <hr />
-                <button type="button" className="danger" onClick={onLogout}>Log Out</button>
+                <button
+                  type="button"
+                  className="danger"
+                  onClick={() => {
+                    setShowAccountDropdown(false);
+                    if (onLogout) onLogout();
+                  }}
+                >
+                  Log Out
+                </button>
               </div>
             )}
           </div>
@@ -119,7 +164,13 @@ export default function Dashboard({ onLogout }) {
             <p>
               Discover products from growing businesses and local sellers all in one smart marketplace.
             </p>
-            <button type="button" className="tindalink-btn-primary">
+            <button
+              type="button"
+              className="tindalink-btn-primary"
+              onClick={() => {
+                if (onNavigateShop) onNavigateShop();
+              }}
+            >
               Start Shopping
             </button>
           </div>
@@ -132,7 +183,15 @@ export default function Dashboard({ onLogout }) {
               <h2>Shop by Category</h2>
               <p>Explore products from different local businesses.</p>
             </div>
-            <button type="button" className="tindalink-view-all">View all →</button>
+            <button
+              type="button"
+              className="tindalink-view-all"
+              onClick={() => {
+                if (onNavigateShop) onNavigateShop();
+              }}
+            >
+              View all →
+            </button>
           </div>
 
           <div className="tindalink-category-grid">
@@ -140,7 +199,10 @@ export default function Dashboard({ onLogout }) {
               <div
                 key={cat.id}
                 className={`tindalink-category-card ${selectedCategory === cat.name ? 'selected' : ''}`}
-                onClick={() => setSelectedCategory(cat.name)}
+                onClick={() => {
+                  setSelectedCategory(cat.name);
+                  if (onNavigateShop) onNavigateShop(cat.name);
+                }}
               >
                 <div className="tindalink-cat-icon" style={{ backgroundColor: cat.bg, color: cat.color }}>
                   ★
@@ -151,7 +213,13 @@ export default function Dashboard({ onLogout }) {
             ))}
 
             {/* 6th Card: More to Discover */}
-            <div className="tindalink-promo-card">
+            <div
+              className="tindalink-promo-card"
+              onClick={() => {
+                if (onNavigateShop) onNavigateShop();
+              }}
+              style={{ cursor: 'pointer' }}
+            >
               <span className="tindalink-promo-label">MORE TO DISCOVER</span>
               <h3>Find your next favorite product.</h3>
             </div>
@@ -170,13 +238,31 @@ export default function Dashboard({ onLogout }) {
           <div className="tindalink-products-grid">
             {featuredProducts.map((prod) => (
               <div key={prod.id} className="tindalink-product-card">
-                <div className="tindalink-product-thumb" style={{ backgroundColor: prod.bg }}>
-                  <button type="button" className="tindalink-fav-btn" aria-label="Favorite">
+                <div
+                  className="tindalink-product-thumb"
+                  style={{ backgroundColor: prod.bg, cursor: 'pointer' }}
+                  onClick={() => {
+                    if (onNavigateShop) onNavigateShop();
+                  }}
+                >
+                  <button
+                    type="button"
+                    className="tindalink-fav-btn"
+                    aria-label="Favorite"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     ♥
                   </button>
                 </div>
                 <div className="tindalink-product-info">
-                  <h3>{prod.name}</h3>
+                  <h3
+                    style={{ cursor: 'pointer' }}
+                    onClick={() => {
+                      if (onNavigateShop) onNavigateShop();
+                    }}
+                  >
+                    {prod.name}
+                  </h3>
                   <div className="tindalink-product-meta">
                     <span className="tindalink-price">₱ {prod.price}</span>
                     <span className="tindalink-rating">★ {prod.rating}</span>

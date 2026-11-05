@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Login.css';
+import '../Customer Pages Styling/Login.css';
 
 export default function Login() {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'

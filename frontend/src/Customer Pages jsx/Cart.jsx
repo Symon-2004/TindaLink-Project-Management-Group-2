@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './Cart.css';
+import '../Customer Pages Styling/Cart.css';
 
 const INITIAL_CART_ITEMS = [
   {
@@ -35,7 +35,7 @@ const INITIAL_CART_ITEMS = [
   },
 ];
 
-export default function Cart({ onNavigateShop, onNavigateHome }) {
+export default function Cart({ onNavigateShop, onNavigateHome, onNavigateCheckout }) {
   const [cartItems, setCartItems] = useState(INITIAL_CART_ITEMS);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
@@ -264,11 +264,11 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
                 type="button"
                 className="cart-modal-confirm-btn"
                 onClick={() => {
-                  alert('Thank you! Redirecting to payment...');
                   setIsCheckedOut(false);
+                  if (onNavigateCheckout) onNavigateCheckout();
                 }}
               >
-                Continue to Payment
+                Continue to Checkout
               </button>
               <button
                 type="button"
