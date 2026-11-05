@@ -47,7 +47,7 @@ export default function Dashboard({ onLogout }) {
 
           {/* Navigation Links */}
           <nav className="tindalink-nav-links">
-            {['Home', 'Shop', 'Categories', 'About'].map((item) => (
+            {['Home', 'Shop', 'About'].map((item) => (
               <button
                 key={item}
                 type="button"
