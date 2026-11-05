@@ -1,0 +1,273 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html,
+#root {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1e1b39;
+  background-color: #faf9fe;
+  -webkit-font-smoothing: antialiased;
+}
+
+.orderconfirm-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fcfbfe;
+  display: flex;
+  flex-direction: column;
+}
+
+.orderconfirm-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 14px 32px;
+}
+
+.orderconfirm-navbar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.orderconfirm-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.orderconfirm-logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orderconfirm-logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.orderconfirm-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.02em;
+}
+
+.orderconfirm-logo-accent {
+  color: #7c3aed;
+}
+
+.orderconfirm-home-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #7c3aed;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.orderconfirm-home-btn:hover {
+  background-color: #f3ecff;
+  color: #6d28d9;
+}
+
+.orderconfirm-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 48px 24px;
+}
+
+.orderconfirm-card {
+  width: 100%;
+  max-width: 580px;
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 24px;
+  padding: 44px 48px;
+  box-shadow: 0 4px 20px rgba(30, 27, 57, 0.03);
+  text-align: center;
+}
+
+.orderconfirm-check-badge {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #ecfdf5;
+  color: #10b981;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+}
+
+.orderconfirm-check-svg {
+  width: 30px;
+  height: 30px;
+}
+
+.orderconfirm-heading {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1e1b39;
+  margin-bottom: 8px;
+}
+
+.orderconfirm-subtitle {
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: #6e6c85;
+  max-width: 420px;
+  margin: 0 auto 28px auto;
+}
+
+.orderconfirm-details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.orderconfirm-detail-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.orderconfirm-label {
+  font-size: 13px;
+  color: #7d7a94;
+  font-weight: 500;
+}
+
+.orderconfirm-value-bold {
+  font-size: 15px;
+  font-weight: 800;
+  color: #1e1b39;
+}
+
+.orderconfirm-status-warning {
+  font-size: 15px;
+  font-weight: 800;
+  color: #d97706;
+}
+
+.orderconfirm-divider {
+  border-bottom: 1px solid #f1eff8;
+  margin: 20px 0;
+}
+
+.orderconfirm-items-section {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 22px;
+}
+
+.orderconfirm-items-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1e1b39;
+}
+
+.orderconfirm-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
+.orderconfirm-total-label {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+}
+
+.orderconfirm-total-amount {
+  font-size: 24px;
+  font-weight: 800;
+  color: #8b5cf6;
+  letter-spacing: -0.01em;
+}
+
+.orderconfirm-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.orderconfirm-track-btn {
+  height: 46px;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+}
+
+.orderconfirm-track-btn:hover {
+  background-color: #7c3aed;
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+}
+
+.orderconfirm-continue-btn {
+  height: 46px;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.orderconfirm-continue-btn:hover {
+  background-color: #ede4ff;
+  color: #6d28d9;
+}
+
+@media (max-width: 640px) {
+  .orderconfirm-navbar {
+    padding: 12px 18px;
+  }
+  .orderconfirm-main {
+    padding: 24px 16px;
+  }
+  .orderconfirm-card {
+    padding: 32px 22px;
+  }
+  .orderconfirm-actions {
+    grid-template-columns: 1fr;
+  }
+}
