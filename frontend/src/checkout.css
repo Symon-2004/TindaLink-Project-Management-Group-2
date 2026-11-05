@@ -1,0 +1,421 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html,
+#root {
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1e1b39;
+  background-color: #faf9fe;
+  -webkit-font-smoothing: antialiased;
+}
+
+.checkout-page {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fcfbfe;
+  display: flex;
+  flex-direction: column;
+}
+
+/* =========================================
+   1. NAVBAR (Without AI badge)
+   ========================================= */
+.checkout-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 14px 32px;
+}
+
+.checkout-navbar-container {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.checkout-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkout-logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout-logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.checkout-logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.02em;
+}
+
+.checkout-logo-accent {
+  color: #7c3aed;
+}
+
+.checkout-back-btn {
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #7c3aed;
+  cursor: pointer;
+  transition: color 0.15s ease;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.checkout-back-btn:hover {
+  background-color: #f3ecff;
+  color: #6d28d9;
+}
+
+/* =========================================
+   2. MAIN CONTAINER & TITLE AREA
+   ========================================= */
+.checkout-main {
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 36px 32px 64px 32px;
+  flex: 1;
+}
+
+.checkout-header-area {
+  margin-bottom: 28px;
+}
+
+.checkout-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin-bottom: 6px;
+}
+
+.checkout-subtitle {
+  font-size: 15px;
+  color: #6e6c85;
+}
+
+/* =========================================
+   3. 2-COLUMN LAYOUT (Matching CUS-05)
+   ========================================= */
+.checkout-content-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 32px;
+  align-items: start;
+}
+
+/* Left Card: Customer Information & Delivery Address */
+.checkout-forms-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 20px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 18px rgba(30, 27, 57, 0.02);
+}
+
+.checkout-form-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.checkout-section-heading {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #1e1b39;
+  margin-bottom: 18px;
+}
+
+/* Input Field with Label Positioned Above */
+.checkout-field-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.checkout-field-label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 7px;
+  text-align: left;
+}
+
+.checkout-input {
+  width: 100%;
+  height: 46px;
+  border-radius: 11px;
+  border: 1px solid #e6e4f0;
+  background-color: #f8f8fc;
+  padding: 0 16px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #1e1b39;
+  outline: none;
+  transition: all 0.16s ease;
+}
+
+.checkout-input:focus {
+  background-color: #ffffff;
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
+}
+
+.checkout-input::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================================
+   4. RIGHT CARD: ORDER SUMMARY
+   ========================================= */
+.checkout-summary-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 4px 18px rgba(30, 27, 57, 0.02);
+  height: fit-content;
+}
+
+.checkout-summary-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #1e1b39;
+  margin-bottom: 20px;
+}
+
+.checkout-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid #f1eff8;
+  margin-bottom: 18px;
+}
+
+.checkout-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13.5px;
+}
+
+.checkout-item-name {
+  color: #55526e;
+  font-weight: 500;
+}
+
+.checkout-item-price {
+  font-weight: 800;
+  color: #1e1b39;
+}
+
+.checkout-total-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.checkout-total-label {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+}
+
+.checkout-total-amount {
+  font-size: 22px;
+  font-weight: 800;
+  color: #8b5cf6;
+  letter-spacing: -0.01em;
+}
+
+.checkout-submit-btn {
+  width: 100%;
+  height: 48px;
+  background-color: #8b5cf6;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.16s ease, transform 0.1s ease, box-shadow 0.16s ease;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+}
+
+.checkout-submit-btn:hover:not(:disabled) {
+  background-color: #7c3aed;
+  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35);
+}
+
+.checkout-submit-btn:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.checkout-submit-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Modal */
+.checkout-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background-color: rgba(30, 27, 57, 0.45);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.checkout-modal-content {
+  width: 100%;
+  max-width: 480px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 36px 32px;
+  text-align: center;
+  box-shadow: 0 16px 40px rgba(30, 27, 57, 0.18);
+  animation: modalScale 0.18s ease-out;
+}
+
+@keyframes modalScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.checkout-modal-badge {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #ecfdf5;
+  color: #10b981;
+  font-size: 26px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px auto;
+}
+
+.checkout-modal-content h3 {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin-bottom: 8px;
+}
+
+.checkout-modal-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6e6c85;
+  margin-bottom: 24px;
+}
+
+.checkout-modal-total {
+  font-weight: 800;
+  color: #7c3aed;
+}
+
+.checkout-modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkout-modal-pay-btn {
+  width: 100%;
+  height: 46px;
+  background-color: #7c3aed;
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.checkout-modal-pay-btn:hover {
+  background-color: #6d28d9;
+}
+
+.checkout-modal-cancel-btn {
+  width: 100%;
+  height: 42px;
+  background: none;
+  border: 1px solid #e4e2ee;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #6e6c85;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.checkout-modal-cancel-btn:hover {
+  background-color: #f6f6fa;
+}
+
+/* =========================================
+   5. RESPONSIVE
+   ========================================= */
+@media (max-width: 900px) {
+  .checkout-content-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 540px) {
+  .checkout-navbar {
+    padding: 12px 18px;
+  }
+  .checkout-main {
+    padding: 24px 18px 48px 18px;
+  }
+  .checkout-forms-card {
+    padding: 24px 20px;
+  }
+}

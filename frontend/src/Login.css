@@ -6,7 +6,9 @@
   padding: 0;
 }
 
-body, html, #root {
+body,
+html,
+#root {
   min-height: 100vh;
   width: 100%;
   font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -17,15 +19,15 @@ body, html, #root {
 
 .tindalink-auth-layout {
   display: grid;
-  grid-template-columns: 42% 58%;
+  grid-template-columns: 41.5% 58.5%;
   min-height: 100vh;
   width: 100%;
 }
 
-/* Left Brand Panel */
+/* Left Lavender-Blush Brand Panel */
 .tindalink-brand-panel {
   background: linear-gradient(180deg, #f2e5fa 0%, #f6e7f5 52%, #fcebef 100%);
-  padding: 68px 48px;
+  padding: 68px 54px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -41,8 +43,8 @@ body, html, #root {
 }
 
 .tindalink-logo-icon {
-  width: 64px;
-  height: 64px;
+  width: 60px;
+  height: 60px;
   border-radius: 18px;
   background: linear-gradient(135deg, #5b34f2 0%, #8839ef 55%, #d668b6 100%);
   display: flex;
@@ -52,12 +54,13 @@ body, html, #root {
 }
 
 .tindalink-logo-icon svg {
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
 }
 
+/* System Title: TindaLink Centered Directly Below Logo */
 .tindalink-brand-title {
-  font-size: 64px;
+  font-size: 38px;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: #1e1b39;
@@ -71,7 +74,7 @@ body, html, #root {
 }
 
 .tindalink-brand-subtitle {
-  font-size: 21px;
+  font-size: 15.5px;
   font-weight: 600;
   color: #1f1c38;
   margin-bottom: 6px;
@@ -85,7 +88,7 @@ body, html, #root {
   max-width: 340px;
 }
 
-/* Right Form Panel */
+/* Right White Form Panel */
 .tindalink-form-panel {
   background-color: #ffffff;
   display: flex;
@@ -96,11 +99,12 @@ body, html, #root {
 
 .tindalink-auth-card {
   width: 100%;
-  max-width: 520px;
+  max-width: 560px;
+  min-height: 580px;
   background-color: #ffffff;
   border: 1px solid #eceaf4;
   border-radius: 22px;
-  padding: 50px 44px;
+  padding: 50px 48px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,11 +113,11 @@ body, html, #root {
 
 .tindalink-card-header {
   text-align: center;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .tindalink-card-header h2 {
-  font-size: 30px;
+  font-size: 29px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #1e1b39;
@@ -126,36 +130,36 @@ body, html, #root {
   color: #7d7a94;
 }
 
-/* Form Layout */
+/* Form Groups: Labels positioned above inputs, upper-left aligned */
 .tindalink-form {
   display: flex;
   flex-direction: column;
 }
 
-/* Form Row: Label Beside Input, perfectly aligned */
-.tindalink-form-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  align-items: stretch;
+.tindalink-form-group {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 16px;
-  gap: 6px;
 }
 
-.tindalink-row-label {
+.tindalink-field-label {
   display: block;
-  text-align: left;
   font-size: 13px;
   font-weight: 700;
   color: #2b2842;
+  margin-bottom: 6px;
+  text-align: left;
 }
 
-.tindalink-row-input {
-  width: 100%;
+.tindalink-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-.tindalink-row-input input {
+.tindalink-form-group input {
   height: 46px;
-  width: 100%;
   border-radius: 11px;
   border: 1px solid #e6e4f0;
   background-color: #f6f6fa;
@@ -165,20 +169,26 @@ body, html, #root {
   color: #1e1b39;
   outline: none;
   transition: all 0.16s ease;
+  width: 100%;
 }
 
-.tindalink-row-input input:focus {
+.tindalink-form-group input:focus {
   border-color: #7c3aed;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
 }
 
-/* Forgot Password aligned with inputs */
-.tindalink-forgot-wrapper {
-  margin-left: 147px;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-start;
+.tindalink-form-group input.has-error {
+  border: 1.5px solid #f87171 !important;
+  background-color: #ffffff !important;
+}
+
+.tindalink-inline-error {
+  margin-top: 6px;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #e11d48;
+  text-align: left;
 }
 
 .tindalink-link-btn {
@@ -190,6 +200,7 @@ body, html, #root {
   font-weight: 700;
   color: #7c3aed;
   cursor: pointer;
+  text-align: left;
 }
 
 .tindalink-link-btn:hover {
@@ -197,16 +208,8 @@ body, html, #root {
   text-decoration: underline;
 }
 
-/* Submit Action Row: Button perfectly proportional across the form */
-.tindalink-action-row {
-  width: 1005;
-  margin-left: 0px;
-  margin-top: 4px;
-}
-
 .tindalink-submit-btn {
   height: 46px;
-  width: 100%;
   border-radius: 11px;
   border: none;
   background-color: #7c3aed;
@@ -216,7 +219,7 @@ body, html, #root {
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.16s ease, transform 0.1s ease;
-  box-shadow: 0 2px 8px rgba(124, 58, 237, 0.25);
+  width: 100%;
 }
 
 .tindalink-submit-btn:hover {
@@ -227,16 +230,27 @@ body, html, #root {
   transform: scale(0.995);
 }
 
-.tindalink-alert.error {
-  margin-left: 147px;
-  margin-bottom: 14px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background-color: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
-  font-size: 12px;
-  font-weight: 600;
+/* Validation Alert Banner */
+.tindalink-val-alert {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background-color: #fff0f2;
+  border: 1px solid rgba(254, 205, 211, 0.6);
+  text-align: center;
+}
+
+.tindalink-val-alert strong {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #d92d40;
+}
+
+.tindalink-val-alert p {
+  margin-top: 2px;
+  font-size: 11.5px;
+  color: #e05260;
 }
 
 .tindalink-signup-prompt {
@@ -255,22 +269,10 @@ body, html, #root {
     grid-template-columns: 1fr;
   }
   .tindalink-brand-panel {
-    padding: 36px 24px;
+    padding: 36px 28px;
   }
   .tindalink-auth-card {
-    padding: 36px 20px;
-  }
-  .tindalink-form-row {
-
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-  .tindalink-row-label {
-    text-align: left;
-  }
-  .tindalink-forgot-wrapper,
-  .tindalink-action-row,
-  .tindalink-alert.error {
-    margin-left: 0;
+    padding: 36px 24px;
+    min-height: auto;
   }
 }
