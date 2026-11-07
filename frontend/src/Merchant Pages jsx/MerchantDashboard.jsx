@@ -1,12 +1,58 @@
 import { useState } from 'react';
 import '../Merchant Pages Styling/MerchantDashboard.css';
-import MProductInfo from './MProductInfo.jsx';
+import AddProductInfo from './AddProductInfo.jsx';
+import ManageProductInfo from './ManageProductInfo.jsx';
+import InventoryManage from './InventoryManage.jsx';
+import OrderManage from './OrderManage.jsx';
 
 const MerchantDashboard = () => {
-    const [showProductInfo, setShowProductInfo] = useState(false);
+    const [currentPage, setCurrentPage] = useState('dashboard');
+    const [products, setProducts] = useState([
+        { id: 1, name: 'Everyday Tote Bag', category: 'Fashion', price: 450, stock: 24 },
+        { id: 2, name: 'Wireless Mini Speaker', category: 'Electronics', price: 799, stock: 3 },
+        { id: 3, name: 'Handmade Soy Candle', category: 'Home & Living', price: 299, stock: 18 },
+        { id: 4, name: 'Organic Gift Set', category: 'Beauty', price: 650, stock: 4 },
+        { id: 5, name: 'Canvas Sneakers', category: 'Fashion', price: 1499, stock: 12 },
+        { id: 6, name: 'Mini Ring Light', category: 'Electronics', price: 599, stock: 0 },
+    ]);
 
-    if (showProductInfo) {
-        return <MProductInfo onBack={() => setShowProductInfo(false)} />;
+    if (currentPage === 'products') {
+        return (
+            <ManageProductInfo
+                products={products}
+                onAddProduct={() => setCurrentPage('add-product')}
+                onNavigate={setCurrentPage}
+                onDeleteProduct={(productId) => {
+                    setProducts((currentProducts) =>
+                        currentProducts.filter((product) => product.id !== productId),
+                    );
+                }}
+            />
+        );
+    }
+
+    if (currentPage === 'add-product') {
+        return (
+            <AddProductInfo
+                onBack={() => setCurrentPage('products')}
+                onNavigate={setCurrentPage}
+                onSave={(product) => {
+                    setProducts((currentProducts) => [
+                        ...currentProducts,
+                        { ...product, id: Date.now() },
+                    ]);
+                    setCurrentPage('products');
+                }}
+            />
+        );
+    }
+
+    if (currentPage === 'inventory') {
+        return <InventoryManage onNavigate={setCurrentPage} />;
+    }
+
+    if (currentPage === 'orders') {
+        return <OrderManage onNavigate={setCurrentPage} />;
     }
 
     return (
@@ -19,19 +65,47 @@ const MerchantDashboard = () => {
                 </div>
 
                 <nav className="sidebar-nav">
-                    <a href="#" className="nav-item active">Dashboard</a>
+                    <a
+                        href="#"
+                        className="nav-item active"
+                        aria-current="page"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setCurrentPage('dashboard');
+                        }}
+                    >
+                        Dashboard
+                    </a>
                     <a
                         href="#"
                         className="nav-item"
                         onClick={(event) => {
                             event.preventDefault();
-                            setShowProductInfo(true);
+                            setCurrentPage('products');
                         }}
                     >
                         Products
                     </a>
-                    <a href="#" className="nav-item">Inventory</a>
-                    <a href="#" className="nav-item">Orders</a>
+                    <a
+                        href="#"
+                        className="nav-item"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setCurrentPage('inventory');
+                        }}
+                    >
+                        Inventory
+                    </a>
+                    <a
+                        href="#"
+                        className="nav-item"
+                        onClick={(event) => {
+                            event.preventDefault();
+                            setCurrentPage('orders');
+                        }}
+                    >
+                        Orders
+                    </a>
                     <a href="#" className="nav-item">Payments</a>
                     <div className="nav-spacer"></div>
                     <a href="#" className="nav-item">Social Media</a>
@@ -153,12 +227,22 @@ const MerchantDashboard = () => {
                             <div className="action-buttons">
                                 <button
                                     className="btn btn-primary"
-                                    onClick={() => setShowProductInfo(true)}
+                                    onClick={() => setCurrentPage('products')}
                                 >
-                                    Add Product
+                                    Manage Products
                                 </button>
-                                <button className="btn btn-secondary">Manage Inventory</button>
-                                <button className="btn btn-secondary">View Orders</button>
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={() => setCurrentPage('inventory')}
+                                >
+                                    Manage Inventory
+                                </button>
+                                <button
+                                    className="btn btn-secondary"
+                                    onClick={() => setCurrentPage('orders')}
+                                >
+                                    View Orders
+                                </button>
                                 <button className="btn btn-secondary">Review Payments</button>
                             </div>
                         </div>

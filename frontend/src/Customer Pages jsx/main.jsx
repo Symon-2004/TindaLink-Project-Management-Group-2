@@ -9,7 +9,7 @@
 //   </StrictMode>,
 // )
 
-// Select Lines of code then crtl + / to comment/uncomment the codes
+// Select the lines of code then crtl + "/" to comment or uncomment the codes
 // code above is for the customer pages, code below is for the merchant pages
 
 

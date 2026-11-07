@@ -1,0 +1,231 @@
+/* InventoryManage.css */
+
+:root {
+  --sidebar-bg: #29253d;
+  --bg-color: #f7f8fc;
+  --card-bg: #ffffff;
+  --primary-purple: #8942ff;
+  --secondary-purple: #f0ebff;
+  --text-main: #1f1b2e;
+  --text-muted: #757585;
+  --border-color: #e9e9f0;
+  
+  /* Text Status Colors */
+  --green: #219653;
+  --orange: #f2994a;
+  --red: #eb5757;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-header .subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #a09eb0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.nav-item {
+  padding: 0.75rem 2rem;
+  color: #a09eb0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.nav-item.active {
+  background-color: var(--primary-purple);
+  color: white;
+  margin: 0 1rem;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.nav-spacer {
+  margin: 1rem 0;
+}
+
+.sidebar-footer {
+  padding: 0 2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-header {
+  background-color: white;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-header h1 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.page-content {
+  padding: 2rem;
+  max-width: 1200px;
+}
+
+.page-title-area {
+  margin-bottom: 1.5rem;
+}
+
+.page-title-area h2 {
+  font-size: 2rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.page-title-area p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-value {
+  font-size: 2rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.purple-text { color: var(--primary-purple); }
+.orange-text { color: var(--orange); }
+.red-text { color: var(--red); }
+
+.mt-4 {
+  margin-top: 1.5rem;
+}
+
+/* Table Card */
+.table-card {
+  background-color: var(--card-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inventory-table th {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.inventory-table td {
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.inventory-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Typography Utility Classes */
+.fw-bold { font-weight: 700; }
+.text-muted { color: var(--text-muted); }
+
+/* Status Text Classes */
+.status-text { font-size: 0.85rem; }
+.text-success { color: var(--green); }
+.text-warning { color: var(--orange); }
+.text-danger { color: var(--red); }
+
+/* Actions */
+.btn-action {
+  background: none;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-action.edit {
+  color: var(--primary-purple);
+}
+
+.btn-action:hover {
+  text-decoration: underline;
+}
