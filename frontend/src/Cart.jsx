@@ -35,7 +35,7 @@ const INITIAL_CART_ITEMS = [
   },
 ];
 
-export default function Cart({ onNavigateShop, onNavigateHome }) {
+export default function Cart({ onNavigateShop, onNavigateHome, onNavigateCheckout }) {
   const [cartItems, setCartItems] = useState(INITIAL_CART_ITEMS);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
@@ -64,7 +64,11 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
 
   const handleProceedToCheckout = () => {
     if (cartItems.length === 0) return;
-    setIsCheckedOut(true);
+    if (onNavigateCheckout) {
+      onNavigateCheckout();
+    } else {
+      setIsCheckedOut(true);
+    }
   };
 
   return (
@@ -72,7 +76,7 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
       {/* 1. TOP NAVBAR (Consistent with TindaLink Theme) */}
       <header className="cart-navbar">
         <div className="cart-navbar-container">
-          {/* Logo with purple AI badge */}
+          {/* Logo: TindaLink only (no AI badge) */}
           <div
             className="cart-logo"
             onClick={() => {
@@ -102,7 +106,6 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
             <span className="cart-logo-text">
               Tinda<span className="cart-logo-accent">Link</span>
             </span>
-            <span className="cart-ai-badge">AI</span>
           </div>
 
           {/* Quick return buttons */}
@@ -131,7 +134,7 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
           </p>
         </div>
 
-        {/* 2-Column Layout matching CUS-04 */}
+        {/* 2-Column Layout */}
         <div className="cart-content-layout">
           {/* Left Column: Products Card */}
           <div className="cart-items-card">
@@ -176,7 +179,7 @@ export default function Cart({ onNavigateShop, onNavigateHome }) {
                       </span>
                     </div>
 
-                    {/* Quantity Selector matching CUS-04 */}
+                    {/* Quantity Selector */}
                     <div className="cart-item-quantity-wrapper">
                       <div className="cart-qty-pill">
                         <button

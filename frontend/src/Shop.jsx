@@ -138,7 +138,7 @@ const INITIAL_SHOP_PRODUCTS = [
 
 const CATEGORIES = ['All products', 'Fashion', 'Beauty', 'Electronics', 'Food', 'Home'];
 
-export default function Shop({ onNavigateHome, onLogout }) {
+export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All products');
   const [sortBy, setSortBy] = useState('featured');
@@ -148,7 +148,6 @@ export default function Shop({ onNavigateHome, onLogout }) {
   const [availability, setAvailability] = useState('all'); // 'in_stock' | 'all'
   const [favorites, setFavorites] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  const [showFiltersMobile, setShowFiltersMobile] = useState(true);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   // Filter and sort products
@@ -205,7 +204,7 @@ export default function Shop({ onNavigateHome, onLogout }) {
       {/* 1. TOP NAVBAR */}
       <header className="shop-navbar">
         <div className="shop-navbar-container">
-          {/* Logo with purple AI badge */}
+          {/* Logo: TindaLink only (no AI badge) */}
           <div
             className="shop-logo"
             onClick={() => {
@@ -235,7 +234,6 @@ export default function Shop({ onNavigateHome, onLogout }) {
             <span className="shop-logo-text">
               Tinda<span className="shop-logo-accent">Link</span>
             </span>
-            <span className="shop-ai-badge">AI</span>
           </div>
 
           {/* Navigation Links */}
@@ -266,7 +264,7 @@ export default function Shop({ onNavigateHome, onLogout }) {
             <button
               type="button"
               className="shop-nav-link"
-              onClick={() => alert('About TindaLink: A smart marketplace for local businesses.')}
+              onClick={() => alert('About TindaLink: A smart local marketplace connecting buyers and MSMEs.')}
             >
               About
             </button>
@@ -288,7 +286,14 @@ export default function Shop({ onNavigateHome, onLogout }) {
 
           {/* Cart & Account */}
           <div className="shop-nav-actions">
-            <button type="button" className="shop-cart-btn" aria-label="Cart">
+            <button
+              type="button"
+              className="shop-cart-btn"
+              aria-label="Cart"
+              onClick={() => {
+                if (onNavigateCart) onNavigateCart();
+              }}
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
@@ -313,7 +318,7 @@ export default function Shop({ onNavigateHome, onLogout }) {
           </p>
         </div>
 
-        {/* Controls Bar: Category dropdown removed as requested, leaving search, sorting, and filters */}
+        {/* Controls Bar: search and sorting options */}
         <div className="shop-controls-bar">
           {/* Search products input */}
           <div className="shop-search-control">
@@ -346,26 +351,12 @@ export default function Shop({ onNavigateHome, onLogout }) {
               <polyline points="6 9 12 15 18 9" />
             </svg>
           </div>
-
-          {/* Filters Toggle Button */}
-          <button
-            type="button"
-            className="shop-filter-toggle-btn"
-            onClick={() => setShowFiltersMobile((prev) => !prev)}
-          >
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
-            </svg>
-            <span>Filters</span>
-          </button>
         </div>
 
-        {/* 3. BODY LAYOUT: Sidebar (Filters) + Products Grid */}
+        {/* 3. BODY LAYOUT: Sidebar (Categories & Filters) + Products Grid */}
         <div className="shop-content-layout">
           {/* Left Sidebar: Filters */}
-          <aside className={`shop-sidebar ${showFiltersMobile ? 'show' : ''}`}>
+          <aside className="shop-sidebar">
             <h2 className="shop-filter-heading">Filters</h2>
 
             {/* Categories */}
@@ -527,7 +518,7 @@ export default function Shop({ onNavigateHome, onLogout }) {
               </div>
             )}
 
-            {/* Pagination (Matching Frame 24) */}
+            {/* Pagination */}
             <div className="shop-pagination">
               <button
                 type="button"
@@ -563,7 +554,7 @@ export default function Shop({ onNavigateHome, onLogout }) {
         </div>
       </main>
 
-      {/* Floating Purple Smiley Assistant (from Frame 24 bottom-right) */}
+      {/* Floating Purple Smiley Assistant */}
       <button
         type="button"
         className="shop-floating-help"

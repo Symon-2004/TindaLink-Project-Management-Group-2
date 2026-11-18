@@ -27,7 +27,7 @@ html,
 }
 
 /* =========================================
-   1. NAVBAR (Matching Frame 24)
+   1. NAVBAR
    ========================================= */
 .shop-navbar {
   position: sticky;
@@ -80,16 +80,6 @@ html,
   color: #7c3aed;
 }
 
-.shop-ai-badge {
-  background-color: #8b5cf6;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 9999px;
-  margin-left: 2px;
-}
-
 /* Navigation Links */
 .shop-nav-links {
   display: flex;
@@ -98,15 +88,11 @@ html,
 }
 
 .shop-nav-link {
-  background: none;
-  border: none;
-  font-family: inherit;
+  text-decoration: none;
   font-size: 14px;
   font-weight: 600;
   color: #6e6c85;
-  cursor: pointer;
   transition: color 0.15s ease;
-  padding: 0;
 }
 
 .shop-nav-link:hover {
@@ -244,7 +230,7 @@ html,
   color: #6e6c85;
 }
 
-/* Controls Bar (Category dropdown removed per request) */
+/* Controls Bar (Category dropdown & top Filters button removed) */
 .shop-controls-bar {
   display: flex;
   align-items: center;
@@ -325,34 +311,6 @@ html,
   height: 16px;
   color: #7d7a94;
   pointer-events: none;
-}
-
-.shop-filter-toggle-btn {
-  height: 48px;
-  padding: 0 24px;
-  background-color: #8b5cf6;
-  color: #ffffff;
-  border: none;
-  border-radius: 14px;
-  font-family: inherit;
-  font-size: 13.5px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: background-color 0.16s ease, transform 0.1s ease;
-  flex-shrink: 0;
-  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
-}
-
-.shop-filter-toggle-btn:hover {
-  background-color: #7c3aed;
-}
-
-.shop-filter-toggle-btn svg {
-  width: 18px;
-  height: 18px;
 }
 
 /* =========================================
@@ -704,7 +662,7 @@ html,
 }
 
 /* =========================================
-   5. PAGINATION (Matching Frame 24)
+   5. PAGINATION
    ========================================= */
 .shop-pagination {
   display: flex;
@@ -955,9 +913,6 @@ html,
     grid-template-columns: 1fr;
   }
   .shop-sidebar {
-    display: none;
-  }
-  .shop-sidebar.show {
     display: block;
     margin-bottom: 20px;
   }
