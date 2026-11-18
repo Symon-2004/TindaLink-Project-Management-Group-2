@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '.Shop.css';
+import './Shop.css';
 
 const INITIAL_SHOP_PRODUCTS = [
   {
