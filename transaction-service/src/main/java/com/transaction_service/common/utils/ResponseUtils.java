@@ -1,7 +1,7 @@
 package com.transaction_service.common.utils;
 
-import com.tindalink_service.common.dto.response.ErrorResponse;
-import com.tindalink_service.common.dto.response.SuccessResponse;
+import com.transaction_service.common.dto.response.ErrorResponse;
+import com.transaction_service.common.dto.response.SuccessResponse;
 import org.springframework.http.HttpStatus;
 
 import java.util.Objects;
