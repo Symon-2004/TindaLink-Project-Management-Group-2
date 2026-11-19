@@ -5,7 +5,7 @@ export default function Login({ onAuthSuccess }) {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail] = useState('peachy@email.com');
   const [password, setPassword] = useState('•••••••••');
-  const [role, setRole] = useState('customer');
+  const [role, setRole] = useState('admin');
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -57,7 +57,7 @@ export default function Login({ onAuthSuccess }) {
     onAuthSuccess?.({ email, role });
   };
 
-  let loginSubtitle = 'Please login to your account';
+  let loginSubtitle = 'Choose your account type, then sign in.';
   if (validationError === 'incorrect_password') {
     loginSubtitle = "We couldn't sign you in with those credentials.";
   } else if (validationError === 'email_not_found') {
@@ -66,9 +66,9 @@ export default function Login({ onAuthSuccess }) {
 
   return (
     <div className="tindalink-auth-layout">
-      {/* Left Brand Panel: Centered Logo with TindaLink Title directly below */}
+      {/* Left Brand Panel */}
       <aside className="tindalink-brand-panel">
-        <div className="tindalink-brand-centered">
+        <div className="tindalink-brand-top">
           <div className="tindalink-logo-icon" aria-hidden="true">
             <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -98,15 +98,18 @@ export default function Login({ onAuthSuccess }) {
             </svg>
           </div>
 
-          {/* TindaLink Title Positioned Directly Below Logo */}
-          <h1 className="tindalink-brand-title">
-            Tinda<span className="tindalink-brand-highlight">Link</span>
-          </h1>
+          <span className="tindalink-brand-title">TindaLink</span>
+          <span className="tindalink-brand-badge">AI</span>
+        </div>
 
-          {/* System subtitle underneath title */}
-          <p className="tindalink-brand-subtitle">Smart access. Secure and simple.</p>
-          <p className="tindalink-brand-tagline">
-            TindaLink keeps your sign-in and account creation experience clear and consistent.
+        <div className="tindalink-brand-copy">
+          <h1 className="tindalink-brand-headline">
+            Smart access.
+            <br />
+            One account.
+          </h1>
+          <p className="tindalink-brand-subtitle">
+            Your selected role controls the workspace you enter.
           </p>
         </div>
       </aside>
@@ -123,24 +126,28 @@ export default function Login({ onAuthSuccess }) {
               </header>
 
               <div className="tindalink-role-selector" aria-label="Select account role">
-                {['customer', 'merchant'].map((accountRole) => (
+                {[
+                  { id: 'customer', label: 'Customer' },
+                  { id: 'merchant', label: 'Merchant' },
+                  { id: 'admin', label: 'Admin' }
+                ].map(({ id, label }) => (
                   <button
-                    key={accountRole}
+                    key={id}
                     type="button"
-                    className={`tindalink-role-btn ${role === accountRole ? 'active' : ''}`}
-                    aria-pressed={role === accountRole}
-                    onClick={() => setRole(accountRole)}
+                    className={`tindalink-role-btn ${role === id ? 'active' : ''}`}
+                    aria-pressed={role === id}
+                    onClick={() => setRole(id)}
                   >
-                    {accountRole === 'customer' ? 'Customer' : 'Merchant'}
+                    {label}
                   </button>
                 ))}
               </div>
 
               <form className="tindalink-form" onSubmit={handleSubmit}>
-                {/* Email Address with Label Above Input */}
+                {/* Email Address */}
                 <div className="tindalink-form-group">
                   <label htmlFor="email" className="tindalink-field-label">
-                    Email Address
+                    Email address
                   </label>
                   <input
                     id="email"
@@ -161,28 +168,15 @@ export default function Login({ onAuthSuccess }) {
                   )}
                 </div>
 
-                {/* Password with Label Above Input */}
+                {/* Password */}
                 <div className="tindalink-form-group">
-                  <div className="tindalink-label-row">
-                    <label htmlFor="password" className="tindalink-field-label" style={{ marginBottom: 0 }}>
-                      Password
-                    </label>
-                    <button
-                      type="button"
-                      className="tindalink-link-btn"
-                      onClick={() => {
-                        setStatusMessage(null);
-                        setValidationError('none');
-                        setAuthView('forgot');
-                      }}
-                    >
-                      Forgot password?
-                    </button>
-                  </div>
+                  <label htmlFor="password" className="tindalink-field-label">
+                    Password
+                  </label>
                   <input
                     id="password"
                     type="password"
-                    placeholder="•••••••••"
+                    placeholder="••••••••••"
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);
@@ -198,18 +192,29 @@ export default function Login({ onAuthSuccess }) {
                   )}
                 </div>
 
+                <div className="tindalink-forgot-row">
+                  <button
+                    type="button"
+                    className="tindalink-link-btn"
+                    onClick={() => {
+                      setStatusMessage(null);
+                      setValidationError('none');
+                      setAuthView('forgot');
+                    }}
+                  >
+                    Forgot password?
+                  </button>
+                </div>
+
                 {statusMessage && (
                   <div className={`tindalink-alert ${statusMessage.type}`}>
                     {statusMessage.text}
                   </div>
                 )}
 
-                {/* Submit Button (Full Width) */}
-                <div style={{ marginTop: '8px' }}>
-                  <button type="submit" className="tindalink-submit-btn">
-                    Log In
-                  </button>
-                </div>
+                <button type="submit" className="tindalink-submit-btn">
+                  Log In
+                </button>
               </form>
 
               {/* Validation alert banners */}
@@ -257,6 +262,10 @@ export default function Login({ onAuthSuccess }) {
                   </>
                 )}
               </div>
+
+              <div className="tindalink-workspace-note">
+                Role selected above determines the next workspace.
+              </div>
             </>
           )}
 
@@ -285,7 +294,7 @@ export default function Login({ onAuthSuccess }) {
 
                 <div className="tindalink-form-group">
                   <label htmlFor="signupEmail" className="tindalink-field-label">
-                    Email Address
+                    Email address
                   </label>
                   <input
                     id="signupEmail"
@@ -304,7 +313,7 @@ export default function Login({ onAuthSuccess }) {
                   <input
                     id="signupPassword"
                     type="password"
-                    placeholder="•••••••••"
+                    placeholder="••••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
@@ -318,7 +327,7 @@ export default function Login({ onAuthSuccess }) {
                   <input
                     id="confirmPassword"
                     type="password"
-                    placeholder="•••••••••"
+                    placeholder="••••••••••"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     required
@@ -365,7 +374,7 @@ export default function Login({ onAuthSuccess }) {
               <form className="tindalink-form" onSubmit={handleSubmit}>
                 <div className="tindalink-form-group">
                   <label htmlFor="resetEmail" className="tindalink-field-label">
-                    Email Address
+                    Email address
                   </label>
                   <input
                     id="resetEmail"

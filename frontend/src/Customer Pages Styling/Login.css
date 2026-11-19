@@ -19,73 +19,81 @@ html,
 
 .tindalink-auth-layout {
   display: grid;
-  grid-template-columns: 41.5% 58.5%;
+  grid-template-columns: 38.5% 61.5%;
   min-height: 100vh;
   width: 100%;
 }
 
 /* Left Lavender-Blush Brand Panel */
 .tindalink-brand-panel {
-  background: linear-gradient(180deg, #f2e5fa 0%, #f6e7f5 52%, #fcebef 100%);
-  padding: 68px 54px;
+  background: linear-gradient(160deg, #f3ebfe 0%, #f8eaf6 54%, #fcecf2 100%);
+  padding: 64px 56px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
 }
 
-.tindalink-brand-centered {
-  display: flex;
-  flex-direction: column;
+.tindalink-brand-top {
+  display: inline-flex;
   align-items: center;
-  max-width: 420px;
+  gap: 10px;
+  margin-bottom: 112px;
 }
 
 .tindalink-logo-icon {
-  width: 60px;
-  height: 60px;
-  border-radius: 18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
   background: linear-gradient(135deg, #5b34f2 0%, #8839ef 55%, #d668b6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 5px 14px rgba(124, 58, 237, 0.22);
 }
 
 .tindalink-logo-icon svg {
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
 }
 
-/* System Title: TindaLink Centered Directly Below Logo */
 .tindalink-brand-title {
-  font-size: 38px;
+  font-size: 21px;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: #1e1b39;
-  margin-top: 18px;
-  margin-bottom: 8px;
   line-height: 1;
 }
 
-.tindalink-brand-highlight {
-  color: #7c3aed;
+.tindalink-brand-badge {
+  background-color: #8b3dff;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.03em;
+}
+
+.tindalink-brand-copy {
+  max-width: 380px;
+}
+
+.tindalink-brand-headline {
+  font-size: 36px;
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin-bottom: 18px;
 }
 
 .tindalink-brand-subtitle {
-  font-size: 15.5px;
-  font-weight: 600;
-  color: #1f1c38;
-  margin-bottom: 6px;
-}
-
-.tindalink-brand-tagline {
-  font-size: 13.5px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
   line-height: 1.5;
   color: #6b6882;
-  max-width: 340px;
 }
 
 /* Right White Form Panel */
@@ -94,17 +102,16 @@ html,
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 32px;
+  padding: 44px 32px;
 }
 
 .tindalink-auth-card {
   width: 100%;
-  max-width: 560px;
-  min-height: 580px;
+  max-width: 520px;
   background-color: #ffffff;
   border: 1px solid #eceaf4;
   border-radius: 22px;
-  padding: 50px 48px;
+  padding: 46px 48px 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -113,11 +120,11 @@ html,
 
 .tindalink-card-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 28px;
 }
 
 .tindalink-card-header h2 {
-  font-size: 29px;
+  font-size: 27px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #1e1b39;
@@ -125,12 +132,44 @@ html,
 }
 
 .tindalink-card-header p {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
   color: #7d7a94;
 }
 
-/* Form Groups: Labels positioned above inputs, upper-left aligned */
+/* Role Selector Pills (Customer | Merchant | Admin) */
+.tindalink-role-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 26px;
+}
+
+.tindalink-role-btn {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e6e4f0;
+  background-color: #fafafc;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1e1b39;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.tindalink-role-btn:hover {
+  border-color: #c4b5fd;
+  color: #7c3aed;
+}
+
+.tindalink-role-btn.active {
+  background-color: #f4edff;
+  border: 1.5px solid #8b3dff;
+  color: #7c3aed;
+}
+
+/* Form Groups */
 .tindalink-form {
   display: flex;
   flex-direction: column;
@@ -144,25 +183,18 @@ html,
 
 .tindalink-field-label {
   display: block;
-  font-size: 13px;
+  font-size: 12.5px;
   font-weight: 700;
   color: #2b2842;
-  margin-bottom: 6px;
+  margin-bottom: 7px;
   text-align: left;
 }
 
-.tindalink-label-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-}
-
 .tindalink-form-group input {
-  height: 46px;
-  border-radius: 11px;
+  height: 45px;
+  border-radius: 10px;
   border: 1px solid #e6e4f0;
-  background-color: #f6f6fa;
+  background-color: #f4f4f8;
   padding: 0 16px;
   font-family: inherit;
   font-size: 13.5px;
@@ -173,7 +205,7 @@ html,
 }
 
 .tindalink-form-group input:focus {
-  border-color: #7c3aed;
+  border-color: #8b3dff;
   background-color: #ffffff;
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
 }
@@ -191,16 +223,22 @@ html,
   text-align: left;
 }
 
+.tindalink-forgot-row {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: -4px;
+  margin-bottom: 24px;
+}
+
 .tindalink-link-btn {
   background: none;
   border: none;
   padding: 0;
   font-family: inherit;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
-  color: #7c3aed;
+  color: #8b3dff;
   cursor: pointer;
-  text-align: left;
 }
 
 .tindalink-link-btn:hover {
@@ -209,13 +247,13 @@ html,
 }
 
 .tindalink-submit-btn {
-  height: 46px;
-  border-radius: 11px;
+  height: 45px;
+  border-radius: 10px;
   border: none;
-  background-color: #7c3aed;
+  background-color: #8b3dff;
   color: #ffffff;
   font-family: inherit;
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.16s ease, transform 0.1s ease;
@@ -223,14 +261,35 @@ html,
 }
 
 .tindalink-submit-btn:hover {
-  background-color: #6d28d9;
+  background-color: #7c3aed;
 }
 
 .tindalink-submit-btn:active {
   transform: scale(0.995);
 }
 
-/* Validation Alert Banner */
+/* Status & Validation Alert Banners */
+.tindalink-alert {
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.tindalink-alert.success {
+  background-color: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+}
+
+.tindalink-alert.error {
+  background-color: #fff0f2;
+  color: #d92d40;
+  border: 1px solid rgba(254, 205, 211, 0.6);
+}
+
 .tindalink-val-alert {
   margin-top: 20px;
   padding: 14px 16px;
@@ -254,25 +313,47 @@ html,
 }
 
 .tindalink-signup-prompt {
-  margin-top: 28px;
+  margin-top: 26px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  font-size: 12.5px;
+  gap: 3px;
+  font-size: 12px;
   font-weight: 700;
   color: #7c3aed;
+}
+
+/* Bottom Workspace Note Pill */
+.tindalink-workspace-note {
+  margin: 22px auto 0;
+  width: fit-content;
+  background-color: #f4f4f8;
+  color: #7d7a94;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-align: center;
 }
 
 @media (max-width: 960px) {
   .tindalink-auth-layout {
     grid-template-columns: 1fr;
   }
+
   .tindalink-brand-panel {
     padding: 36px 28px;
   }
+
+  .tindalink-brand-top {
+    margin-bottom: 36px;
+  }
+
+  .tindalink-brand-headline {
+    font-size: 28px;
+  }
+
   .tindalink-auth-card {
     padding: 36px 24px;
-    min-height: auto;
   }
 }
