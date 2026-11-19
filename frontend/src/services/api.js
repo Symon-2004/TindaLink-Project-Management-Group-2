@@ -1,9 +1,9 @@
-// Replace 8080 and 8081 with the exact ports printed in your Gradle terminals
 export const TINDALINK_API = 'http://localhost:8080/api';
 export const TRANSACTION_API = 'http://localhost:8081/api';
 
 export const apiRequest = async (baseUrl, endpoint, options = {}) => {
-  const response = await fetch(`${baseUrl}${endpoint}`, {
+  const url = `${baseUrl}${endpoint}`;
+  const response = await fetch(url, {
     headers: {
       'Content-Type': 'application/json',
       ...options.headers,
@@ -11,10 +11,17 @@ export const apiRequest = async (baseUrl, endpoint, options = {}) => {
     ...options,
   });
 
-  if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}));
-    throw new Error(errorData.message || `HTTP Error ${response.status}`);
+  const text = await response.text();
+  let data;
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch (e) {
+    data = { message: text };
   }
 
-  return response.json();
+  if (!response.ok) {
+    throw new Error(data.message || `HTTP Error ${response.status}`);
+  }
+
+  return data;
 };

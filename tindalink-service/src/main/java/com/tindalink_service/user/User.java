@@ -1,11 +1,9 @@
 package com.tindalink_service.user;
 
-
-import com.tindalink_service.common.enums.Role;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -15,9 +13,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 @AllArgsConstructor
-
+@Builder
 @Document(collection = "users")
 public class User implements Serializable {
 
@@ -30,15 +28,17 @@ public class User implements Serializable {
 
     private String email;
 
-    private String  passwordHash;
+    private String passwordHash;
 
     private String phone;
 
+    private String role;
+
+    private String status;
 
     @CreatedDate
     private LocalDateTime createdAt;
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
-
 }

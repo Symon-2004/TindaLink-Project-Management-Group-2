@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import '../Merchant Pages Styling/UserManage.css';
 import AdminSidebar from './AdminSidebar.jsx';
+import { getAllUsers, toggleUserStatus } from '../services/userService.js';
 
 const initialUsers = [
   {
@@ -68,25 +69,71 @@ const initialUsers = [
 const filterTabs = ['All Users', 'Customers', 'Merchants', 'Suspended'];
 
 const UserManage = ({ onNavigate, onLogout }) => {
-  const [users, setUsers] = useState(initialUsers);
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All Users');
   const [modalState, setModalState] = useState({ mode: null, user: null });
 
+  const fetchUsers = async () => {
+    setLoading(true);
+    try {
+      const data = await getAllUsers();
+      if (Array.isArray(data) && data.length > 0) {
+        const mapped = data.map((u) => {
+          const fullName = `${u.firstname || ''} ${u.lastname || ''}`.trim() || u.email.split('@')[0];
+          let joinedDate = 'Recent';
+          if (u.createdAt) {
+            try {
+              joinedDate = new Date(u.createdAt).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+              });
+            } catch (e) {
+              joinedDate = 'Recent';
+            }
+          }
+          return {
+            id: u.id,
+            name: fullName,
+            role: u.role || 'Customer',
+            email: u.email,
+            status: u.status || 'Active',
+            joined: joinedDate,
+            phone: u.phone || 'N/A',
+            ordersCount: 0,
+          };
+        });
+        setUsers(mapped);
+      } else {
+        setUsers(initialUsers);
+      }
+    } catch (err) {
+      console.warn('Backend unavailable, showing sample data:', err.message);
+      setUsers(initialUsers);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
-      user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.role.toLowerCase().includes(searchQuery.toLowerCase());
+      (user.name || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (user.email || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (user.role || '').toLowerCase().includes(searchQuery.toLowerCase());
 
     const matchesTab =
       activeFilter === 'All Users'
         ? true
         : activeFilter === 'Customers'
-        ? user.role === 'Customer'
+        ? user.role?.toLowerCase() === 'customer'
         : activeFilter === 'Merchants'
-        ? user.role === 'Merchant'
-        : user.status === 'Suspended';
+        ? user.role?.toLowerCase() === 'merchant'
+        : user.status?.toLowerCase() === 'suspended';
 
     return matchesSearch && matchesTab;
   });
@@ -113,14 +160,25 @@ const UserManage = ({ onNavigate, onLogout }) => {
     document.body.removeChild(link);
   };
 
-  const handleToggleSuspend = (userId) => {
-    setUsers((prev) =>
-      prev.map((u) =>
-        u.id === userId
-          ? { ...u, status: u.status === 'Active' ? 'Suspended' : 'Active' }
-          : u
-      )
-    );
+  const handleToggleSuspend = async (userId) => {
+    try {
+      const updated = await toggleUserStatus(userId);
+      setUsers((prev) =>
+        prev.map((u) =>
+          u.id === userId
+            ? { ...u, status: updated.status || (u.status === 'Active' ? 'Suspended' : 'Active') }
+            : u
+        )
+      );
+    } catch (err) {
+      setUsers((prev) =>
+        prev.map((u) =>
+          u.id === userId
+            ? { ...u, status: u.status === 'Active' ? 'Suspended' : 'Active' }
+            : u
+        )
+      );
+    }
     setModalState({ mode: null, user: null });
   };
 

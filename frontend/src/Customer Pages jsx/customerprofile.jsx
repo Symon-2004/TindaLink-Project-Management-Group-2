@@ -15,10 +15,10 @@ export default function CustomerProfile({
 
   // Customer profile display values
   const fullName = user?.name || 'Peachy Mahaleel M. Mangaoang';
-  const displayName = 'Peachy Mangaoang';
+  const displayName = user?.name ? user.name.split(' ')[0] : 'Peachy Mangaoang';
   const email = user?.email || 'peachy@email.com';
-  const contactNumber = '09xx xxx xxxx';
-  const memberSince = '2026';
+  const contactNumber = user?.phone || '09xx xxx xxxx';
+  const memberSince = user?.joined || '2026';
 
   // Addresses state
   const [addresses, setAddresses] = useState([

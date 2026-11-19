@@ -1,44 +1,44 @@
-const API_URL = 'http://localhost:8080/api/users';
+import { TINDALINK_API, apiRequest } from './api';
+
+const USERS_ENDPOINT = '/users';
 
 export const getAllUsers = async () => {
-  const res = await fetch(API_URL);
-  if (!res.ok) throw new Error('Failed to fetch users');
-  return res.json();
+  return apiRequest(TINDALINK_API, USERS_ENDPOINT);
 };
 
 export const getUserById = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`);
-  if (!res.ok) throw new Error('Failed to fetch user');
-  return res.json();
+  return apiRequest(TINDALINK_API, `${USERS_ENDPOINT}/${id}`);
 };
 
 export const createUser = async (userData) => {
-  const res = await fetch(API_URL, {
+  return apiRequest(TINDALINK_API, USERS_ENDPOINT, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
   });
-  if (!res.ok) {
-    const err = await res.json().catch(() => ({}));
-    throw new Error(err.message || 'Failed to create user');
-  }
-  return res.json();
+};
+
+export const loginUser = async (credentials) => {
+  return apiRequest(TINDALINK_API, `${USERS_ENDPOINT}/login`, {
+    method: 'POST',
+    body: JSON.stringify(credentials),
+  });
+};
+
+export const toggleUserStatus = async (id) => {
+  return apiRequest(TINDALINK_API, `${USERS_ENDPOINT}/${id}/status`, {
+    method: 'PATCH',
+  });
 };
 
 export const updateUser = async (id, userData) => {
-  const res = await fetch(`${API_URL}/${id}`, {
+  return apiRequest(TINDALINK_API, `${USERS_ENDPOINT}/${id}`, {
     method: 'PUT',
-    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(userData),
   });
-  if (!res.ok) throw new Error('Failed to update user');
-  return res.json();
 };
 
 export const deleteUser = async (id) => {
-  const res = await fetch(`${API_URL}/${id}`, {
+  return apiRequest(TINDALINK_API, `${USERS_ENDPOINT}/${id}`, {
     method: 'DELETE',
   });
-  if (!res.ok) throw new Error('Failed to delete user');
-  return res.json();
 };

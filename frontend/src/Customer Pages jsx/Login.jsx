@@ -1,21 +1,24 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/Login.css';
+import { createUser, loginUser } from '../services/userService.js';
 
 export default function Login({ onAuthSuccess }) {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
-  const [email, setEmail] = useState('peachy@email.com');
-  const [password, setPassword] = useState('•••••••••');
-  const [role, setRole] = useState('admin');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [role, setRole] = useState('customer');
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
   // Validation state: 'none' | 'incorrect_password' | 'email_not_found'
   const [validationError, setValidationError] = useState('none');
   const [statusMessage, setStatusMessage] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setStatusMessage(null);
+    setValidationError('none');
 
     if (authView === 'forgot') {
       setStatusMessage({
@@ -30,31 +33,83 @@ export default function Login({ onAuthSuccess }) {
         setStatusMessage({ type: 'error', text: 'Passwords do not match.' });
         return;
       }
+
+      setLoading(true);
+      try {
+        const nameParts = (fullName || '').trim().split(' ');
+        const firstname = nameParts[0] || 'User';
+        const lastname = nameParts.slice(1).join(' ') || '';
+        const roleFormatted = role.charAt(0).toUpperCase() + role.slice(1);
+
+        await createUser({
+          firstname,
+          lastname,
+          email: email.trim(),
+          password,
+          role: roleFormatted,
+        });
+
+        setStatusMessage({
+          type: 'success',
+          text: `Account created for ${fullName || email}! You can now sign in.`
+        });
+        setAuthView('login');
+      } catch (err) {
+        const errorText = err.message === 'Failed to fetch'
+          ? 'Cannot connect to backend server. Make sure tindalink-service is running on port 8080.'
+          : (err.message || 'Failed to create account.');
+        setStatusMessage({
+          type: 'error',
+          text: errorText
+        });
+      } finally {
+        setLoading(false);
+      }
+      return;
+    }
+
+    // authView === 'login'
+    setLoading(true);
+    try {
+      const user = await loginUser({
+        email: email.trim(),
+        password,
+      });
+
       setStatusMessage({
         type: 'success',
-        text: `Account created for ${fullName || email}. Please login to your account.`
+        text: `Logged in successfully as ${user.email}.`
       });
-      setAuthView('login');
-      return;
-    }
 
-    // Role-based Access Control handled by backend
-    if (email === 'wrong-email@example.com') {
-      setValidationError('email_not_found');
-      return;
-    }
+      const userRole = (user.role || role).toLowerCase();
+      const userName = `${user.firstname || ''} ${user.lastname || ''}`.trim() || user.email;
 
-    if (password === 'wrongpassword') {
-      setValidationError('incorrect_password');
-      return;
+      onAuthSuccess?.({
+        id: user.id,
+        email: user.email,
+        name: userName,
+        role: userRole,
+      });
+    } catch (err) {
+      if (err.message === 'Failed to fetch') {
+        setStatusMessage({
+          type: 'error',
+          text: 'Cannot connect to backend server. Make sure tindalink-service is running on port 8080.'
+        });
+      } else {
+        if (err.message && err.message.toLowerCase().includes('not find')) {
+          setValidationError('email_not_found');
+        } else {
+          setValidationError('incorrect_password');
+        }
+        setStatusMessage({
+          type: 'error',
+          text: err.message || 'Sign in failed. Please check your credentials.'
+        });
+      }
+    } finally {
+      setLoading(false);
     }
-
-    setValidationError('none');
-    setStatusMessage({
-      type: 'success',
-      text: `Logged in successfully as ${email}.`
-    });
-    onAuthSuccess?.({ email, role });
   };
 
   let loginSubtitle = 'Choose your account type, then sign in.';
@@ -206,8 +261,8 @@ export default function Login({ onAuthSuccess }) {
                   </div>
                 )}
 
-                <button type="submit" className="tindalink-submit-btn">
-                  Log In
+                <button type="submit" className="tindalink-submit-btn" disabled={loading}>
+                  {loading ? 'Signing in...' : 'Log In'}
                 </button>
               </form>
 
@@ -335,8 +390,8 @@ export default function Login({ onAuthSuccess }) {
                 )}
 
                 <div style={{ marginTop: '8px' }}>
-                  <button type="submit" className="tindalink-submit-btn">
-                    Sign Up
+                  <button type="submit" className="tindalink-submit-btn" disabled={loading}>
+                    {loading ? 'Creating Account...' : 'Sign Up'}
                   </button>
                 </div>
               </form>
