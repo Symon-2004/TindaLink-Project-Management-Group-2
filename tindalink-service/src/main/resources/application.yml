@@ -1,16 +1,15 @@
+#  Correct
 server:
   port: 8080
 
 spring:
   application:
     name: tindalink-service
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/UserDatabase
+      database: UserDatabase
+      auto-index-creation: true
 
-  mongodb:
-    uri: mongodb://localhost:27017/UserDatabase
-    database: UserDatabase
-
-  inventory:
-    low-stock-treshold: 3
-
-
-
+inventory:
+  low-stock-threshold: 3

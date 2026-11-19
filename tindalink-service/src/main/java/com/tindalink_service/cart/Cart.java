@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.time.Instant;
 
 @Document(collection = "carts")
-@CompoundIndex(name = "user_product_inique", def ="{'userId:1,'productId': 1", unique = true)
+@CompoundIndex(name = "user_product_unique", def = "{'userId': 1, 'productId': 1}", unique = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

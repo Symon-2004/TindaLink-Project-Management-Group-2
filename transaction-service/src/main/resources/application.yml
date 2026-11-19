@@ -2,9 +2,12 @@ server:
   port: 8081
 
 spring:
+  application:
+    name: transaction-service
   data:
     mongodb:
       uri: mongodb://localhost:27017/TransactionDatabase
+      database: TransactionDatabase
       auto-index-creation: true
 
 tindalink:

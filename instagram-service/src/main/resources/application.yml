@@ -4,8 +4,8 @@ server:
 spring:
   application:
     name: instagram-service
-
   data:
     mongodb:
       uri: mongodb://localhost:27017/InstagramDatabase
-
+      database: InstagramDatabase
+      auto-index-creation: true
