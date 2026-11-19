@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/MerchantProfile.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
-const MerchantProfile = () => {
+const MerchantProfile = ({ onNavigate, onLogout }) => {
   const [activeTab, setActiveTab] = useState('Account Information');
   const [formData, setFormData] = useState({
     fullName: 'Peachy Mangaoang',
@@ -24,34 +25,18 @@ const MerchantProfile = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container msidebar-layout">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>TindaLink AI</h2>
-          <span className="subtitle">MERCHANT</span>
-        </div>
-
-        <nav className="sidebar-nav">
-          <a href="#" className="nav-item">Dashboard</a>
-          <a href="#" className="nav-item">Products</a>
-          <a href="#" className="nav-item">Inventory</a>
-          <a href="#" className="nav-item">Orders</a>
-          <a href="#" className="nav-item">Payments</a>
-          <a href="#" className="nav-item">Store</a>
-          <a href="#" className="nav-item">Social Media</a>
-          <a href="#" className="nav-item active">Settings</a>
-        </nav>
-
-        <div className="sidebar-footer">
-          <p>TindaLink AI</p>
-        </div>
-      </aside>
+      <MerchantSidebar
+        activeTab="settings"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="main-content msidebar-main">
         {/* Top Header */}
-        <header className="top-header">
+        <header className="top-header msidebar-top-header">
           <h1>Merchant Portal</h1>
         </header>
 
@@ -67,7 +52,7 @@ const MerchantProfile = () => {
             <div className="card profile-sidebar-card">
               <div className="profile-avatar-section">
                 <div className="profile-avatar">TL</div>
-                <h3>TindaLink AI</h3>
+                <h3>TindaLink</h3>
                 <p>Business Owner</p>
               </div>
 
@@ -100,7 +85,11 @@ const MerchantProfile = () => {
                 >
                   Security
                 </button>
-                <button type="button" className="subnav-btn logout-btn">
+                <button
+                  type="button"
+                  className="subnav-btn logout-btn"
+                  onClick={onLogout}
+                >
                   Log Out
                 </button>
               </div>

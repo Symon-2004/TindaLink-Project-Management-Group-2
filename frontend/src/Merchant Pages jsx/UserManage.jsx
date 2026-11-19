@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/UserManage.css';
+import AdminSidebar from './AdminSidebar.jsx';
 
 const initialUsers = [
   {
@@ -66,7 +67,7 @@ const initialUsers = [
 
 const filterTabs = ['All Users', 'Customers', 'Merchants', 'Suspended'];
 
-const UserManage = () => {
+const UserManage = ({ onNavigate, onLogout }) => {
   const [users, setUsers] = useState(initialUsers);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFilter, setActiveFilter] = useState('All Users');
@@ -124,7 +125,19 @@ const UserManage = () => {
   };
 
   return (
-    <div className="um-page">
+    <div className="admin-container asidebar-layout">
+      <AdminSidebar
+        activeTab="users"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
+
+      <main className="admin-main asidebar-main">
+        <header className="admin-top-header asidebar-top-header">
+          <div className="admin-role-badge asidebar-role-badge">Administrator</div>
+        </header>
+
+        <div className="um-page">
       {/* Header */}
       <header className="um-header">
         <h1 className="um-title">User Management</h1>
@@ -318,6 +331,8 @@ const UserManage = () => {
           </div>
         </div>
       )}
+        </div>
+      </main>
     </div>
   );
 };

@@ -1,11 +1,17 @@
 import { useState } from 'react';
 import '../Merchant Pages Styling/MerchantDashboard.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 import AddProductInfo from './AddProductInfo.jsx';
 import ManageProductInfo from './ManageProductInfo.jsx';
 import InventoryManage from './InventoryManage.jsx';
 import OrderManage from './OrderManage.jsx';
+import OrderDetails from './OrderDetails.jsx';
+import PaymentManagement from './PaymentManagement.jsx';
+import StoreManagement from './StoreManagement.jsx';
+import SMCP from './SMCP.jsx';
+import MerchantProfile from './MerchantProfile.jsx';
 
-const MerchantDashboard = ({ onLogout }) => {
+const MerchantDashboard = ({ user, onLogout, onNavigate }) => {
     const [currentPage, setCurrentPage] = useState('dashboard');
     const [products, setProducts] = useState([
         { id: 1, name: 'Everyday Tote Bag', category: 'Fashion', price: 450, stock: 24 },
@@ -16,114 +22,90 @@ const MerchantDashboard = ({ onLogout }) => {
         { id: 6, name: 'Mini Ring Light', category: 'Electronics', price: 599, stock: 0 },
     ]);
 
-    if (currentPage === 'products') {
-        return (
-            <ManageProductInfo
-                products={products}
-                onAddProduct={() => setCurrentPage('add-product')}
-                onNavigate={setCurrentPage}
-                onDeleteProduct={(productId) => {
-                    setProducts((currentProducts) =>
-                        currentProducts.filter((product) => product.id !== productId),
-                    );
-                }}
-            />
-        );
-    }
+    const navigateTo = (page) => {
+        if (onNavigate) {
+            onNavigate(page);
+        } else {
+            setCurrentPage(page);
+        }
+    };
 
-    if (currentPage === 'add-product') {
-        return (
-            <AddProductInfo
-                onBack={() => setCurrentPage('products')}
-                onNavigate={setCurrentPage}
-                onSave={(product) => {
-                    setProducts((currentProducts) => [
-                        ...currentProducts,
-                        { ...product, id: Date.now() },
-                    ]);
-                    setCurrentPage('products');
-                }}
-            />
-        );
-    }
+    if (!onNavigate) {
+        if (currentPage === 'products') {
+            return (
+                <ManageProductInfo
+                    products={products}
+                    onAddProduct={() => setCurrentPage('add-product')}
+                    onNavigate={setCurrentPage}
+                    onLogout={onLogout}
+                    onDeleteProduct={(productId) => {
+                        setProducts((currentProducts) =>
+                            currentProducts.filter((product) => product.id !== productId),
+                        );
+                    }}
+                />
+            );
+        }
 
-    if (currentPage === 'inventory') {
-        return <InventoryManage onNavigate={setCurrentPage} />;
-    }
+        if (currentPage === 'add-product') {
+            return (
+                <AddProductInfo
+                    onBack={() => setCurrentPage('products')}
+                    onNavigate={setCurrentPage}
+                    onLogout={onLogout}
+                    onSave={(product) => {
+                        setProducts((currentProducts) => [
+                            ...currentProducts,
+                            { ...product, id: Date.now() },
+                        ]);
+                        setCurrentPage('products');
+                    }}
+                />
+            );
+        }
 
-    if (currentPage === 'orders') {
-        return <OrderManage onNavigate={setCurrentPage} />;
+        if (currentPage === 'inventory') {
+            return <InventoryManage onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'orders') {
+            return <OrderManage onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'order-details') {
+            return <OrderDetails onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'payments') {
+            return <PaymentManagement onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'store') {
+            return <StoreManagement onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'social-media') {
+            return <SMCP onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
+
+        if (currentPage === 'settings') {
+            return <MerchantProfile user={user} onNavigate={setCurrentPage} onLogout={onLogout} />;
+        }
     }
 
     return (
-        <div className="dashboard-container">
+        <div className="dashboard-container msidebar-layout">
             {/* Sidebar */}
-            <aside className="sidebar">
-                <div className="sidebar-header">
-                    <h2>TindaLink AI</h2>
-                    <span className="subtitle">MERCHANT</span>
-                </div>
-
-                <nav className="sidebar-nav">
-                    <a
-                        href="#"
-                        className="nav-item active"
-                        aria-current="page"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setCurrentPage('dashboard');
-                        }}
-                    >
-                        Dashboard
-                    </a>
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setCurrentPage('products');
-                        }}
-                    >
-                        Products
-                    </a>
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setCurrentPage('inventory');
-                        }}
-                    >
-                        Inventory
-                    </a>
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            setCurrentPage('orders');
-                        }}
-                    >
-                        Orders
-                    </a>
-                    <a href="#" className="nav-item">Payments</a>
-                    <div className="nav-spacer"></div>
-                    <a href="#" className="nav-item">Social Media</a>
-                    <a href="#" className="nav-item">Settings</a>
-                </nav>
-
-                <div className="sidebar-footer">
-                    <p>TindaLink AI</p>
-                    <button type="button" className="merchant-logout-btn" onClick={onLogout}>
-                        Log out
-                    </button>
-                </div>
-            </aside>
+            <MerchantSidebar
+                activeTab="dashboard"
+                onNavigate={navigateTo}
+                onLogout={onLogout}
+            />
 
             {/* Main Content */}
-            <main className="main-content">
+            <main className="main-content msidebar-main">
                 {/* Top Header */}
-                <header className="top-header">
+                <header className="top-header msidebar-top-header">
                     <h1>Merchant Portal</h1>
                 </header>
 
@@ -229,24 +211,33 @@ const MerchantDashboard = ({ onLogout }) => {
                             <h3>Quick Actions</h3>
                             <div className="action-buttons">
                                 <button
+                                    type="button"
                                     className="btn btn-primary"
-                                    onClick={() => setCurrentPage('products')}
+                                    onClick={() => navigateTo('products')}
                                 >
                                     Manage Products
                                 </button>
                                 <button
+                                    type="button"
                                     className="btn btn-secondary"
-                                    onClick={() => setCurrentPage('inventory')}
+                                    onClick={() => navigateTo('inventory')}
                                 >
                                     Manage Inventory
                                 </button>
                                 <button
+                                    type="button"
                                     className="btn btn-secondary"
-                                    onClick={() => setCurrentPage('orders')}
+                                    onClick={() => navigateTo('orders')}
                                 >
                                     View Orders
                                 </button>
-                                <button className="btn btn-secondary">Review Payments</button>
+                                <button
+                                    type="button"
+                                    className="btn btn-secondary"
+                                    onClick={() => navigateTo('payments')}
+                                >
+                                    Review Payments
+                                </button>
                             </div>
                         </div>
                     </div>

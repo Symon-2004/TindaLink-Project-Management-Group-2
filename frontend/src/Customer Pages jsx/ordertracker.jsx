@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/ordertracker.css';
+import CustomerNavbar from './CustomerNavbar.jsx';
 
 const TIMELINE_STEPS = [
   {
@@ -50,6 +51,7 @@ const ORDER_ITEMS = [
 ];
 
 export default function OrderTracker({
+  user,
   orderNumber = 'TL-20260909-00124',
   customerName = 'Peachy Mangaoang',
   paymentStatus = 'Pending verification',
@@ -57,6 +59,10 @@ export default function OrderTracker({
   deliveryMethod = 'Standard delivery',
   onNavigateOrders,
   onNavigateHome,
+  onNavigateShop,
+  onNavigateCart,
+  onNavigateProfile,
+  onLogout,
 }) {
   const [showContactModal, setShowContactModal] = useState(false);
   const [inquiryText, setInquiryText] = useState('');
@@ -76,59 +82,22 @@ export default function OrderTracker({
 
   return (
     <div className="ordertracker-page">
-      {/* 1. TOP NAVBAR (TindaLink logo without AI badge) */}
-      <header className="ordertracker-navbar">
-        <div className="ordertracker-navbar-container">
-          <div
-            className="ordertracker-logo"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-            }}
-          >
-            <div className="ordertracker-logo-icon">
-              <svg viewBox="0 0 36 36" fill="none">
-                <rect x="4" y="4" width="28" height="28" rx="8" fill="url(#trackerGrad)" />
-                <path
-                  d="M13 13V11C13 9 15 7 18 7C21 7 23 9 23 11V13"
-                  stroke="white"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                <rect x="9" y="13" width="18" height="15" rx="3" fill="white" />
-                <path
-                  d="M14 17C14 19 16 20.5 18 20.5C20 20.5 22 19 22 17"
-                  stroke="#7C3AED"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="trackerGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="0.55" stopColor="#8B5CF6" />
-                    <stop offset="1" stopColor="#D946EF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="ordertracker-logo-text">
-              Tinda<span className="ordertracker-logo-accent">Link</span>
-            </span>
-          </div>
-
-          <div className="ordertracker-nav-actions">
-            <button
-              type="button"
-              className="ordertracker-back-btn"
-              onClick={() => {
-                if (onNavigateOrders) onNavigateOrders();
-                else if (onNavigateHome) onNavigateHome();
-              }}
-            >
-              ← Back to Orders
-            </button>
-          </div>
-        </div>
-      </header>
+      <CustomerNavbar
+        user={user}
+        backAction={{
+          label: '← Back to Orders',
+          onClick: () => {
+            if (onNavigateOrders) onNavigateOrders();
+            else if (onNavigateHome) onNavigateHome();
+          },
+        }}
+        onNavigateHome={onNavigateHome}
+        onNavigateShop={onNavigateShop}
+        onNavigateCart={onNavigateCart}
+        onNavigateProfile={onNavigateProfile}
+        onNavigateOrders={onNavigateOrders}
+        onLogout={onLogout}
+      />
 
       {/* 2. MAIN TRACKING CONTENT */}
       <main className="ordertracker-main">

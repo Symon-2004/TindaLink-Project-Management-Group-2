@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/OrderDetails.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
-const OrderDetails = () => {
+const OrderDetails = ({ onNavigate, onLogout }) => {
   const [selectedStatus, setSelectedStatus] = useState('Pending Verification');
   const [currentOrderStatus, setCurrentOrderStatus] = useState('Pending Verification');
 
@@ -19,35 +20,18 @@ const OrderDetails = () => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container msidebar-layout">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>TindaLink AI</h2>
-          <span className="subtitle">MERCHANT</span>
-        </div>
-        
-        <nav className="sidebar-nav">
-          <a href="#" className="nav-item">Dashboard</a>
-          <a href="#" className="nav-item">Products</a>
-          <a href="#" className="nav-item">Inventory</a>
-          <a href="#" className="nav-item active">Orders</a>
-          <a href="#" className="nav-item">Payments</a>
-          <a href="#" className="nav-item">Store</a>
-          <div className="nav-spacer"></div>
-          <a href="#" className="nav-item">Social Media</a>
-          <a href="#" className="nav-item">Settings</a>
-        </nav>
-
-        <div className="sidebar-footer">
-          <p>TindaLink AI</p>
-        </div>
-      </aside>
+      <MerchantSidebar
+        activeTab="orders"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="main-content msidebar-main">
         {/* Top Header */}
-        <header className="top-header">
+        <header className="top-header msidebar-top-header">
           <h1>Merchant Portal</h1>
         </header>
 

@@ -1,20 +1,23 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/customerprofile.css';
+import CustomerNavbar from './CustomerNavbar.jsx';
 
 export default function CustomerProfile({
   user,
   onNavigateOrders,
   onNavigateHome,
   onNavigateShop,
+  onNavigateCart,
+  onNavigateProfile,
   onLogout,
 }) {
   const [activeSection, setActiveSection] = useState('personal');
 
-  // Editable customer state
-  const [fullName, setFullName] = useState(user?.name || 'Peachy Mahaleel M. Mangaoang');
-  const [displayName, setDisplayName] = useState('Peachy Mangaoang');
-  const [email, setEmail] = useState(user?.email || 'peachy@email.com');
-  const [contactNumber, setContactNumber] = useState('09xx xxx xxxx');
+  // Customer profile display values
+  const fullName = user?.name || 'Peachy Mahaleel M. Mangaoang';
+  const displayName = 'Peachy Mangaoang';
+  const email = user?.email || 'peachy@email.com';
+  const contactNumber = '09xx xxx xxxx';
   const memberSince = '2026';
 
   // Addresses state
@@ -69,68 +72,15 @@ export default function CustomerProfile({
 
   return (
     <div className="customerprofile-page">
-      {/* 1. TOP NAVBAR (TindaLink logo without AI badge) */}
-      <header className="customerprofile-navbar">
-        <div className="customerprofile-navbar-container">
-          <div
-            className="customerprofile-logo"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-            }}
-          >
-            <div className="customerprofile-logo-icon">
-              <svg viewBox="0 0 36 36" fill="none">
-                <rect x="4" y="4" width="28" height="28" rx="8" fill="url(#profileGrad)" />
-                <path
-                  d="M13 13V11C13 9 15 7 18 7C21 7 23 9 23 11V13"
-                  stroke="white"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                <rect x="9" y="13" width="18" height="15" rx="3" fill="white" />
-                <path
-                  d="M14 17C14 19 16 20.5 18 20.5C20 20.5 22 19 22 17"
-                  stroke="#7C3AED"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="profileGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="0.55" stopColor="#8B5CF6" />
-                    <stop offset="1" stopColor="#D946EF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="customerprofile-logo-text">
-              Tinda<span className="customerprofile-logo-accent">Link</span>
-            </span>
-          </div>
-
-          <div className="customerprofile-nav-actions">
-            <button
-              type="button"
-              className="customerprofile-nav-link"
-              onClick={() => {
-                if (onNavigateShop) onNavigateShop();
-                else if (onNavigateHome) onNavigateHome();
-              }}
-            >
-              Shop
-            </button>
-            <button
-              type="button"
-              className="customerprofile-nav-link"
-              onClick={() => {
-                if (onNavigateOrders) onNavigateOrders();
-              }}
-            >
-              My Orders
-            </button>
-          </div>
-        </div>
-      </header>
+      <CustomerNavbar
+        user={user}
+        onNavigateHome={onNavigateHome}
+        onNavigateShop={onNavigateShop}
+        onNavigateCart={onNavigateCart}
+        onNavigateProfile={onNavigateProfile}
+        onNavigateOrders={onNavigateOrders}
+        onLogout={onLogout}
+      />
 
       {/* 2. MAIN PROFILE CONTENT */}
       <main className="customerprofile-main">
@@ -174,19 +124,6 @@ export default function CustomerProfile({
                 onClick={() => setActiveSection('addresses')}
               >
                 Addresses
-              </button>
-
-              <button
-                type="button"
-                className={`customerprofile-menu-item ${
-                  activeSection === 'orders' ? 'active' : ''
-                }`}
-                onClick={() => {
-                  if (onNavigateOrders) onNavigateOrders();
-                  else setActiveSection('orders');
-                }}
-              >
-                Order History
               </button>
 
               <button
@@ -300,48 +237,7 @@ export default function CustomerProfile({
               </div>
             )}
 
-            {/* 3. ORDER HISTORY VIEW */}
-            {activeSection === 'orders' && (
-              <div className="customerprofile-card">
-                <h3 className="customerprofile-card-title">Order History</h3>
-                <p className="customerprofile-section-hint">
-                  View and track all items purchased through TindaLink.
-                </p>
-
-                <div className="customerprofile-orders-mini">
-                  <div className="customerprofile-order-row">
-                    <div>
-                      <strong>TL-20260909-00124</strong>
-                      <p className="customerprofile-subtext">Everyday Tote Bag + 1 item</p>
-                    </div>
-                    <span className="customerprofile-status-amber">Pending Verification</span>
-                    <strong className="customerprofile-price-tag">₱ 2,048</strong>
-                  </div>
-
-                  <div className="customerprofile-order-row">
-                    <div>
-                      <strong>TL-20260907-00098</strong>
-                      <p className="customerprofile-subtext">Handmade Soy Candle</p>
-                    </div>
-                    <span className="customerprofile-status-blue">Processing</span>
-                    <strong className="customerprofile-price-tag">₱ 299</strong>
-                  </div>
-                </div>
-
-                <button
-                  type="button"
-                  className="customerprofile-add-btn"
-                  style={{ marginTop: '20px' }}
-                  onClick={() => {
-                    if (onNavigateOrders) onNavigateOrders();
-                  }}
-                >
-                  View Full Orders List
-                </button>
-              </div>
-            )}
-
-            {/* 4. PASSWORD & SECURITY VIEW */}
+            {/* 3. PASSWORD & SECURITY VIEW */}
             {activeSection === 'security' && (
               <div className="customerprofile-card">
                 <h3 className="customerprofile-card-title">Password &amp; Security</h3>

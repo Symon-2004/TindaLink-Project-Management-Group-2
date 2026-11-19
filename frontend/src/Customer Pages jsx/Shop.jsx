@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/Shop.css';
+import CustomerNavbar from './CustomerNavbar.jsx';
 
 const INITIAL_SHOP_PRODUCTS = [
   {
@@ -138,7 +139,15 @@ const INITIAL_SHOP_PRODUCTS = [
 
 const CATEGORIES = ['All products', 'Fashion', 'Beauty', 'Electronics', 'Food', 'Home'];
 
-export default function Shop({ onNavigateHome, onLogout, onNavigateCart, onNavigateProfile }) {
+export default function Shop({
+  user,
+  onNavigateHome,
+  onNavigateShop,
+  onNavigateCart,
+  onNavigateProfile,
+  onNavigateOrders,
+  onLogout,
+}) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All products');
   const [sortBy, setSortBy] = useState('featured');
@@ -202,99 +211,20 @@ export default function Shop({ onNavigateHome, onLogout, onNavigateCart, onNavig
 
   return (
     <div className="shop-page">
-      {/* 1. TOP NAVBAR */}
-      <header className="shop-navbar">
-        <div className="shop-navbar-container">
-          {/* Logo with purple AI badge */}
-          <div
-            className="shop-logo"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-            }}
-          >
-            <div className="shop-logo-icon">
-              <svg viewBox="0 0 36 36" fill="none">
-                <rect x="4" y="4" width="28" height="28" rx="8" fill="url(#shopGrad)" />
-                <path
-                  d="M13 13V11C13 9 15 7 18 7C21 7 23 9 23 11V13"
-                  stroke="white"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                <rect x="9" y="13" width="18" height="15" rx="3" fill="white" />
-                <path d="M14 17C14 19 16 20.5 18 20.5C20 20.5 22 19 22 17" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" />
-                <defs>
-                  <linearGradient id="shopGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="0.55" stopColor="#8B5CF6" />
-                    <stop offset="1" stopColor="#D946EF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="shop-logo-text">
-              Tinda<span className="shop-logo-accent">Link</span>
-            </span>
-            <span className="shop-ai-badge">AI</span>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="shop-nav-links">
-            <button
-              type="button"
-              className="shop-nav-link"
-              onClick={() => {
-                if (onNavigateHome) onNavigateHome();
-              }}
-            >
-              Home
-            </button>
-            <button
-              type="button"
-              className="shop-nav-link active"
-              onClick={() => setSelectedCategory('All products')}
-            >
-              Shop
-            </button>
-            <button
-              type="button"
-              className="shop-nav-link"
-              onClick={() => alert('About TindaLink: A smart marketplace for local businesses.')}
-            >
-              About
-            </button>
-          </nav>
-
-          {/* Search Bar in Navbar */}
-          <div className="shop-nav-search">
-            <svg className="shop-search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="11" cy="11" r="8" />
-              <line x1="21" y1="21" x2="16.65" y2="16.65" />
-            </svg>
-            <input
-              type="text"
-              placeholder="Search products, stores, categories..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-
-          {/* Cart & Account */}
-          <div className="shop-nav-actions">
-            <button type="button" className="shop-cart-btn" aria-label="Cart" onClick={() => { if (onNavigateCart) onNavigateCart(); }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="9" cy="21" r="1" />
-                <circle cx="20" cy="21" r="1" />
-                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
-              </svg>
-            </button>
-            <button type="button" className="shop-account-btn" onClick={() => { if (onNavigateProfile) onNavigateProfile(); }}>
-              <span className="shop-account-avatar"></span>
-              <span className="shop-account-label">Account</span>
-            </button>
-          </div>
-        </div>
-      </header>
+      <CustomerNavbar
+        activePage="Shop"
+        user={user}
+        showSearch={false}
+        onNavigateHome={onNavigateHome}
+        onNavigateShop={() => {
+          setSelectedCategory('All products');
+          onNavigateShop?.();
+        }}
+        onNavigateCart={onNavigateCart}
+        onNavigateProfile={onNavigateProfile}
+        onNavigateOrders={onNavigateOrders}
+        onLogout={onLogout}
+      />
 
       {/* 2. MAIN SHOP CONTENT */}
       <main className="shop-main">

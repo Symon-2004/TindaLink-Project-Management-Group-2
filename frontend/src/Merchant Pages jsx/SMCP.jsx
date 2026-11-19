@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/SMCP.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
 const mockProducts = [
   {
@@ -24,7 +25,7 @@ const mockProducts = [
   },
 ];
 
-const SMCP = () => {
+const SMCP = ({ onNavigate, onLogout }) => {
   const [isConnected, setIsConnected] = useState(true);
   const [selectedProductId, setSelectedProductId] = useState(mockProducts[0].id);
   const [caption, setCaption] = useState(mockProducts[0].defaultCaption);
@@ -66,7 +67,19 @@ const SMCP = () => {
   };
 
   return (
-    <div className="smcp-page">
+    <div className="dashboard-container msidebar-layout">
+      <MerchantSidebar
+        activeTab="social-media"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
+
+      <main className="main-content msidebar-main">
+        <header className="top-header msidebar-top-header">
+          <h1>Merchant Portal</h1>
+        </header>
+
+        <div className="smcp-page">
       {/* Header */}
       <header className="smcp-header">
         <h1 className="smcp-title">Social Media Cross-Posting</h1>
@@ -172,6 +185,8 @@ const SMCP = () => {
           </button>
         </div>
       </section>
+        </div>
+      </main>
     </div>
   );
 };

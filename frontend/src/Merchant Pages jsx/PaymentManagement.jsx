@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/PaymentManagement.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
 const initialPayments = [
   {
@@ -54,7 +55,7 @@ const initialPayments = [
   },
 ];
 
-const PaymentManagement = () => {
+const PaymentManagement = ({ onNavigate, onLogout }) => {
   const [payments, setPayments] = useState(initialPayments);
   const [selectedPayment, setSelectedPayment] = useState(null);
 
@@ -77,7 +78,19 @@ const PaymentManagement = () => {
   };
 
   return (
-    <div className="pm-page">
+    <div className="dashboard-container msidebar-layout">
+      <MerchantSidebar
+        activeTab="payments"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
+
+      <main className="main-content msidebar-main">
+        <header className="top-header msidebar-top-header">
+          <h1>Merchant Portal</h1>
+        </header>
+
+        <div className="pm-page">
       {/* Header */}
       <header className="pm-header">
         <h1 className="pm-title">Payment Management</h1>
@@ -229,6 +242,8 @@ const PaymentManagement = () => {
           </div>
         </div>
       )}
+        </div>
+      </main>
     </div>
   );
 };

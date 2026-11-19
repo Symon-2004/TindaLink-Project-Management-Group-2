@@ -1,0 +1,186 @@
+.asidebar-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f7f8fc;
+  text-align: left;
+}
+
+.asidebar {
+  width: 250px;
+  background-color: #231f36;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 1.75rem 0;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.asidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 1.5rem;
+  margin-bottom: 2.25rem;
+  text-align: left;
+}
+
+.asidebar-logo-icon {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.asidebar-logo-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.asidebar-brand-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  text-align: left;
+}
+
+.asidebar-logo-white {
+  color: #ffffff;
+}
+
+.asidebar-logo-purple {
+  color: #8b5cf6;
+}
+
+.asidebar-section-label {
+  padding: 0 1.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  color: #a09eb0;
+  margin-bottom: 0.5rem;
+  text-align: left;
+}
+
+.asidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.asidebar-nav-item {
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #a09eb0;
+  text-decoration: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.asidebar-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.asidebar-nav-item.active {
+  background-color: #8942ff;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.asidebar-divider {
+  height: 1px;
+  background-color: #36314d;
+  margin: 1.25rem 1.5rem;
+}
+
+.asidebar-footer {
+  padding: 1.5rem 1.75rem 0;
+  text-align: left;
+}
+
+.asidebar-account-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0 0 0.2rem 0;
+  text-align: left;
+}
+
+.asidebar-account-email {
+  font-size: 0.7rem;
+  color: #a09eb0;
+  margin: 0;
+  text-align: left;
+}
+
+.asidebar-logout-btn {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a09eb0;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.asidebar-logout-btn:hover {
+  color: #ffffff;
+}
+
+.asidebar-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.asidebar-main > * {
+  text-align: left;
+}
+
+.asidebar-main .um-page,
+.asidebar-main .pmon-page {
+  min-height: 0;
+  flex: 1;
+}
+
+.asidebar-top-header {
+  background-color: #ffffff;
+  padding: 1rem 2.5rem;
+  border-bottom: 1px solid #e9e9f0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.asidebar-role-badge {
+  border: 1px solid #e9e9f0;
+  border-radius: 10px;
+  padding: 0.55rem 1.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #1f1b2e;
+  background-color: #ffffff;
+}

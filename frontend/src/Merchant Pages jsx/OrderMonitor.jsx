@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/OrderMonitor.css';
+import AdminSidebar from './AdminSidebar.jsx';
 
-const OrderMonitor = () => {
+const OrderMonitor = ({ onNavigate, onLogout }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const transactions = [
@@ -41,58 +42,16 @@ const OrderMonitor = () => {
   );
 
   return (
-    <div className="admin-container">
+    <div className="admin-container asidebar-layout">
       {/* Sidebar */}
-      <aside className="admin-sidebar">
-        <div className="admin-brand">
-          <div className="brand-logo-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-          </div>
-          <span className="brand-name">Tinda<span>Link</span></span>
-          <span className="brand-ai-badge">AI</span>
-        </div>
-
-        <div className="nav-section-label">ADMIN CONSOLE</div>
-
-        <nav className="admin-nav">
-          <a href="#" className="admin-nav-item with-icon">
-            <span className="nav-circle"></span>
-            Dashboard
-          </a>
-          <a href="#" className="admin-nav-item with-icon">
-            <span className="nav-circle"></span>
-            Users
-          </a>
-          <a href="#" className="admin-nav-item with-icon">
-            <span className="nav-circle"></span>
-            Merchants
-          </a>
-          <a href="#" className="admin-nav-item with-icon">
-            <span className="nav-circle"></span>
-            Products
-          </a>
-          <a href="#" className="admin-nav-item with-icon active">
-            <span className="nav-circle"></span>
-            Orders
-          </a>
-
-          <div className="admin-nav-divider"></div>
-
-          <a href="#" className="admin-nav-item">System Settings</a>
-        </nav>
-
-        <div className="admin-sidebar-footer">
-          <p className="account-title">Admin Account</p>
-          <p className="account-email">admin@tindalink.ai</p>
-        </div>
-      </aside>
+      <AdminSidebar
+        activeTab="orders"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
 
       {/* Main Content */}
-      <main className="admin-main">
+      <main className="admin-main asidebar-main">
         {/* Top Header */}
         <header className="admin-top-header">
           <div className="header-controls">

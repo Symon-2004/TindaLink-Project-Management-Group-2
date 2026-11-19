@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/Cart.css';
+import CustomerNavbar from './CustomerNavbar.jsx';
 
 const INITIAL_CART_ITEMS = [
   {
@@ -35,7 +36,16 @@ const INITIAL_CART_ITEMS = [
   },
 ];
 
-export default function Cart({ onNavigateShop, onNavigateHome, onNavigateCheckout }) {
+export default function Cart({
+  user,
+  onNavigateShop,
+  onNavigateHome,
+  onNavigateCart,
+  onNavigateProfile,
+  onNavigateOrders,
+  onNavigateCheckout,
+  onLogout,
+}) {
   const [cartItems, setCartItems] = useState(INITIAL_CART_ITEMS);
   const [isCheckedOut, setIsCheckedOut] = useState(false);
 
@@ -69,57 +79,23 @@ export default function Cart({ onNavigateShop, onNavigateHome, onNavigateCheckou
 
   return (
     <div className="cart-page">
-      {/* 1. TOP NAVBAR (Consistent with TindaLink Theme) */}
-      <header className="cart-navbar">
-        <div className="cart-navbar-container">
-          {/* Logo with purple AI badge */}
-          <div
-            className="cart-logo"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-            }}
-          >
-            <div className="cart-logo-icon">
-              <svg viewBox="0 0 36 36" fill="none">
-                <rect x="4" y="4" width="28" height="28" rx="8" fill="url(#cartGrad)" />
-                <path
-                  d="M13 13V11C13 9 15 7 18 7C21 7 23 9 23 11V13"
-                  stroke="white"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                <rect x="9" y="13" width="18" height="15" rx="3" fill="white" />
-                <path d="M14 17C14 19 16 20.5 18 20.5C20 20.5 22 19 22 17" stroke="#7C3AED" strokeWidth="2" strokeLinecap="round" />
-                <defs>
-                  <linearGradient id="cartGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="0.55" stopColor="#8B5CF6" />
-                    <stop offset="1" stopColor="#D946EF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="cart-logo-text">
-              Tinda<span className="cart-logo-accent">Link</span>
-            </span>
-            <span className="cart-ai-badge">AI</span>
-          </div>
-
-          {/* Quick return buttons */}
-          <div className="cart-nav-actions">
-            <button
-              type="button"
-              className="cart-nav-back-btn"
-              onClick={() => {
-                if (onNavigateShop) onNavigateShop();
-                else if (onNavigateHome) onNavigateHome();
-              }}
-            >
-              ← Continue Shopping
-            </button>
-          </div>
-        </div>
-      </header>
+      <CustomerNavbar
+        user={user}
+        cartCount={totalItemCount}
+        backAction={{
+          label: '← Continue Shopping',
+          onClick: () => {
+            if (onNavigateShop) onNavigateShop();
+            else if (onNavigateHome) onNavigateHome();
+          },
+        }}
+        onNavigateHome={onNavigateHome}
+        onNavigateShop={onNavigateShop}
+        onNavigateCart={onNavigateCart}
+        onNavigateProfile={onNavigateProfile}
+        onNavigateOrders={onNavigateOrders}
+        onLogout={onLogout}
+      />
 
       {/* 2. MAIN CART CONTENT */}
       <main className="cart-main">

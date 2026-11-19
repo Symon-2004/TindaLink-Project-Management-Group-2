@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/checkout.css';
+import CustomerNavbar from './CustomerNavbar.jsx';
 
 const DEFAULT_ORDER_ITEMS = [
   {
@@ -18,7 +19,16 @@ const DEFAULT_ORDER_ITEMS = [
   },
 ];
 
-export default function Checkout({ onNavigateCart, onNavigateHome, onNavigatePayment }) {
+export default function Checkout({
+  user,
+  onNavigateCart,
+  onNavigateHome,
+  onNavigateShop,
+  onNavigateProfile,
+  onNavigateOrders,
+  onNavigatePayment,
+  onLogout,
+}) {
   // Form state pre-filled as shown in CUS-05
   const [fullName, setFullName] = useState('Peachy Mahaleel M. Mangaoang');
   const [email, setEmail] = useState('peachy@email.com');
@@ -44,61 +54,22 @@ export default function Checkout({ onNavigateCart, onNavigateHome, onNavigatePay
 
   return (
     <div className="checkout-page">
-      {/* 1. TOP NAVBAR (Logo without "AI" badge) */}
-      <header className="checkout-navbar">
-        <div className="checkout-navbar-container">
-          {/* Logo: "TindaLink" only, no AI badge */}
-          <div
-            className="checkout-logo"
-            onClick={() => {
-              if (onNavigateHome) onNavigateHome();
-            }}
-          >
-            <div className="checkout-logo-icon">
-              <svg viewBox="0 0 36 36" fill="none">
-                <rect x="4" y="4" width="28" height="28" rx="8" fill="url(#checkoutGrad)" />
-                <path
-                  d="M13 13V11C13 9 15 7 18 7C21 7 23 9 23 11V13"
-                  stroke="white"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                <rect x="9" y="13" width="18" height="15" rx="3" fill="white" />
-                <path
-                  d="M14 17C14 19 16 20.5 18 20.5C20 20.5 22 19 22 17"
-                  stroke="#7C3AED"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                />
-                <defs>
-                  <linearGradient id="checkoutGrad" x1="0" y1="0" x2="36" y2="36" gradientUnits="userSpaceOnUse">
-                    <stop stopColor="#6366F1" />
-                    <stop offset="0.55" stopColor="#8B5CF6" />
-                    <stop offset="1" stopColor="#D946EF" />
-                  </linearGradient>
-                </defs>
-              </svg>
-            </div>
-            <span className="checkout-logo-text">
-              Tinda<span className="checkout-logo-accent">Link</span>
-            </span>
-          </div>
-
-          {/* Back to Cart link */}
-          <div className="checkout-nav-actions">
-            <button
-              type="button"
-              className="checkout-back-btn"
-              onClick={() => {
-                if (onNavigateCart) onNavigateCart();
-                else if (onNavigateHome) onNavigateHome();
-              }}
-            >
-              ← Back to Cart
-            </button>
-          </div>
-        </div>
-      </header>
+      <CustomerNavbar
+        user={user}
+        backAction={{
+          label: '← Back to Cart',
+          onClick: () => {
+            if (onNavigateCart) onNavigateCart();
+            else if (onNavigateHome) onNavigateHome();
+          },
+        }}
+        onNavigateHome={onNavigateHome}
+        onNavigateShop={onNavigateShop}
+        onNavigateCart={onNavigateCart}
+        onNavigateProfile={onNavigateProfile}
+        onNavigateOrders={onNavigateOrders}
+        onLogout={onLogout}
+      />
 
       {/* 2. MAIN CHECKOUT CONTENT */}
       <main className="checkout-main">

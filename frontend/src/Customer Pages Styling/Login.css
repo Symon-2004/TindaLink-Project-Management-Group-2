@@ -27,73 +27,58 @@ html,
 /* Left Lavender-Blush Brand Panel */
 .tindalink-brand-panel {
   background: linear-gradient(160deg, #f3ebfe 0%, #f8eaf6 54%, #fcecf2 100%);
-  padding: 64px 56px;
+  padding: 56px 40px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  text-align: left;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.tindalink-brand-top {
-  display: inline-flex;
+.tindalink-brand-showcase {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 112px;
+  text-align: center;
+  max-width: 380px;
 }
 
 .tindalink-logo-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
   background: linear-gradient(135deg, #5b34f2 0%, #8839ef 55%, #d668b6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 5px 14px rgba(124, 58, 237, 0.22);
+  box-shadow: 0 10px 24px rgba(124, 58, 237, 0.25);
+  margin-bottom: 22px;
 }
 
 .tindalink-logo-icon svg {
-  width: 24px;
-  height: 24px;
+  width: 31px;
+  height: 31px;
 }
 
 .tindalink-brand-title {
-  font-size: 21px;
+  font-size: 38px;
   font-weight: 800;
-  letter-spacing: -0.025em;
-  color: #1e1b39;
-  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #16142a;
+  line-height: 1.1;
+  margin-bottom: 12px;
 }
 
-.tindalink-brand-badge {
-  background-color: #8b3dff;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 3px 8px;
-  border-radius: 999px;
-  letter-spacing: 0.03em;
-}
-
-.tindalink-brand-copy {
-  max-width: 380px;
-}
-
-.tindalink-brand-headline {
-  font-size: 36px;
-  font-weight: 800;
-  line-height: 1.18;
-  letter-spacing: -0.025em;
-  color: #1e1b39;
-  margin-bottom: 18px;
+.tindalink-brand-accent {
+  color: #8b5cf6;
 }
 
 .tindalink-brand-subtitle {
-  font-size: 14px;
+  font-size: 13.5px;
   font-weight: 500;
-  line-height: 1.5;
-  color: #6b6882;
+  line-height: 1.55;
+  color: #6e6b85;
+  max-width: 340px;
 }
 
 /* Right White Form Panel */
@@ -342,15 +327,11 @@ html,
   }
 
   .tindalink-brand-panel {
-    padding: 36px 28px;
+    padding: 44px 28px;
   }
 
-  .tindalink-brand-top {
-    margin-bottom: 36px;
-  }
-
-  .tindalink-brand-headline {
-    font-size: 28px;
+  .tindalink-brand-title {
+    font-size: 32px;
   }
 
   .tindalink-auth-card {

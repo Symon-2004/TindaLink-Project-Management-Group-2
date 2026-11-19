@@ -68,7 +68,7 @@ export default function Login({ onAuthSuccess }) {
     <div className="tindalink-auth-layout">
       {/* Left Brand Panel */}
       <aside className="tindalink-brand-panel">
-        <div className="tindalink-brand-top">
+        <div className="tindalink-brand-showcase">
           <div className="tindalink-logo-icon" aria-hidden="true">
             <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path
@@ -98,18 +98,12 @@ export default function Login({ onAuthSuccess }) {
             </svg>
           </div>
 
-          <span className="tindalink-brand-title">TindaLink</span>
-          <span className="tindalink-brand-badge">AI</span>
-        </div>
-
-        <div className="tindalink-brand-copy">
-          <h1 className="tindalink-brand-headline">
-            Smart access.
-            <br />
-            One account.
+          <h1 className="tindalink-brand-title">
+            Tinda<span className="tindalink-brand-accent">Link</span>
           </h1>
+
           <p className="tindalink-brand-subtitle">
-            Your selected role controls the workspace you enter.
+            TindaLink keeps your sign-in and account creation experience clear and consistent.
           </p>
         </div>
       </aside>

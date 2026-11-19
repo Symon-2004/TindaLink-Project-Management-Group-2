@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/ProductMonitor.css';
+import AdminSidebar from './AdminSidebar.jsx';
 
 const initialProducts = [
   {
@@ -81,7 +82,7 @@ const initialProducts = [
   },
 ];
 
-const ProductMonitor = () => {
+const ProductMonitor = ({ onNavigate, onLogout }) => {
   const [products, setProducts] = useState(initialProducts);
   const [searchQuery, setSearchQuery] = useState('');
   const [showReportedOnly, setShowReportedOnly] = useState(false);
@@ -119,7 +120,19 @@ const ProductMonitor = () => {
   };
 
   return (
-    <div className="pmon-page">
+    <div className="admin-container asidebar-layout">
+      <AdminSidebar
+        activeTab="products"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
+
+      <main className="admin-main asidebar-main">
+        <header className="admin-top-header asidebar-top-header">
+          <div className="admin-role-badge asidebar-role-badge">Administrator</div>
+        </header>
+
+        <div className="pmon-page">
       {/* Header */}
       <header className="pmon-header">
         <h1 className="pmon-title">Product Monitoring</h1>
@@ -292,6 +305,8 @@ const ProductMonitor = () => {
           </div>
         </div>
       )}
+        </div>
+      </main>
     </div>
   );
 };

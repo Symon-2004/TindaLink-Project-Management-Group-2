@@ -1,50 +1,21 @@
 import '../Merchant Pages Styling/AdminDash.css';
+import AdminSidebar from './AdminSidebar.jsx';
 
-const AdminDash = ({ onLogout }) => {
+const AdminDash = ({ onLogout, onNavigate }) => {
   return (
-    <div className="admin-container">
+    <div className="admin-container asidebar-layout">
       {/* Sidebar */}
-      <aside className="admin-sidebar">
-        <div className="admin-brand">
-          <div className="brand-logo-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-              <line x1="3" y1="6" x2="21" y2="6"></line>
-              <path d="M16 10a4 4 0 0 1-8 0"></path>
-            </svg>
-          </div>
-          <span className="brand-name">Tinda<span>Link</span></span>
-          <span className="brand-ai-badge">AI</span>
-        </div>
-
-        <div className="nav-section-label">ADMIN CONSOLE</div>
-        
-        <nav className="admin-nav">
-          <a href="#" className="admin-nav-item active">Dashboard</a>
-          <a href="#" className="admin-nav-item">Users</a>
-          <a href="#" className="admin-nav-item">Merchants</a>
-          <a href="#" className="admin-nav-item">Products</a>
-          <a href="#" className="admin-nav-item">Orders</a>
-          
-          <div className="admin-nav-divider"></div>
-          
-          <a href="#" className="admin-nav-item">System Settings</a>
-        </nav>
-
-        <div className="admin-sidebar-footer">
-          <p className="account-title">Admin Account</p>
-          <p className="account-email">admin@tindalink.ai</p>
-          <button type="button" className="admin-logout-btn" onClick={onLogout}>
-            Log out
-          </button>
-        </div>
-      </aside>
+      <AdminSidebar
+        activeTab="dashboard"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
 
       {/* Main Content */}
-      <main className="admin-main">
+      <main className="admin-main asidebar-main">
         {/* Top Header */}
-        <header className="admin-top-header">
-          <div className="admin-role-badge">Administrator</div>
+        <header className="admin-top-header asidebar-top-header">
+          <div className="admin-role-badge asidebar-role-badge">Administrator</div>
         </header>
 
         {/* Dashboard Area */}

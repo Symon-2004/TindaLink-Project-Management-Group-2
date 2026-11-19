@@ -1,0 +1,148 @@
+.msidebar-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  background-color: #f7f8fc;
+  text-align: left;
+}
+
+.msidebar {
+  width: 250px;
+  background-color: #29253d;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.msidebar-header {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.msidebar-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 0.25rem 0;
+  letter-spacing: -0.02em;
+  text-align: left;
+}
+
+.msidebar-logo-white {
+  color: #ffffff;
+}
+
+.msidebar-logo-purple {
+  color: #8b5cf6;
+}
+
+.msidebar-subtitle {
+  display: block;
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #a09eb0;
+  text-align: left;
+}
+
+.msidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.25rem;
+  text-align: left;
+}
+
+.msidebar-nav-item {
+  display: block;
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #a09eb0;
+  text-decoration: none;
+  text-align: left;
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.msidebar-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.msidebar-nav-item.active {
+  background-color: #8942ff;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.msidebar-footer {
+  padding: 1.5rem 2rem 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: left;
+}
+
+.msidebar-footer p {
+  margin: 0;
+}
+
+.msidebar-logout-btn {
+  display: block;
+  margin-top: 0.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a09eb0;
+  font: inherit;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+}
+
+.msidebar-logout-btn:hover {
+  color: #ffffff;
+}
+
+.msidebar-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  text-align: left;
+}
+
+.msidebar-main > * {
+  text-align: left;
+}
+
+.msidebar-main .pm-page,
+.msidebar-main .sm-page,
+.msidebar-main .smcp-page {
+  min-height: 0;
+  flex: 1;
+}
+
+.msidebar-top-header {
+  background-color: #ffffff;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid #e9e9f0;
+  text-align: left;
+}
+
+.msidebar-top-header h1 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1f1b2e;
+  margin: 0;
+  text-align: left;
+}

@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../Merchant Pages Styling/StoreManagement.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
-const StoreManagement = () => {
+const StoreManagement = ({ onNavigate, onLogout }) => {
   const [storeInfo, setStoreInfo] = useState({
     name: 'TindaLink AI',
     description: 'Local lifestyle & handmade goods',
@@ -26,7 +27,19 @@ const StoreManagement = () => {
   };
 
   return (
-    <div className="sm-page">
+    <div className="dashboard-container msidebar-layout">
+      <MerchantSidebar
+        activeTab="store"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
+
+      <main className="main-content msidebar-main">
+        <header className="top-header msidebar-top-header">
+          <h1>Merchant Portal</h1>
+        </header>
+
+        <div className="sm-page">
       {/* Header */}
       <header className="sm-header">
         <h1 className="sm-title">Store Management</h1>
@@ -124,6 +137,8 @@ const StoreManagement = () => {
           </div>
         </form>
       </section>
+        </div>
+      </main>
     </div>
   );
 };

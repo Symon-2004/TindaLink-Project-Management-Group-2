@@ -1,5 +1,15 @@
 import { useState } from 'react';
 import '../Merchant Pages Styling/ManageProductInfo.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
+
+const DEFAULT_PRODUCTS = [
+    { id: 1, name: 'Everyday Tote Bag', category: 'Fashion', price: 450, stock: 24 },
+    { id: 2, name: 'Wireless Mini Speaker', category: 'Electronics', price: 799, stock: 3 },
+    { id: 3, name: 'Handmade Soy Candle', category: 'Home & Living', price: 299, stock: 18 },
+    { id: 4, name: 'Organic Gift Set', category: 'Beauty', price: 650, stock: 4 },
+    { id: 5, name: 'Canvas Sneakers', category: 'Fashion', price: 1499, stock: 12 },
+    { id: 6, name: 'Mini Ring Light', category: 'Electronics', price: 599, stock: 0 },
+];
 
 const getProductStatus = (stock) => {
     if (stock <= 0) return 'Out of stock';
@@ -7,7 +17,13 @@ const getProductStatus = (stock) => {
     return 'Active';
 };
 
-const ManageProductInfo = ({ products, onAddProduct, onDeleteProduct, onNavigate }) => {
+const ManageProductInfo = ({
+    products = DEFAULT_PRODUCTS,
+    onAddProduct,
+    onDeleteProduct,
+    onNavigate,
+    onLogout,
+}) => {
     const [searchTerm, setSearchTerm] = useState('');
     const filteredProducts = products.filter((product) =>
         `${product.name} ${product.category}`.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -23,59 +39,15 @@ const ManageProductInfo = ({ products, onAddProduct, onDeleteProduct, onNavigate
     };
 
     return (
-        <div className="dashboard-container">
-            <aside className="sidebar">
-                <div className="sidebar-header">
-                    <h2>TindaLink AI</h2>
-                    <span className="subtitle">MERCHANT</span>
-                </div>
+        <div className="dashboard-container msidebar-layout">
+            <MerchantSidebar
+                activeTab="products"
+                onNavigate={onNavigate}
+                onLogout={onLogout}
+            />
 
-                <nav className="sidebar-nav">
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            onNavigate('dashboard');
-                        }}
-                    >
-                        Dashboard
-                    </a>
-                    <a href="#" className="nav-item active" aria-current="page">Products</a>
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            onNavigate('inventory');
-                        }}
-                    >
-                        Inventory
-                    </a>
-                    <a
-                        href="#"
-                        className="nav-item"
-                        onClick={(event) => {
-                            event.preventDefault();
-                            onNavigate('orders');
-                        }}
-                    >
-                        Orders
-                    </a>
-                    <a href="#" className="nav-item">Payments</a>
-                    <a href="#" className="nav-item">Store</a>
-                    <div className="nav-spacer"></div>
-                    <a href="#" className="nav-item">Social Media</a>
-                    <a href="#" className="nav-item">Settings</a>
-                </nav>
-
-                <div className="sidebar-footer">
-                    <p>TindaLink AI</p>
-                </div>
-            </aside>
-
-            <main className="main-content">
-                <header className="top-header">
+            <main className="main-content msidebar-main">
+                <header className="top-header msidebar-top-header">
                     <h1>Merchant Portal</h1>
                 </header>
 

@@ -1,6 +1,7 @@
 import '../Merchant Pages Styling/OrderManage.css';
+import MerchantSidebar from './MerchantSidebar.jsx';
 
-const OrderManage = ({ onNavigate }) => {
+const OrderManage = ({ onNavigate, onSelectOrder, onLogout }) => {
   // Mock data based on the design
   const orders = [
     { id: '#00124', customer: 'Peachy Mangaoang', total: '₱2,048', payment: 'Pending', status: 'Pending verification', action: 'View' },
@@ -21,62 +22,18 @@ const OrderManage = ({ onNavigate }) => {
   };
 
   return (
-    <div className="dashboard-container">
+    <div className="dashboard-container msidebar-layout">
       {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="sidebar-header">
-          <h2>TindaLink AI</h2>
-          <span className="subtitle">MERCHANT</span>
-        </div>
-        
-        <nav className="sidebar-nav">
-          <a
-            href="#"
-            className="nav-item"
-            onClick={(event) => {
-              event.preventDefault();
-              onNavigate('dashboard');
-            }}
-          >
-            Dashboard
-          </a>
-          <a
-            href="#"
-            className="nav-item"
-            onClick={(event) => {
-              event.preventDefault();
-              onNavigate('products');
-            }}
-          >
-            Products
-          </a>
-          <a
-            href="#"
-            className="nav-item"
-            onClick={(event) => {
-              event.preventDefault();
-              onNavigate('inventory');
-            }}
-          >
-            Inventory
-          </a>
-          <a href="#" className="nav-item active" aria-current="page">Orders</a>
-          <a href="#" className="nav-item">Payments</a>
-          <a href="#" className="nav-item">Store</a>
-          <div className="nav-spacer"></div>
-          <a href="#" className="nav-item">Social Media</a>
-          <a href="#" className="nav-item">Settings</a>
-        </nav>
-
-        <div className="sidebar-footer">
-          <p>TindaLink AI</p>
-        </div>
-      </aside>
+      <MerchantSidebar
+        activeTab="orders"
+        onNavigate={onNavigate}
+        onLogout={onLogout}
+      />
 
       {/* Main Content */}
-      <main className="main-content">
+      <main className="main-content msidebar-main">
         {/* Top Header */}
-        <header className="top-header">
+        <header className="top-header msidebar-top-header">
           <h1>Merchant Portal</h1>
         </header>
 
@@ -121,7 +78,13 @@ const OrderManage = ({ onNavigate }) => {
                       </span>
                     </td>
                     <td>
-                      <button className="btn-action view">{order.action}</button>
+                      <button
+                        type="button"
+                        className="btn-action view"
+                        onClick={() => (onSelectOrder ? onSelectOrder() : onNavigate?.('order-details'))}
+                      >
+                        {order.action}
+                      </button>
                     </td>
                   </tr>
                 ))}

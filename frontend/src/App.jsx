@@ -29,45 +29,48 @@ import MerchantProfile from './Merchant Pages jsx/MerchantProfile.jsx';
 import UserManage from './Merchant Pages jsx/UserManage.jsx';
 import SMCP from './Merchant Pages jsx/SMCP.jsx';
 
-const CUSTOMER_PAGES = [
-  'Dashboard',
-  'Shop',
-  'Cart',
-  'Checkout',
-  'Payment',
-  'CustomerProfile',
-  'MyOrders',
-  'OrderConfirm',
-  'OrderTracker',
-];
+const MERCHANT_TAB_TO_PAGE = {
+  dashboard: 'MerchantDashboard',
+  products: 'ManageProductInfo',
+  'add-product': 'AddProductInfo',
+  inventory: 'InventoryManage',
+  orders: 'OrderManage',
+  'order-details': 'OrderDetails',
+  payments: 'PaymentManagement',
+  store: 'StoreManagement',
+  'social-media': 'SMCP',
+  settings: 'MerchantProfile',
+};
 
-const MERCHANT_PAGES = [
-  'MerchantDashboard',
-  'AddProductInfo',
-  'ManageProductInfo',
-  'InventoryManage',
-  'OrderManage',
-  'OrderDetails',
-  'MerchantProfile',
-  'StoreManagement',
-];
+const ADMIN_TAB_TO_PAGE = {
+  dashboard: 'AdminDashboard',
+  users: 'UserManage',
+  merchants: 'MerchantManage',
+  products: 'ProductMonitor',
+  orders: 'OrderMonitor',
+};
 
-const ADMIN_PAGES = [
-  'AdminDashboard',
-  'UserManage',
-  'MerchantManage',
-  'ProductMonitor',
-  'OrderMonitor',
-  'PaymentManagement',
-  'SMCP',
+const INITIAL_MERCHANT_PRODUCTS = [
+  { id: 1, name: 'Everyday Tote Bag', category: 'Fashion', price: 450, stock: 24 },
+  { id: 2, name: 'Wireless Mini Speaker', category: 'Electronics', price: 799, stock: 3 },
+  { id: 3, name: 'Handmade Soy Candle', category: 'Home & Living', price: 299, stock: 18 },
+  { id: 4, name: 'Organic Gift Set', category: 'Beauty', price: 650, stock: 4 },
+  { id: 5, name: 'Canvas Sneakers', category: 'Fashion', price: 1499, stock: 12 },
+  { id: 6, name: 'Mini Ring Light', category: 'Electronics', price: 599, stock: 0 },
 ];
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('Login');
   const [userSession, setUserSession] = useState(null);
+  const [merchantProducts, setMerchantProducts] = useState(INITIAL_MERCHANT_PRODUCTS);
 
-  const isMerchant = userSession?.role === 'merchant';
-  const isAdmin = userSession?.role === 'admin';
+  const navigateMerchant = (target) => {
+    setCurrentPage(MERCHANT_TAB_TO_PAGE[target] || target);
+  };
+
+  const navigateAdmin = (target) => {
+    setCurrentPage(ADMIN_TAB_TO_PAGE[target] || target);
+  };
 
   const handleLogout = () => {
     setUserSession(null);
@@ -97,6 +100,7 @@ export default function App() {
           <Dashboard
             user={userSession}
             onLogout={handleLogout}
+            onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateProfile={() => setCurrentPage('CustomerProfile')}
@@ -106,34 +110,53 @@ export default function App() {
       case 'Shop':
         return (
           <Shop
+            user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onLogout={handleLogout}
           />
         );
       case 'Cart':
         return (
           <Cart
+            user={userSession}
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onNavigateCheckout={() => setCurrentPage('Checkout')}
+            onLogout={handleLogout}
           />
         );
       case 'Checkout':
         return (
           <Checkout
+            user={userSession}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onNavigatePayment={() => setCurrentPage('Payment')}
+            onLogout={handleLogout}
           />
         );
       case 'Payment':
         return (
           <Payment
+            user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onNavigateCheckout={() => setCurrentPage('Checkout')}
             onNavigateConfirmOrder={() => setCurrentPage('OrderConfirm')}
+            onLogout={handleLogout}
           />
         );
       case 'CustomerProfile':
@@ -142,6 +165,8 @@ export default function App() {
             user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
             onNavigateOrders={() => setCurrentPage('MyOrders')}
             onLogout={handleLogout}
           />
@@ -149,24 +174,39 @@ export default function App() {
       case 'MyOrders':
         return (
           <MyOrders
+            user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onSelectOrder={() => setCurrentPage('OrderTracker')}
+            onLogout={handleLogout}
           />
         );
       case 'OrderConfirm':
         return (
           <OrderConfirm
+            user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
+            onNavigateOrders={() => setCurrentPage('MyOrders')}
             onNavigateTrackOrder={() => setCurrentPage('OrderTracker')}
+            onLogout={handleLogout}
           />
         );
       case 'OrderTracker':
         return (
           <OrderTracker
+            user={userSession}
             onNavigateHome={() => setCurrentPage('Dashboard')}
+            onNavigateShop={() => setCurrentPage('Shop')}
+            onNavigateCart={() => setCurrentPage('Cart')}
+            onNavigateProfile={() => setCurrentPage('CustomerProfile')}
             onNavigateOrders={() => setCurrentPage('MyOrders')}
+            onLogout={handleLogout}
           />
         );
 
@@ -176,22 +216,36 @@ export default function App() {
           <MerchantDashboard
             user={userSession}
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
           />
         );
       case 'AddProductInfo':
         return (
           <AddProductInfo
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
-            onBack={() => setCurrentPage('MerchantDashboard')}
+            onNavigate={navigateMerchant}
+            onBack={() => setCurrentPage('ManageProductInfo')}
+            onSave={(product) => {
+              setMerchantProducts((currentProducts) => [
+                ...currentProducts,
+                { ...product, id: Date.now() },
+              ]);
+              setCurrentPage('ManageProductInfo');
+            }}
           />
         );
       case 'ManageProductInfo':
         return (
           <ManageProductInfo
+            products={merchantProducts}
+            onAddProduct={() => setCurrentPage('AddProductInfo')}
+            onDeleteProduct={(productId) => {
+              setMerchantProducts((currentProducts) =>
+                currentProducts.filter((product) => product.id !== productId),
+              );
+            }}
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
@@ -199,7 +253,7 @@ export default function App() {
         return (
           <InventoryManage
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
@@ -207,7 +261,7 @@ export default function App() {
         return (
           <OrderManage
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onSelectOrder={() => setCurrentPage('OrderDetails')}
             onBack={() => setCurrentPage('MerchantDashboard')}
           />
@@ -216,7 +270,7 @@ export default function App() {
         return (
           <OrderDetails
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onBack={() => setCurrentPage('OrderManage')}
           />
         );
@@ -225,7 +279,7 @@ export default function App() {
           <MerchantProfile
             user={userSession}
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
@@ -233,7 +287,7 @@ export default function App() {
         return (
           <StoreManagement
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateMerchant}
             onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
@@ -244,14 +298,14 @@ export default function App() {
           <AdminDash
             user={userSession}
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateAdmin}
           />
         );
       case 'UserManage':
         return (
           <UserManage
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateAdmin}
             onBack={() => setCurrentPage('AdminDashboard')}
           />
         );
@@ -259,7 +313,7 @@ export default function App() {
         return (
           <MerchantManage
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateAdmin}
             onBack={() => setCurrentPage('AdminDashboard')}
           />
         );
@@ -267,7 +321,7 @@ export default function App() {
         return (
           <ProductMonitor
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateAdmin}
             onBack={() => setCurrentPage('AdminDashboard')}
           />
         );
@@ -275,7 +329,7 @@ export default function App() {
         return (
           <OrderMonitor
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
+            onNavigate={navigateAdmin}
             onBack={() => setCurrentPage('AdminDashboard')}
           />
         );
@@ -283,16 +337,16 @@ export default function App() {
         return (
           <PaymentManagement
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
-            onBack={() => setCurrentPage('AdminDashboard')}
+            onNavigate={navigateMerchant}
+            onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
       case 'SMCP':
         return (
           <SMCP
             onLogout={handleLogout}
-            onNavigate={setCurrentPage}
-            onBack={() => setCurrentPage('AdminDashboard')}
+            onNavigate={navigateMerchant}
+            onBack={() => setCurrentPage('MerchantDashboard')}
           />
         );
 
@@ -301,62 +355,5 @@ export default function App() {
     }
   };
 
-  // Filter dropdown options by role when logged in, or show all pages when testing unauthenticated
-  const availablePages = userSession
-    ? isAdmin
-      ? ['AdminDashboard', ...ADMIN_PAGES.slice(1), 'Login']
-      : isMerchant
-      ? ['MerchantDashboard', ...MERCHANT_PAGES.slice(1), 'Login']
-      : [...CUSTOMER_PAGES, 'Login']
-    : ['Login', ...CUSTOMER_PAGES, ...MERCHANT_PAGES, ...ADMIN_PAGES];
-
-  return (
-    <div>
-      {/* Floating Dev Switcher */}
-      <div
-        style={{
-          position: 'fixed',
-          bottom: '20px',
-          right: '20px',
-          zIndex: 999999,
-          background: '#18181b',
-          color: '#f4f4f5',
-          padding: '10px 14px',
-          borderRadius: '10px',
-          boxShadow: '0 8px 24px rgba(0, 0, 0, 0.4)',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '10px',
-          fontFamily: 'system-ui, -apple-system, sans-serif',
-          fontSize: '13px',
-          border: '1px solid #3f3f46',
-        }}
-      >
-        <span style={{ fontWeight: '600', color: '#c084fc' }}>Dev Preview:</span>
-        <select
-          value={currentPage}
-          onChange={(e) => setCurrentPage(e.target.value)}
-          style={{
-            background: '#27272a',
-            color: '#f4f4f5',
-            border: '1px solid #52525b',
-            borderRadius: '6px',
-            padding: '5px 10px',
-            fontSize: '13px',
-            cursor: 'pointer',
-            outline: 'none',
-          }}
-        >
-          {availablePages.map((name) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </div>
-
-      {/* Render Active Page */}
-      {renderPage()}
-    </div>
-  );
+  return renderPage();
 }
