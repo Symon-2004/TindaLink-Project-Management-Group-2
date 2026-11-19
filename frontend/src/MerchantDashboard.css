@@ -86,10 +86,6 @@
   box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
 }
 
-.md-nav-spacer {
-  height: 28px;
-}
-
 .md-sidebar-footer {
   padding: 16px 12px 0 12px;
   font-size: 13.5px;
@@ -520,7 +516,6 @@
     width: auto;
     padding: 8px 14px;
   }
-  .md-nav-spacer,
   .md-sidebar-footer {
     display: none;
   }

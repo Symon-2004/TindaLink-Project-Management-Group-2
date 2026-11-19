@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './Shop.css';
 
 const INITIAL_SHOP_PRODUCTS = [
@@ -138,9 +138,21 @@ const INITIAL_SHOP_PRODUCTS = [
 
 const CATEGORIES = ['All products', 'Fashion', 'Beauty', 'Electronics', 'Food', 'Home'];
 
-export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
+export default function Shop({
+  user = { name: 'Peachy Mangaoang', email: 'peachy@email.com' },
+  cartCount = 0,
+  initialCategory = 'All products',
+  onNavigateHome,
+  onNavigateCart,
+  onNavigateOrders,
+  onNavigateProfile,
+  onAddToCart,
+  onLogout,
+}) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All products');
+  const [selectedCategory, setSelectedCategory] = useState(
+    CATEGORIES.includes(initialCategory) ? initialCategory : 'All products'
+  );
   const [sortBy, setSortBy] = useState('featured');
   const [minPrice, setMinPrice] = useState(0);
   const [maxPrice, setMaxPrice] = useState(5000);
@@ -149,10 +161,36 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
   const [favorites, setFavorites] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedProduct, setSelectedProduct] = useState(null);
+  const [showAccountDropdown, setShowAccountDropdown] = useState(false);
+  const [shopNotice, setShopNotice] = useState('');
+  const accountRef = useRef(null);
+
+  const userInitial = user?.name ? user.name.trim().charAt(0).toUpperCase() : 'P';
+
+  useEffect(() => {
+    if (!showAccountDropdown) return undefined;
+
+    const handleOutsideClick = (event) => {
+      if (accountRef.current && !accountRef.current.contains(event.target)) {
+        setShowAccountDropdown(false);
+      }
+    };
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setShowAccountDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleOutsideClick);
+    window.addEventListener('keydown', handleEscape);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [showAccountDropdown]);
 
   // Filter and sort products
   const filteredProducts = INITIAL_SHOP_PRODUCTS.filter((product) => {
-    // Search query
     if (searchQuery.trim() !== '') {
       const q = searchQuery.toLowerCase();
       const matchesName = product.name.toLowerCase().includes(q);
@@ -160,18 +198,15 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
       if (!matchesName && !matchesCat) return false;
     }
 
-    // Category filter
     if (selectedCategory !== 'All products' && product.category !== selectedCategory) {
       return false;
     }
 
-    // Price range
     const effectiveMax = Math.min(maxPrice || 5000, sliderPrice);
     if (product.price < (minPrice || 0) || product.price > effectiveMax) {
       return false;
     }
 
-    // Availability
     if (availability === 'in_stock' && !product.inStock) {
       return false;
     }
@@ -181,7 +216,7 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
     if (sortBy === 'price_asc') return a.price - b.price;
     if (sortBy === 'price_desc') return b.price - a.price;
     if (sortBy === 'rating') return b.rating - a.rating;
-    return a.id - b.id; // default / featured
+    return a.id - b.id;
   });
 
   const toggleFavorite = (id) => {
@@ -201,7 +236,7 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
 
   return (
     <div className="shop-page">
-      {/* 1. TOP NAVBAR */}
+      {/* 1. TOP NAVBAR (Home & Shop only) */}
       <header className="shop-navbar">
         <div className="shop-navbar-container">
           {/* Logo: TindaLink only (no AI badge) */}
@@ -236,8 +271,8 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
             </span>
           </div>
 
-          {/* Navigation Links */}
-          <nav className="shop-nav-links">
+          {/* Navigation Links: Home & Shop only */}
+          <nav className="shop-nav-links" aria-label="Customer Navigation">
             <button
               type="button"
               className="shop-nav-link"
@@ -253,20 +288,6 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
               onClick={() => setSelectedCategory('All products')}
             >
               Shop
-            </button>
-            <button
-              type="button"
-              className="shop-nav-link"
-              onClick={() => setSelectedCategory('All products')}
-            >
-              Categories
-            </button>
-            <button
-              type="button"
-              className="shop-nav-link"
-              onClick={() => alert('About TindaLink: A smart local marketplace connecting buyers and MSMEs.')}
-            >
-              About
             </button>
           </nav>
 
@@ -284,7 +305,7 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
             />
           </div>
 
-          {/* Cart & Account */}
+          {/* Cart & Clickable Account Dropdown */}
           <div className="shop-nav-actions">
             <button
               type="button"
@@ -299,17 +320,106 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
+              {cartCount > 0 && <span className="shop-cart-badge">{cartCount}</span>}
             </button>
-            <button type="button" className="shop-account-btn">
-              <span className="shop-account-avatar"></span>
-              <span className="shop-account-label">Account</span>
-            </button>
+
+            <div className="shop-account-wrapper" ref={accountRef}>
+              <button
+                type="button"
+                className="shop-account-btn"
+                onClick={() => setShowAccountDropdown((prev) => !prev)}
+                aria-expanded={showAccountDropdown}
+                aria-haspopup="menu"
+              >
+                <span className="shop-account-avatar">{userInitial}</span>
+                <span className="shop-account-label">Account</span>
+              </button>
+
+              {showAccountDropdown && (
+                <div className="shop-account-dropdown" role="menu">
+                  <div className="shop-dropdown-header">
+                    <p className="shop-dropdown-name">{user?.name || 'Customer'}</p>
+                    <p className="shop-dropdown-email">{user?.email || 'peachy@email.com'}</p>
+                  </div>
+
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="shop-dropdown-item"
+                    onClick={() => {
+                      setShowAccountDropdown(false);
+                      if (onNavigateProfile) {
+                        onNavigateProfile();
+                      } else {
+                        setShopNotice('Opening My Profile...');
+                      }
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                      <circle cx="12" cy="7" r="4" />
+                    </svg>
+                    <span>My Profile</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="shop-dropdown-item"
+                    onClick={() => {
+                      setShowAccountDropdown(false);
+                      if (onNavigateOrders) {
+                        onNavigateOrders();
+                      } else {
+                        setShopNotice('Opening My Orders...');
+                      }
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
+                      <polyline points="3.27 6.96 12 12.01 20.73 6.96" />
+                      <line x1="12" y1="22.08" x2="12" y2="12" />
+                    </svg>
+                    <span>My Orders</span>
+                  </button>
+
+                  <div className="shop-dropdown-divider" />
+
+                  <button
+                    type="button"
+                    role="menuitem"
+                    className="shop-dropdown-item shop-dropdown-logout"
+                    onClick={() => {
+                      setShowAccountDropdown(false);
+                      if (onLogout) {
+                        onLogout();
+                      } else {
+                        setShopNotice('Logged out.');
+                      }
+                    }}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                      <polyline points="16 17 21 12 16 7" />
+                      <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                    <span>Log Out</span>
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>
 
       {/* 2. MAIN SHOP CONTENT */}
       <main className="shop-main">
+        {shopNotice && (
+          <div className="shop-toast" role="status">
+            {shopNotice}
+          </div>
+        )}
+
         {/* Title Area */}
         <div className="shop-header-area">
           <h1 className="shop-title">Shop All Products</h1>
@@ -479,12 +589,10 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
                       className="shop-card-visual"
                       style={{ backgroundColor: product.bgTone }}
                     >
-                      {/* BEST SELLER badge */}
                       {product.isBestSeller && (
                         <span className="shop-badge-bestseller">BEST SELLER</span>
                       )}
 
-                      {/* Favorite / wishlist heart button */}
                       <button
                         type="button"
                         onClick={() => toggleFavorite(product.id)}
@@ -494,7 +602,6 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
                         <span className="shop-card-fav-dot"></span>
                       </button>
 
-                      {/* Shape Illustration */}
                       {product.svgGraphic}
                     </div>
 
@@ -554,26 +661,6 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
         </div>
       </main>
 
-      {/* Floating Purple Smiley Assistant */}
-      <button
-        type="button"
-        className="shop-floating-help"
-        aria-label="TindaLink Help & Support"
-        onClick={() => alert('Need assistance? TindaLink support is here to help!')}
-      >
-        <svg viewBox="0 0 36 36" fill="none">
-          <circle cx="18" cy="18" r="18" fill="#7C3AED" />
-          <circle cx="12.5" cy="14.5" r="2.2" fill="white" />
-          <circle cx="23.5" cy="14.5" r="2.2" fill="white" />
-          <path
-            d="M12 21.5 C13.5 25.5, 22.5 25.5, 24 21.5"
-            stroke="white"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-          />
-        </svg>
-      </button>
-
       {/* Modal for View Product */}
       {selectedProduct && (
         <div className="shop-modal-backdrop" onClick={() => setSelectedProduct(null)}>
@@ -606,7 +693,11 @@ export default function Shop({ onNavigateHome, onNavigateCart, onLogout }) {
                   type="button"
                   className="shop-modal-add-btn"
                   onClick={() => {
-                    alert(`Added ${selectedProduct.name} to cart!`);
+                    if (onAddToCart) {
+                      onAddToCart(selectedProduct);
+                    }
+                    setShopNotice(`Added ${selectedProduct.name} to cart!`);
+                    setTimeout(() => setShopNotice(''), 2500);
                     setSelectedProduct(null);
                   }}
                 >

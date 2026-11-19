@@ -112,27 +112,30 @@ export default function MerchantDashboard({
             <button
               type="button"
               className="md-nav-item"
-              onClick={() => navigateTo('orders', 'New Orders')}
+              onClick={() => navigateTo('payments')}
             >
               Payments
             </button>
 
-            <div className="md-nav-spacer" />
+            <button
+              type="button"
+              className="md-nav-item"
+              onClick={() =>
+                onNavigate
+                  ? navigateTo('store')
+                  : setPortalNotice('Storefront catalog is live and synced with Merchant Dashboard.')
+              }
+            >
+              Store
+            </button>
 
             <button
               type="button"
               className="md-nav-item"
               onClick={() =>
-                setPortalNotice('Social Media integrations are synced with your active catalog.')
-              }
-            >
-              Social Media
-            </button>
-            <button
-              type="button"
-              className="md-nav-item"
-              onClick={() =>
-                setPortalNotice('Store settings: Auto-low stock alert threshold set to 5 units.')
+                onNavigate
+                  ? navigateTo('settings')
+                  : setPortalNotice('Store settings: Auto-low stock alert threshold set to 5 units.')
               }
             >
               Settings
@@ -341,7 +344,7 @@ export default function MerchantDashboard({
                 <button
                   type="button"
                   className="md-quick-btn md-quick-secondary"
-                  onClick={() => navigateTo('orders', 'New Orders')}
+                  onClick={() => navigateTo('payments')}
                 >
                   Review Payments
                 </button>
