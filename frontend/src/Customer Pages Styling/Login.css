@@ -73,13 +73,6 @@ html,
   color: #7c3aed;
 }
 
-.tindalink-brand-subtitle {
-  font-size: 15.5px;
-  font-weight: 600;
-  color: #1f1c38;
-  margin-bottom: 6px;
-}
-
 .tindalink-brand-tagline {
   font-size: 13.5px;
   font-weight: 400;
@@ -130,7 +123,7 @@ html,
   color: #7d7a94;
 }
 
-/* Form Groups: Labels positioned above inputs, upper-left aligned */
+/* Form Fields with Labels Above Inputs */
 .tindalink-form {
   display: flex;
   flex-direction: column;
@@ -274,5 +267,14 @@ html,
   .tindalink-auth-card {
     padding: 36px 24px;
     min-height: auto;
+  }
+  .tindalink-form-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .tindalink-row-label {
+    text-align: left;
+    width: auto;
   }
 }

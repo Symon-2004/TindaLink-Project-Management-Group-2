@@ -76,16 +76,6 @@ html,
   color: #7c3aed;
 }
 
-.cart-ai-badge {
-  background-color: #8b5cf6;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 800;
-  padding: 2px 7px;
-  border-radius: 9999px;
-  margin-left: 2px;
-}
-
 .cart-nav-back-btn {
   background: none;
   border: none;
@@ -133,7 +123,7 @@ html,
 }
 
 /* =========================================
-   3. 2-COLUMN LAYOUT (Matching CUS-04)
+   3. 2-COLUMN LAYOUT
    ========================================= */
 .cart-content-layout {
   display: grid;
@@ -303,7 +293,7 @@ html,
 }
 
 /* =========================================
-   4. RIGHT CARD: ORDER SUMMARY (Matching CUS-04)
+   4. RIGHT CARD: ORDER SUMMARY
    ========================================= */
 .cart-summary-card {
   background-color: #ffffff;

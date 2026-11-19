@@ -288,14 +288,21 @@ export default function Shop({ onNavigateHome, onLogout, onNavigateCart, onNavig
 
           {/* Cart & Account */}
           <div className="shop-nav-actions">
-            <button type="button" className="shop-cart-btn" aria-label="Cart" onClick={() => { if (onNavigateCart) onNavigateCart(); }}>
+            <button
+              type="button"
+              className="shop-cart-btn"
+              aria-label="Cart"
+              onClick={() => {
+                if (onNavigateCart) onNavigateCart();
+              }}
+            >
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <circle cx="9" cy="21" r="1" />
                 <circle cx="20" cy="21" r="1" />
                 <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
               </svg>
             </button>
-            <button type="button" className="shop-account-btn" onClick={() => { if (onNavigateProfile) onNavigateProfile(); }}>
+            <button type="button" className="shop-account-btn">
               <span className="shop-account-avatar"></span>
               <span className="shop-account-label">Account</span>
             </button>
@@ -313,7 +320,7 @@ export default function Shop({ onNavigateHome, onLogout, onNavigateCart, onNavig
           </p>
         </div>
 
-        {/* Controls Bar: Category dropdown removed as requested, leaving search, sorting, and filters */}
+        {/* Controls Bar: search and sorting options */}
         <div className="shop-controls-bar">
           {/* Search products input */}
           <div className="shop-search-control">

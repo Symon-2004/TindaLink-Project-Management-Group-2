@@ -1,0 +1,510 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.od-layout *,
+.od-layout *::before,
+.od-layout *::after {
+  box-sizing: border-box;
+}
+
+.od-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fcfbfe;
+  color: #1e1b39;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. DARK PURPLE SIDEBAR
+   ========================================= */
+.od-sidebar {
+  width: 224px;
+  flex-shrink: 0;
+  background-color: #1c1635;
+  color: #ffffff;
+  padding: 28px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.od-brand {
+  padding: 0 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.od-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.od-brand-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b4afd0;
+}
+
+.od-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.od-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #b9b4d4;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.od-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.od-nav-item.active {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.od-sidebar-footer {
+  padding: 16px 12px 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================
+   2. TOPBAR & CONTENT SHELL
+   ========================================= */
+.od-content-shell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.od-topbar {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.od-topbar-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.015em;
+}
+
+.od-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.od-topbar-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.od-topbar-btn-outline {
+  background-color: #ffffff;
+  color: #1e1b39;
+  border: 1px solid #e4e2ee;
+}
+
+.od-main {
+  padding: 28px 36px 48px 36px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.od-page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.od-page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+.od-page-subtitle {
+  font-size: 14px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.od-back-link {
+  border: none;
+  background: transparent;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.od-back-link:hover {
+  text-decoration: underline;
+}
+
+.od-feedback-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background-color: #f3ecff;
+  border: 1px solid #d8b4fe;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.od-feedback-close {
+  border: none;
+  background: transparent;
+  color: #5b21b6;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* =========================================
+   3. ORDER HEADER BANNER CARD
+   ========================================= */
+.od-order-banner {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 14px;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+  box-shadow: 0 2px 10px rgba(30, 27, 57, 0.015);
+}
+
+.od-order-number {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 3px;
+}
+
+.od-order-date {
+  font-size: 12px;
+  color: #6e6c85;
+}
+
+.od-status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 196px;
+  height: 36px;
+  padding: 0 18px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.od-badge-pending {
+  background-color: #fef3dc;
+  color: #b45309;
+}
+
+.od-badge-processing {
+  background-color: #ede9fe;
+  color: #7c3aed;
+}
+
+.od-badge-completed {
+  background-color: #e6f7f0;
+  color: #0d9468;
+}
+
+.od-badge-cancelled {
+  background-color: #fde8ee;
+  color: #e11d48;
+}
+
+/* =========================================
+   4. TWO-COLUMN CARDS
+   ========================================= */
+.od-two-col {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 22px;
+  margin-bottom: 22px;
+}
+
+.od-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+  display: flex;
+  flex-direction: column;
+}
+
+.od-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 16px 0;
+}
+
+/* Customer Info */
+.od-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.od-info-row {
+  display: grid;
+  grid-template-columns: 112px 1fr;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.od-info-label {
+  color: #6e6c85;
+  font-weight: 600;
+}
+
+.od-info-value {
+  color: #1e1b39;
+  font-weight: 700;
+}
+
+/* Products */
+.od-products-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.od-product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 13.5px;
+}
+
+.od-product-name {
+  font-weight: 700;
+  color: #1e1b39;
+}
+
+.od-product-price {
+  font-weight: 800;
+  color: #7c3aed;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Payment Proof */
+.od-receipt-preview {
+  height: 124px;
+  border-radius: 14px;
+  background-color: #f6f1ff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
+  padding: 16px;
+  text-align: center;
+}
+
+.od-receipt-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #7c3aed;
+}
+
+.od-receipt-ref {
+  font-size: 11.5px;
+  color: #6e6c85;
+  font-variant-numeric: tabular-nums;
+}
+
+.od-proof-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.od-btn-primary {
+  height: 40px;
+  padding: 0 22px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+  transition: filter 0.15s ease;
+  white-space: nowrap;
+}
+
+.od-btn-primary:hover {
+  filter: brightness(0.95);
+}
+
+.od-btn-secondary {
+  height: 40px;
+  min-width: 116px;
+  padding: 0 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.od-btn-secondary:hover {
+  background-color: #e9dcff;
+}
+
+/* Update Order Status */
+.od-status-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.od-status-option {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 9px;
+  border: 1px solid #e7e4f2;
+  background-color: #ffffff;
+  color: #55526e;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.od-status-option:hover {
+  border-color: #c4b5fd;
+  color: #7c3aed;
+}
+
+.od-status-option.selected {
+  background-color: #f5f0ff;
+  border-color: #d8c8fa;
+  color: #7c3aed;
+}
+
+.od-update-btn {
+  width: 196px;
+}
+
+/* =========================================
+   5. RESPONSIVE
+   ========================================= */
+@media (max-width: 960px) {
+  .od-two-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .od-layout {
+    flex-direction: column;
+  }
+  .od-sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+  .od-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .od-nav-item {
+    width: auto;
+    padding: 8px 14px;
+  }
+  .od-sidebar-footer {
+    display: none;
+  }
+  .od-topbar,
+  .od-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .od-order-banner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .od-status-grid {
+    grid-template-columns: 1fr;
+  }
+  .od-proof-actions {
+    flex-wrap: wrap;
+  }
+}

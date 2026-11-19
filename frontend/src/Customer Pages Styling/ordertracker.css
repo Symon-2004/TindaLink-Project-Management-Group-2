@@ -25,6 +25,9 @@ html,
   flex-direction: column;
 }
 
+/* =========================================
+   1. NAVBAR (Without AI badge per request)
+   ========================================= */
 .ordertracker-navbar {
   position: sticky;
   top: 0;
@@ -91,6 +94,9 @@ html,
   color: #6d28d9;
 }
 
+/* =========================================
+   2. MAIN CONTAINER & TITLE AREA
+   ========================================= */
 .ordertracker-main {
   max-width: 1240px;
   width: 100%;
@@ -116,6 +122,9 @@ html,
   color: #6e6c85;
 }
 
+/* =========================================
+   3. 2-COLUMN LAYOUT
+   ========================================= */
 .ordertracker-content-layout {
   display: grid;
   grid-template-columns: 1fr 340px;
@@ -123,6 +132,7 @@ html,
   align-items: start;
 }
 
+/* Left Card: Order Status + Timeline + Nested Info */
 .ordertracker-left-card {
   background-color: #ffffff;
   border: 1px solid #eceaf4;
@@ -146,6 +156,7 @@ html,
   align-items: start;
 }
 
+/* Vertical Timeline */
 .ordertracker-timeline {
   display: flex;
   flex-direction: column;
@@ -211,6 +222,7 @@ html,
   margin-top: 2px;
 }
 
+/* Order Information Nested Card */
 .ordertracker-info-box {
   background-color: #f7f6fc;
   border: 1px solid #eeecf7;
@@ -253,6 +265,7 @@ html,
   font-weight: 800;
 }
 
+/* Right Card: Items */
 .ordertracker-right-card {
   background-color: #ffffff;
   border: 1px solid #eceaf4;
@@ -305,6 +318,7 @@ html,
   color: #6d28d9;
 }
 
+/* Modal */
 .ordertracker-modal-backdrop {
   position: fixed;
   inset: 0;
@@ -417,6 +431,7 @@ html,
   background-color: #7c3aed;
 }
 
+/* Responsive */
 @media (max-width: 900px) {
   .ordertracker-content-layout {
     grid-template-columns: 1fr;

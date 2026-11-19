@@ -1,0 +1,476 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.ms-layout *,
+.ms-layout *::before,
+.ms-layout *::after {
+  box-sizing: border-box;
+}
+
+.ms-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fcfbfe;
+  color: #1e1b39;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. DARK PURPLE SIDEBAR
+   ========================================= */
+.ms-sidebar {
+  width: 224px;
+  flex-shrink: 0;
+  background-color: #1c1635;
+  color: #ffffff;
+  padding: 28px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ms-brand {
+  padding: 0 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ms-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.ms-brand-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b4afd0;
+}
+
+.ms-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #b9b4d4;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.ms-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.ms-nav-item.active {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.ms-sidebar-footer {
+  padding: 16px 12px 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================
+   2. TOPBAR & CONTENT SHELL
+   ========================================= */
+.ms-content-shell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ms-topbar {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ms-topbar-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.015em;
+}
+
+.ms-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ms-topbar-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ms-topbar-btn-outline {
+  background-color: #ffffff;
+  color: #1e1b39;
+  border: 1px solid #e4e2ee;
+}
+
+.ms-main {
+  padding: 28px 36px 48px 36px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.ms-page-header {
+  margin-bottom: 20px;
+}
+
+.ms-page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+.ms-page-subtitle {
+  font-size: 14px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.ms-feedback-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background-color: #f3ecff;
+  border: 1px solid #d8b4fe;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ms-feedback-close {
+  border: none;
+  background: transparent;
+  color: #5b21b6;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* =========================================
+   3. TWO-COLUMN PROFILE + SETTINGS LAYOUT
+   ========================================= */
+.ms-grid {
+  display: grid;
+  grid-template-columns: 244px 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* Left Profile Card */
+.ms-profile-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 18px;
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+}
+
+.ms-avatar-circle {
+  width: 108px;
+  height: 108px;
+  border-radius: 50%;
+  background-color: #e6d4ff;
+  color: #7c3aed;
+  font-size: 32px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.ms-profile-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin-bottom: 4px;
+}
+
+.ms-profile-role {
+  font-size: 12.5px;
+  color: #6e6c85;
+  margin-bottom: 24px;
+}
+
+.ms-profile-nav {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ms-profile-link {
+  width: 100%;
+  height: 36px;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #55526e;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ms-profile-link:hover {
+  background-color: #faf7ff;
+  color: #7c3aed;
+}
+
+.ms-profile-link.active {
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-weight: 700;
+}
+
+/* Right Form Card */
+.ms-form-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 18px;
+  padding: 26px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+}
+
+.ms-section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 18px 0;
+}
+
+.ms-fields-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.ms-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ms-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e1b39;
+  text-align: left;
+}
+
+.ms-field input {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e7e4f2;
+  background-color: #faf9fe;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e1b39;
+  outline: none;
+  transition: border-color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ms-field input:focus {
+  border-color: #8b5cf6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.ms-subsection-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 14px 0;
+}
+
+.ms-payment-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 48px;
+}
+
+.ms-summary-row {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  align-items: center;
+  gap: 16px;
+  font-size: 13px;
+}
+
+.ms-summary-label {
+  color: #6e6c85;
+  font-weight: 600;
+}
+
+.ms-summary-value {
+  color: #1e1b39;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Toggle Row (Store & Payment tabs) */
+.ms-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background-color: #faf9fe;
+  border: 1px solid #eceaf4;
+}
+
+.ms-toggle-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1e1b39;
+  margin-bottom: 2px;
+}
+
+.ms-toggle-desc {
+  font-size: 12px;
+  color: #6e6c85;
+}
+
+.ms-toggle-btn {
+  height: 34px;
+  min-width: 96px;
+  padding: 0 14px;
+  border-radius: 8px;
+  border: 1px solid #e4e2ee;
+  background-color: #ffffff;
+  color: #6e6c85;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ms-toggle-btn.is-on {
+  background-color: #f3ecff;
+  border-color: #d8b4fe;
+  color: #7c3aed;
+}
+
+.ms-actions-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.ms-save-btn {
+  height: 40px;
+  padding: 0 24px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+  transition: filter 0.15s ease;
+  white-space: nowrap;
+}
+
+.ms-save-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================================
+   4. RESPONSIVE
+   ========================================= */
+@media (max-width: 960px) {
+  .ms-grid {
+    grid-template-columns: 1fr;
+  }
+  .ms-summary-row {
+    grid-template-columns: 140px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .ms-layout {
+    flex-direction: column;
+  }
+  .ms-sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+  .ms-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ms-nav-item {
+    width: auto;
+    padding: 8px 14px;
+  }
+  .ms-sidebar-footer {
+    display: none;
+  }
+  .ms-topbar,
+  .ms-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}

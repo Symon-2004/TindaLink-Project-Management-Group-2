@@ -101,8 +101,7 @@ export default function Login() {
             Tinda<span className="tindalink-brand-highlight">Link</span>
           </h1>
 
-          {/* System subtitle underneath title */}
-          <p className="tindalink-brand-subtitle">Smart access. Secure and simple.</p>
+          {/* System tagline underneath title */}
           <p className="tindalink-brand-tagline">
             TindaLink keeps your sign-in and account creation experience clear and consistent.
           </p>
