@@ -133,6 +133,21 @@
   color: #a09eb0;
 }
 
+.admin-logout-btn {
+  margin-top: 0.75rem;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #a09eb0;
+  font: inherit;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+.admin-logout-btn:hover {
+  color: white;
+}
+
 /* Main Content */
 .admin-main {
   flex-grow: 1;

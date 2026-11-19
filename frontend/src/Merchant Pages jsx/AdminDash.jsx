@@ -1,7 +1,6 @@
-import React from 'react';
 import '../Merchant Pages Styling/AdminDash.css';
 
-const AdminDash = () => {
+const AdminDash = ({ onLogout }) => {
   return (
     <div className="admin-container">
       {/* Sidebar */}
@@ -35,6 +34,9 @@ const AdminDash = () => {
         <div className="admin-sidebar-footer">
           <p className="account-title">Admin Account</p>
           <p className="account-email">admin@tindalink.ai</p>
+          <button type="button" className="admin-logout-btn" onClick={onLogout}>
+            Log out
+          </button>
         </div>
       </aside>
 

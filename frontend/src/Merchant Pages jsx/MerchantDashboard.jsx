@@ -5,7 +5,7 @@ import ManageProductInfo from './ManageProductInfo.jsx';
 import InventoryManage from './InventoryManage.jsx';
 import OrderManage from './OrderManage.jsx';
 
-const MerchantDashboard = () => {
+const MerchantDashboard = ({ onLogout }) => {
     const [currentPage, setCurrentPage] = useState('dashboard');
     const [products, setProducts] = useState([
         { id: 1, name: 'Everyday Tote Bag', category: 'Fashion', price: 450, stock: 24 },
@@ -114,6 +114,9 @@ const MerchantDashboard = () => {
 
                 <div className="sidebar-footer">
                     <p>TindaLink AI</p>
+                    <button type="button" className="merchant-logout-btn" onClick={onLogout}>
+                        Log out
+                    </button>
                 </div>
             </aside>
 

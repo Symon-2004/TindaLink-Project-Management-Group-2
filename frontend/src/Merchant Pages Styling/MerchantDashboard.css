@@ -92,6 +92,22 @@
     color: white;
 }
 
+.merchant-logout-btn {
+    display: block;
+    margin-top: 0.75rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: #a09eb0;
+    font: inherit;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.merchant-logout-btn:hover {
+    color: white;
+}
+
 /* Main Content */
 .main-content {
     flex-grow: 1;
