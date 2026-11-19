@@ -236,7 +236,7 @@ export default function Shop({
           </p>
         </div>
 
-        {/* Controls Bar: Category dropdown removed as requested, leaving search, sorting, and filters */}
+        {/* Controls Bar: search and sorting options */}
         <div className="shop-controls-bar">
           {/* Search products input */}
           <div className="shop-search-control">

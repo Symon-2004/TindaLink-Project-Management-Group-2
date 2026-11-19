@@ -1,0 +1,543 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.pm-layout *,
+.pm-layout *::before,
+.pm-layout *::after {
+  box-sizing: border-box;
+}
+
+.pm-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fcfbfe;
+  color: #1e1b39;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. DARK PURPLE SIDEBAR
+   ========================================= */
+.pm-sidebar {
+  width: 224px;
+  flex-shrink: 0;
+  background-color: #1c1635;
+  color: #ffffff;
+  padding: 28px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pm-brand {
+  padding: 0 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.pm-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.pm-brand-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b4afd0;
+}
+
+.pm-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pm-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #b9b4d4;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.pm-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.pm-nav-item.active {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.pm-sidebar-footer {
+  padding: 16px 12px 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================
+   2. TOPBAR & CONTENT SHELL
+   ========================================= */
+.pm-content-shell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.pm-topbar {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pm-topbar-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.015em;
+}
+
+.pm-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pm-topbar-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.pm-topbar-btn-outline {
+  background-color: #ffffff;
+  color: #1e1b39;
+  border: 1px solid #e4e2ee;
+}
+
+.pm-main {
+  padding: 28px 36px 48px 36px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.pm-page-header {
+  margin-bottom: 20px;
+}
+
+.pm-page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+.pm-page-subtitle {
+  font-size: 14px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.pm-notice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background-color: #f3ecff;
+  border: 1px solid #d8b4fe;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pm-notice-close {
+  border: none;
+  background: transparent;
+  color: #5b21b6;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* =========================================
+   3. SEARCH BAR & ADD BUTTON
+   ========================================= */
+.pm-toolbar-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 14px;
+  padding: 10px 14px 10px 20px;
+  margin-bottom: 20px;
+}
+
+.pm-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #1e1b39;
+}
+
+.pm-search-input::placeholder {
+  color: #7d7a94;
+}
+
+.pm-add-btn {
+  height: 38px;
+  padding: 0 20px;
+  border-radius: 9px;
+  border: none;
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: filter 0.15s ease;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+}
+
+.pm-add-btn:hover {
+  filter: brightness(0.95);
+}
+
+/* =========================================
+   4. PRODUCT TABLE CARD
+   ========================================= */
+.pm-table-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 16px;
+  padding: 16px 26px 36px 26px;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+}
+
+.pm-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pm-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pm-table thead th {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6e6c85;
+  padding: 12px 10px 14px 10px;
+  border-bottom: 1px solid #eceaf4;
+}
+
+.pm-table tbody td {
+  padding: 18px 10px;
+  border-bottom: 1px solid #f1eff8;
+  font-size: 13.5px;
+  vertical-align: middle;
+}
+
+.pm-table tbody tr:hover {
+  background-color: #faf9fe;
+}
+
+.pm-col-name {
+  font-weight: 700;
+  color: #1e1b39;
+}
+
+.pm-col-category {
+  color: #6e6c85;
+}
+
+.pm-col-price {
+  font-weight: 700;
+  color: #7c3aed;
+  font-variant-numeric: tabular-nums;
+}
+
+.pm-col-stock {
+  font-weight: 700;
+  color: #1e1b39;
+  font-variant-numeric: tabular-nums;
+}
+
+.pm-status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 96px;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 11.5px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pm-badge-active {
+  background-color: #e6f7f0;
+  color: #0d9468;
+}
+
+.pm-badge-low {
+  background-color: #fef3dc;
+  color: #d97706;
+}
+
+.pm-badge-out {
+  background-color: #fde8ee;
+  color: #e11d48;
+}
+
+.pm-col-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.pm-action-edit,
+.pm-action-delete {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px 2px;
+}
+
+.pm-action-edit {
+  color: #7c3aed;
+}
+
+.pm-action-edit:hover {
+  text-decoration: underline;
+}
+
+.pm-action-delete {
+  color: #e11d48;
+}
+
+.pm-action-delete:hover {
+  text-decoration: underline;
+}
+
+.pm-empty-row {
+  text-align: center;
+  color: #6e6c85;
+  padding: 36px 12px !important;
+}
+
+/* =========================================
+   5. MODALS (EDIT & DELETE)
+   ========================================= */
+.pm-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background-color: rgba(28, 22, 53, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.pm-modal {
+  width: 100%;
+  max-width: 460px;
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 18px;
+  padding: 24px 26px;
+  box-shadow: 0 20px 44px rgba(28, 22, 53, 0.2);
+}
+
+.pm-modal-sm {
+  max-width: 400px;
+}
+
+.pm-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.pm-modal-header h2,
+.pm-delete-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0;
+}
+
+.pm-delete-copy {
+  font-size: 13.5px;
+  color: #6e6c85;
+  margin: 10px 0 22px 0;
+  line-height: 1.5;
+}
+
+.pm-modal-close {
+  border: none;
+  background: transparent;
+  font-size: 22px;
+  color: #6e6c85;
+  cursor: pointer;
+}
+
+.pm-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pm-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.pm-field label {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #1e1b39;
+  text-align: left;
+}
+
+.pm-field input,
+.pm-field select {
+  height: 42px;
+  border-radius: 10px;
+  border: 1px solid #e4e2ee;
+  background-color: #faf9fe;
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: 13.5px;
+  color: #1e1b39;
+  outline: none;
+}
+
+.pm-field input:focus,
+.pm-field select:focus {
+  border-color: #7c3aed;
+  background-color: #ffffff;
+}
+
+.pm-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.pm-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pm-btn-cancel,
+.pm-btn-save,
+.pm-btn-danger {
+  height: 38px;
+  padding: 0 18px;
+  border-radius: 9px;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pm-btn-cancel {
+  background-color: #f3ecff;
+  color: #7c3aed;
+}
+
+.pm-btn-save {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.pm-btn-danger {
+  background-color: #e11d48;
+  color: #ffffff;
+}
+
+/* =========================================
+   6. RESPONSIVE
+   ========================================= */
+@media (max-width: 768px) {
+  .pm-layout {
+    flex-direction: column;
+  }
+  .pm-sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+  .pm-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .pm-nav-item {
+    width: auto;
+    padding: 8px 14px;
+  }
+  .pm-sidebar-footer {
+    display: none;
+  }
+  .pm-topbar,
+  .pm-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .pm-toolbar-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+}

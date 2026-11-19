@@ -7,7 +7,7 @@ const TIMELINE_STEPS = [
     id: 1,
     title: 'Order placed',
     time: 'Sep 9 · 7:42 PM',
-    status: 'completed',
+    status: 'completed', // 'completed' | 'current' | 'upcoming'
   },
   {
     id: 2,
@@ -109,7 +109,7 @@ export default function OrderTracker({
           </p>
         </div>
 
-        {/* 2-Column Content Layout (Matching Frame 25) */}
+        {/* 2-Column Content Layout */}
         <div className="ordertracker-content-layout">
           {/* Left Column: Order Status + Order Information Card */}
           <div className="ordertracker-left-card">
@@ -193,13 +193,13 @@ export default function OrderTracker({
               ))}
             </div>
 
-            {/* Contact Seller / Ask AI button */}
+            {/* Contact Seller button */}
             <button
               type="button"
               className="ordertracker-contact-btn"
               onClick={() => setShowContactModal(true)}
             >
-              Contact seller / Ask AI
+              Contact Seller
             </button>
           </aside>
         </div>

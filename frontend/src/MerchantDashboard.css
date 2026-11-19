@@ -1,0 +1,540 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.md-layout *,
+.md-layout *::before,
+.md-layout *::after {
+  box-sizing: border-box;
+}
+
+.md-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fcfbfe;
+  color: #1e1b39;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. DARK PURPLE SIDEBAR
+   ========================================= */
+.md-sidebar {
+  width: 224px;
+  flex-shrink: 0;
+  background-color: #1c1635;
+  color: #ffffff;
+  padding: 28px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.md-brand {
+  padding: 0 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.md-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.md-brand-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b4afd0;
+}
+
+.md-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.md-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #b9b4d4;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.md-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.md-nav-item.active {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.md-nav-spacer {
+  height: 28px;
+}
+
+.md-sidebar-footer {
+  padding: 16px 12px 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================
+   2. TOP BAR & MAIN CONTAINER
+   ========================================= */
+.md-content-shell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.md-topbar {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.md-topbar-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.015em;
+}
+
+.md-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.md-topbar-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.md-topbar-btn:hover {
+  background-color: #e9dcff;
+}
+
+.md-topbar-btn-outline {
+  background-color: #ffffff;
+  color: #1e1b39;
+  border: 1px solid #e4e2ee;
+}
+
+.md-topbar-btn-outline:hover {
+  background-color: #f6f6fa;
+}
+
+.md-main {
+  padding: 28px 36px 48px 36px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.md-page-header {
+  margin-bottom: 22px;
+}
+
+.md-page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+.md-page-subtitle {
+  font-size: 14px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.md-notice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  background-color: #f3ecff;
+  border: 1px solid #d8b4fe;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.md-notice-close {
+  border: none;
+  background: transparent;
+  color: #5b21b6;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* =========================================
+   3. SUMMARY KPI CARDS
+   ========================================= */
+.md-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.md-kpi-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 14px;
+  padding: 20px 22px;
+  box-shadow: 0 2px 10px rgba(30, 27, 57, 0.015);
+}
+
+.md-kpi-value {
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+
+.md-kpi-purple {
+  color: #7c3aed;
+}
+
+.md-kpi-amber {
+  color: #d97706;
+}
+
+.md-kpi-label {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #6e6c85;
+}
+
+/* =========================================
+   4. MIDDLE ROW: SALES OVERVIEW & RECENT ORDERS
+   ========================================= */
+.md-mid-grid {
+  display: grid;
+  grid-template-columns: 1.8fr 1fr;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+
+.md-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 16px;
+  padding: 22px 24px;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+}
+
+.md-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.md-card-title {
+  font-size: 16px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 16px 0;
+}
+
+.md-card-head .md-card-title {
+  margin-bottom: 0;
+}
+
+.md-chart-readout {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #7c3aed;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-chart-area {
+  padding-top: 12px;
+}
+
+.md-bars-row {
+  height: 168px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 0 28px 0 12px;
+}
+
+.md-bar-col {
+  flex: 1;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.md-bar {
+  width: 100%;
+  max-width: 44px;
+  background: linear-gradient(180deg, #9333ea 0%, #8b5cf6 100%);
+  border-radius: 7px 7px 3px 3px;
+  transition: transform 0.16s ease, opacity 0.16s ease;
+  cursor: pointer;
+}
+
+.md-bar:hover {
+  transform: translateY(-3px);
+  opacity: 0.92;
+}
+
+.md-chart-baseline {
+  height: 1px;
+  width: 100%;
+  background-color: #e4e1f0;
+}
+
+/* Recent Orders */
+.md-recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.md-recent-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  padding: 4px 0;
+  cursor: pointer;
+  font-family: inherit;
+  transition: opacity 0.15s ease;
+}
+
+.md-recent-item:hover {
+  opacity: 0.8;
+}
+
+.md-recent-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.md-recent-id {
+  font-size: 13px;
+  font-weight: 800;
+  color: #1e1b39;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-recent-amount {
+  font-size: 13px;
+  font-weight: 800;
+  color: #7c3aed;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-recent-status {
+  font-size: 11.5px;
+  font-weight: 700;
+  margin-top: 2px;
+}
+
+.md-status-pending {
+  color: #d97706;
+}
+
+.md-status-positive {
+  color: #16a34a;
+}
+
+.md-status-cancelled {
+  color: #e11d48;
+}
+
+/* =========================================
+   5. BOTTOM ROW: LOW STOCK ALERTS & QUICK ACTIONS
+   ========================================= */
+.md-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.md-alerts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.md-alert-row {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-radius: 11px;
+  border: none;
+  background-color: #fdf7f9;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.md-alert-row:hover {
+  background-color: #fbeff3;
+}
+
+.md-alert-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #1e1b39;
+}
+
+.md-alert-qty {
+  font-size: 12.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.md-qty-low {
+  color: #d97706;
+}
+
+.md-qty-zero {
+  color: #e11d48;
+}
+
+.md-empty-alerts {
+  font-size: 13px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+/* Quick Actions */
+.md-quick-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.md-quick-btn {
+  height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.md-quick-primary {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+}
+
+.md-quick-primary:hover {
+  filter: brightness(0.95);
+}
+
+.md-quick-secondary {
+  background-color: #f3ecff;
+  color: #7c3aed;
+}
+
+.md-quick-secondary:hover {
+  background-color: #e9dcff;
+}
+
+/* =========================================
+   6. RESPONSIVE
+   ========================================= */
+@media (max-width: 1024px) {
+  .md-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .md-mid-grid,
+  .md-bottom-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .md-layout {
+    flex-direction: column;
+  }
+  .md-sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+  .md-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .md-nav-item {
+    width: auto;
+    padding: 8px 14px;
+  }
+  .md-nav-spacer,
+  .md-sidebar-footer {
+    display: none;
+  }
+  .md-topbar,
+  .md-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+  .md-kpi-grid,
+  .md-quick-grid {
+    grid-template-columns: 1fr;
+  }
+  .md-bars-row {
+    gap: 10px;
+    padding: 0;
+  }
+}

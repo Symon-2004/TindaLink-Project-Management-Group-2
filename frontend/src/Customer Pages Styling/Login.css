@@ -336,5 +336,6 @@ html,
 
   .tindalink-auth-card {
     padding: 36px 24px;
+    min-height: auto;
   }
 }

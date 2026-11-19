@@ -74,7 +74,11 @@ export default function Cart({
 
   const handleProceedToCheckout = () => {
     if (cartItems.length === 0) return;
-    setIsCheckedOut(true);
+    if (onNavigateCheckout) {
+      onNavigateCheckout();
+    } else {
+      setIsCheckedOut(true);
+    }
   };
 
   return (
@@ -107,7 +111,7 @@ export default function Cart({
           </p>
         </div>
 
-        {/* 2-Column Layout matching CUS-04 */}
+        {/* 2-Column Layout */}
         <div className="cart-content-layout">
           {/* Left Column: Products Card */}
           <div className="cart-items-card">
@@ -152,7 +156,7 @@ export default function Cart({
                       </span>
                     </div>
 
-                    {/* Quantity Selector matching CUS-04 */}
+                    {/* Quantity Selector */}
                     <div className="cart-item-quantity-wrapper">
                       <div className="cart-qty-pill">
                         <button

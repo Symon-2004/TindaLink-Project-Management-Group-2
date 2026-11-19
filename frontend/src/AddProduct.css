@@ -1,0 +1,501 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+.ap-layout *,
+.ap-layout *::before,
+.ap-layout *::after {
+  box-sizing: border-box;
+}
+
+.ap-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #fcfbfe;
+  color: #1e1b39;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================
+   1. DARK PURPLE SIDEBAR
+   ========================================= */
+.ap-sidebar {
+  width: 224px;
+  flex-shrink: 0;
+  background-color: #1c1635;
+  color: #ffffff;
+  padding: 28px 18px 24px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ap-brand {
+  padding: 0 12px 24px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ap-brand-name {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #ffffff;
+  line-height: 1.15;
+}
+
+.ap-brand-role {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #b4afd0;
+}
+
+.ap-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ap-nav-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  color: #b9b4d4;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.16s ease;
+  white-space: nowrap;
+}
+
+.ap-nav-item:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.ap-nav-item.active {
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(124, 58, 237, 0.35);
+}
+
+.ap-sidebar-footer {
+  padding: 16px 12px 0 12px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================
+   2. TOPBAR & CONTENT SHELL
+   ========================================= */
+.ap-content-shell {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.ap-topbar {
+  height: 60px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #eceaf4;
+  padding: 0 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ap-topbar-title {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e1b39;
+  letter-spacing: -0.015em;
+}
+
+.ap-topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ap-topbar-btn {
+  padding: 7px 14px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.ap-topbar-btn-outline {
+  background-color: #ffffff;
+  color: #1e1b39;
+  border: 1px solid #e4e2ee;
+}
+
+.ap-main {
+  padding: 28px 36px 48px 36px;
+  max-width: 1180px;
+  width: 100%;
+}
+
+.ap-page-header {
+  margin-bottom: 20px;
+}
+
+.ap-page-title {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+  line-height: 1.15;
+}
+
+.ap-page-subtitle {
+  font-size: 14px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.ap-notice-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  background-color: #f3ecff;
+  border: 1px solid #d8b4fe;
+  color: #5b21b6;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ap-notice-close {
+  border: none;
+  background: transparent;
+  color: #5b21b6;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* =========================================
+   3. TWO-COLUMN FORM + PREVIEW GRID
+   ========================================= */
+.ap-grid {
+  display: grid;
+  grid-template-columns: 2fr 0.95fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.ap-form-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 18px;
+  padding: 24px 28px 36px 28px;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ap-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+}
+
+.ap-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ap-field label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e1b39;
+  text-align: left;
+}
+
+.ap-field input,
+.ap-field select {
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e4e2ee;
+  background-color: #ffffff;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #1e1b39;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.ap-field input::placeholder {
+  color: #7d7a94;
+}
+
+.ap-field select.is-placeholder {
+  color: #7d7a94;
+}
+
+.ap-field input:focus,
+.ap-field select:focus {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+.ap-price-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ap-currency-prefix {
+  position: absolute;
+  left: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #7d7a94;
+  pointer-events: none;
+}
+
+.ap-price-input-wrap input {
+  width: 100%;
+  padding-left: 28px;
+}
+
+/* Drag & Drop Upload Box */
+.ap-dropzone {
+  border: 1px solid #e4def7;
+  background-color: #faf7ff;
+  border-radius: 12px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.ap-dropzone.is-dragging {
+  border-color: #8b5cf6;
+  background-color: #f3ecff;
+}
+
+.ap-file-hidden {
+  display: none;
+}
+
+.ap-dropzone-text {
+  font-size: 12px;
+  color: #6e6c85;
+  margin: 0;
+}
+
+.ap-dropzone-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ap-upload-btn {
+  height: 36px;
+  padding: 0 22px;
+  border-radius: 9px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.ap-upload-btn:hover {
+  background-color: #e9dcff;
+}
+
+.ap-remove-img-btn {
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 9px;
+  border: 1px solid #fecdd3;
+  background-color: #fff1f2;
+  color: #e11d48;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ap-form-error {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #e11d48;
+  margin: 4px 0 0 0;
+}
+
+/* =========================================
+   4. RIGHT COLUMN: LISTING PREVIEW & ACTIONS
+   ========================================= */
+.ap-right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.ap-preview-card {
+  background-color: #ffffff;
+  border: 1px solid #eceaf4;
+  border-radius: 18px;
+  padding: 22px;
+  box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
+}
+
+.ap-preview-img-box {
+  width: 100%;
+  height: 136px;
+  border-radius: 12px;
+  background-color: #f2e8ff;
+  overflow: hidden;
+  margin-top: 12px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ap-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ap-preview-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+.ap-preview-price {
+  font-size: 16px;
+  font-weight: 800;
+  color: #7c3aed;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+}
+
+.ap-preview-stock {
+  font-size: 12px;
+  color: #6e6c85;
+  font-variant-numeric: tabular-nums;
+}
+
+.ap-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.ap-save-btn {
+  flex: 1;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, #8b5cf6 0%, #7c3aed 100%);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(124, 58, 237, 0.25);
+  transition: filter 0.15s ease;
+  white-space: nowrap;
+}
+
+.ap-save-btn:hover {
+  filter: brightness(0.95);
+}
+
+.ap-cancel-btn {
+  flex: 0.85;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+  background-color: #f3ecff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.ap-cancel-btn:hover {
+  background-color: #e9dcff;
+}
+
+/* =========================================
+   5. RESPONSIVE
+   ========================================= */
+@media (max-width: 960px) {
+  .ap-grid {
+    grid-template-columns: 1fr;
+  }
+  .ap-actions-row {
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .ap-layout {
+    flex-direction: column;
+  }
+  .ap-sidebar {
+    width: 100%;
+    padding: 18px;
+  }
+  .ap-nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .ap-nav-item {
+    width: auto;
+    padding: 8px 14px;
+  }
+  .ap-sidebar-footer {
+    display: none;
+  }
+  .ap-topbar,
+  .ap-main {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
