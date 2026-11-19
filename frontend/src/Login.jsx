@@ -50,8 +50,7 @@ export default function Login() {
 
     setValidationError('none');
     setStatusMessage({
-      type: 'success',
-      text: `Logged in successfully as ${email}. Role will be resolved by backend.`
+      type: 'success'
     });
   };
 
