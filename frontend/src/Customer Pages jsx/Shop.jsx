@@ -259,13 +259,6 @@ export default function Shop({ onNavigateHome, onLogout, onNavigateCart, onNavig
             <button
               type="button"
               className="shop-nav-link"
-              onClick={() => setSelectedCategory('All products')}
-            >
-              Categories
-            </button>
-            <button
-              type="button"
-              className="shop-nav-link"
               onClick={() => alert('About TindaLink: A smart marketplace for local businesses.')}
             >
               About

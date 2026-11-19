@@ -1,38 +1,53 @@
 import { useState } from 'react';
-import Login from './Login.jsx';
-import Dashboard from './Dashboard.jsx';
-import Shop from './Shop.jsx';
-import Cart from './Cart.jsx';
-import Checkout from './checkout.jsx';
-import Payment from './Payment.jsx';
-import CustomerProfile from './customerprofile.jsx';
-import MyOrders from './myorders.jsx';
-import OrderConfirm from './orderconfirm.jsx';
-import OrderTracker from './ordertracker.jsx';
+
+//Customer Pages Imports
+import Login from './Customer Pages jsx/Login.jsx';
+import Dashboard from './Customer Pages jsx/Dashboard.jsx';
+import Shop from './Customer Pages jsx/Shop.jsx';
+import Cart from './Customer Pages jsx/Cart.jsx';
+import Checkout from './Customer Pages jsx/checkout.jsx';
+import Payment from './Customer Pages jsx/Payment.jsx';
+import CustomerProfile from './Customer Pages jsx/customerprofile.jsx';
+import MyOrders from './Customer Pages jsx/myorders.jsx';
+import OrderConfirm from './Customer Pages jsx/orderconfirm.jsx';
+import OrderTracker from './Customer Pages jsx/ordertracker.jsx';
+
+// Merchant Pages Imports
+import MerchantDashboard from './Merchant Pages jsx/MerchantDashboard.jsx';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('Dashboard');
-  const [userSession, setUserSession] = useState({ email: 'peachy@email.com' });
+  const [userSession, setUserSession] = useState({
+    email: 'peachy@email.com',
+    role: 'customer',
+  });
+  const isMerchant = userSession?.role === 'merchant';
+
+  const handleLogout = () => {
+    setUserSession(null);
+    setCurrentPage('Login');
+  };
+
+  const handleAuthSuccess = (user) => {
+    setUserSession(user);
+    setCurrentPage(user.role === 'merchant' ? 'MerchantDashboard' : 'Dashboard');
+  };
 
   const renderPage = () => {
+    if (!userSession || !['customer', 'merchant'].includes(userSession.role) || currentPage === 'Login') {
+      return <Login onAuthSuccess={handleAuthSuccess} />;
+    }
+
+    if (isMerchant) {
+      return <MerchantDashboard onLogout={handleLogout} />;
+    }
+
     switch (currentPage) {
-      case 'Login':
-        return (
-          <Login
-            onAuthSuccess={(user) => {
-              setUserSession(user);
-              setCurrentPage('Dashboard');
-            }}
-          />
-        );
       case 'Dashboard':
         return (
           <Dashboard
             user={userSession}
-            onLogout={() => {
-              setUserSession(null);
-              setCurrentPage('Login');
-            }}
+            onLogout={handleLogout}
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateProfile={() => setCurrentPage('CustomerProfile')}
@@ -45,10 +60,7 @@ export default function App() {
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateProfile={() => setCurrentPage('CustomerProfile')}
-            onLogout={() => {
-              setUserSession(null);
-              setCurrentPage('Login');
-            }}
+            onLogout={handleLogout}
           />
         );
       case 'Cart':
@@ -82,10 +94,7 @@ export default function App() {
             onNavigateHome={() => setCurrentPage('Dashboard')}
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateOrders={() => setCurrentPage('MyOrders')}
-            onLogout={() => {
-              setUserSession(null);
-              setCurrentPage('Login');
-            }}
+            onLogout={handleLogout}
           />
         );
       case 'MyOrders':
@@ -115,10 +124,7 @@ export default function App() {
         return (
           <Dashboard
             user={userSession}
-            onLogout={() => {
-              setUserSession(null);
-              setCurrentPage('Login');
-            }}
+            onLogout={handleLogout}
             onNavigateShop={() => setCurrentPage('Shop')}
             onNavigateCart={() => setCurrentPage('Cart')}
             onNavigateProfile={() => setCurrentPage('CustomerProfile')}
@@ -128,18 +134,22 @@ export default function App() {
     }
   };
 
-  const pageOptions = [
-    'Dashboard',
-    'Login',
-    'Shop',
-    'Cart',
-    'Checkout',
-    'Payment',
-    'CustomerProfile',
-    'MyOrders',
-    'OrderConfirm',
-    'OrderTracker'
-  ];
+  const pageOptions = userSession
+    ? isMerchant
+      ? ['MerchantDashboard', 'Login']
+      : [
+          'Dashboard',
+          'Login',
+          'Shop',
+          'Cart',
+          'Checkout',
+          'Payment',
+          'CustomerProfile',
+          'MyOrders',
+          'OrderConfirm',
+          'OrderTracker',
+        ]
+    : ['Login'];
 
   return (
     <div>

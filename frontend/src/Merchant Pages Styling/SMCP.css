@@ -1,0 +1,262 @@
+.smcp-page {
+  padding: 28px 36px;
+  background-color: #fafafc;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  color: #1f1b38;
+  box-sizing: border-box;
+}
+
+/* Header */
+.smcp-header {
+  margin-bottom: 22px;
+}
+
+.smcp-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f1b38;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.smcp-subtitle {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Shared Card Styles */
+.smcp-card {
+  background: #ffffff;
+  border: 1px solid #ececf3;
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.02);
+}
+
+.smcp-connection-card {
+  padding-bottom: 48px;
+}
+
+.smcp-card-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #1f1b38;
+  margin: 0 0 16px 0;
+}
+
+/* Instagram Account Row */
+.smcp-account-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.smcp-account-info {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-left: 20px;
+}
+
+.smcp-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #fce7f3;
+  flex-shrink: 0;
+}
+
+.smcp-account-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.smcp-handle {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1f1b38;
+}
+
+.smcp-conn-status {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.smcp-conn-status.connected {
+  color: #16a34a;
+}
+
+.smcp-conn-status.disconnected {
+  color: #dc2626;
+}
+
+.smcp-conn-btn {
+  border: none;
+  border-radius: 10px;
+  padding: 11px 34px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-right: 16px;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.smcp-conn-btn.disconnect {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+}
+
+.smcp-conn-btn.disconnect:hover {
+  background-color: #e9d5ff;
+}
+
+.smcp-conn-btn.connect {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+.smcp-conn-btn.connect:hover {
+  background-color: #6d28d9;
+}
+
+/* Cross-post Form */
+.smcp-form-group {
+  margin-bottom: 20px;
+}
+
+.smcp-select-group {
+  max-width: 635px;
+}
+
+.smcp-label {
+  display: block;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.smcp-select {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #1f1b38;
+  background-color: #fafafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+  appearance: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.smcp-select:focus {
+  border-color: #7c3aed;
+}
+
+.smcp-textarea {
+  width: 100%;
+  padding: 16px 18px;
+  font-family: inherit;
+  font-size: 13px;
+  color: #4b5563;
+  background-color: #fafafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  resize: vertical;
+  min-height: 82px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.smcp-textarea:focus {
+  border-color: #7c3aed;
+  background-color: #ffffff;
+}
+
+/* Status Box */
+.smcp-status-box {
+  background-color: #f4f1fc;
+  border-radius: 12px;
+  padding: 14px 26px;
+  margin-top: 26px;
+  margin-bottom: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.smcp-status-label {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.smcp-status-value {
+  font-size: 14px;
+  font-weight: 800;
+  color: #7c3aed;
+}
+
+.smcp-status-value.published {
+  color: #16a34a;
+}
+
+/* Submit Button */
+.smcp-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.smcp-submit-btn {
+  background-color: #8b3dff;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 34px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease;
+}
+
+.smcp-submit-btn:hover:not(:disabled) {
+  background-color: #7c3aed;
+}
+
+.smcp-submit-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .smcp-page {
+    padding: 20px 16px;
+  }
+
+  .smcp-account-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .smcp-account-info {
+    padding-left: 0;
+  }
+
+  .smcp-conn-btn {
+    margin-right: 0;
+    width: 100%;
+  }
+
+  .smcp-submit-btn {
+    width: 100%;
+  }
+}

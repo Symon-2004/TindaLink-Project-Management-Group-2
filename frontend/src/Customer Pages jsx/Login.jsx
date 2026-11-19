@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import '../Customer Pages Styling/Login.css';
 
-export default function Login() {
+export default function Login({ onAuthSuccess }) {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail] = useState('peachy@email.com');
   const [password, setPassword] = useState('•••••••••');
+  const [role, setRole] = useState('customer');
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
@@ -51,8 +52,9 @@ export default function Login() {
     setValidationError('none');
     setStatusMessage({
       type: 'success',
-      text: `Logged in successfully as ${email}. Role will be resolved by backend.`
+      text: `Logged in successfully as ${email}.`
     });
+    onAuthSuccess?.({ email, role });
   };
 
   let loginSubtitle = 'Please login to your account';
@@ -119,6 +121,20 @@ export default function Login() {
                 <h2>Welcome back</h2>
                 <p>{loginSubtitle}</p>
               </header>
+
+              <div className="tindalink-role-selector" aria-label="Select account role">
+                {['customer', 'merchant'].map((accountRole) => (
+                  <button
+                    key={accountRole}
+                    type="button"
+                    className={`tindalink-role-btn ${role === accountRole ? 'active' : ''}`}
+                    aria-pressed={role === accountRole}
+                    onClick={() => setRole(accountRole)}
+                  >
+                    {accountRole === 'customer' ? 'Customer' : 'Merchant'}
+                  </button>
+                ))}
+              </div>
 
               <form className="tindalink-form" onSubmit={handleSubmit}>
                 {/* Email Address with Label Above Input */}

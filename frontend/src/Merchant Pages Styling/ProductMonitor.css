@@ -1,0 +1,369 @@
+.pmon-page {
+  padding: 28px 36px;
+  background-color: #fafafc;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  color: #1f1b38;
+  box-sizing: border-box;
+}
+
+/* Header */
+.pmon-header {
+  margin-bottom: 22px;
+}
+
+.pmon-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f1b38;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.pmon-subtitle {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Search & Filter Bar */
+.pmon-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #ececf3;
+  border-radius: 14px;
+  padding: 8px 14px 8px 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.02);
+}
+
+.pmon-search-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 13.5px;
+  color: #1f1b38;
+  background: transparent;
+  padding: 10px 0;
+}
+
+.pmon-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.pmon-filter-btn {
+  background-color: #f3e8ff;
+  color: #7c3aed;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.pmon-filter-btn:hover {
+  background-color: #e9d5ff;
+}
+
+.pmon-filter-btn.active {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+/* Table Card */
+.pmon-table-card {
+  background: #ffffff;
+  border: 1px solid #ececf3;
+  border-radius: 16px;
+  padding: 24px 28px 26px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.02);
+}
+
+.pmon-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.pmon-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pmon-table thead th {
+  font-size: 12px;
+  font-weight: 700;
+  color: #6b7280;
+  padding: 6px 12px 14px;
+}
+
+.pmon-table tbody tr {
+  border-bottom: 1px solid #f1f1f6;
+  transition: background-color 0.15s ease;
+}
+
+.pmon-table tbody tr:hover {
+  background-color: #faf9ff;
+}
+
+.pmon-table tbody td {
+  padding: 18px 12px;
+  font-size: 13px;
+  vertical-align: middle;
+}
+
+.pmon-product-name {
+  font-weight: 700;
+  color: #1f1b38;
+}
+
+.pmon-store {
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.pmon-category {
+  color: #6b7280;
+}
+
+.pmon-price {
+  color: #7c3aed;
+  font-weight: 700;
+}
+
+.pmon-reports {
+  font-weight: 700;
+  color: #1f1b38;
+}
+
+/* Status Colors */
+.pmon-status {
+  font-weight: 700;
+  font-size: 12.5px;
+}
+
+.pmon-status-published {
+  color: #16a34a;
+}
+
+.pmon-status-reported {
+  color: #dc2626;
+}
+
+.pmon-status-review {
+  color: #d97706;
+}
+
+.pmon-status-deactivated {
+  color: #6b7280;
+}
+
+/* Action Link Button */
+.pmon-action-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #7c3aed;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.pmon-action-btn:hover {
+  color: #5b21b6;
+  text-decoration: underline;
+}
+
+.pmon-empty {
+  text-align: center;
+  color: #6b7280;
+  padding: 32px 12px;
+}
+
+/* Bottom Admin Notice Banner */
+.pmon-notice-banner {
+  margin-top: 64px;
+  background-color: #fef2f2;
+  color: #dc2626;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  padding: 11px 16px;
+  border-radius: 8px;
+}
+
+/* Modal */
+.pmon-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(23, 19, 44, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+}
+
+.pmon-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  box-shadow: 0 20px 35px rgba(17, 12, 46, 0.18);
+  overflow: hidden;
+}
+
+.pmon-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px 24px;
+  border-bottom: 1px solid #f1f1f6;
+}
+
+.pmon-modal-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #1f1b38;
+}
+
+.pmon-modal-meta {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: #6b7280;
+}
+
+.pmon-modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  line-height: 1;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+.pmon-modal-body {
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pmon-detail-block {
+  background: #fafafc;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #ececf3;
+}
+
+.pmon-detail-label {
+  display: block;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.pmon-detail-text {
+  margin: 0;
+  font-size: 13px;
+  color: #1f1b38;
+  line-height: 1.45;
+}
+
+.pmon-detail-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f3f3f8;
+}
+
+.pmon-detail-row span:first-child {
+  color: #6b7280;
+}
+
+.pmon-reasons-box {
+  background: #fef2f2;
+  border: 1px solid #fee2e2;
+  border-radius: 10px;
+  padding: 12px 16px;
+}
+
+.pmon-reasons-title {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #dc2626;
+  margin-bottom: 6px;
+}
+
+.pmon-reasons-box ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 12.5px;
+  color: #991b1b;
+}
+
+.pmon-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 16px 24px;
+  background: #fafafc;
+  border-top: 1px solid #f1f1f6;
+}
+
+.pmon-btn {
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: opacity 0.15s ease;
+}
+
+.pmon-btn:hover {
+  opacity: 0.9;
+}
+
+.pmon-btn-remove {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.pmon-btn-deactivate {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.pmon-btn-approve {
+  background: #7c3aed;
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .pmon-page {
+    padding: 20px 16px;
+  }
+
+  .pmon-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .pmon-modal-footer {
+    flex-direction: column;
+  }
+}

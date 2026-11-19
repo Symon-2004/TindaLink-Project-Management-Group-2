@@ -1,0 +1,316 @@
+:root {
+  --sidebar-bg: #231f36;
+  --bg-color: #f7f8fc;
+  --card-bg: #ffffff;
+  --primary-purple: #8942ff;
+  --secondary-purple: #f0ebff;
+  --avatar-bg: #dfd3fc;
+  --input-bg: #f6f6f9;
+  --text-main: #1f1b2e;
+  --text-muted: #757585;
+  --border-color: #e9e9f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: 0 2rem;
+  margin-bottom: 2rem;
+}
+
+.sidebar-header h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-header .subtitle {
+  font-size: 0.65rem;
+  letter-spacing: 1px;
+  color: #a09eb0;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 0.25rem;
+}
+
+.nav-item {
+  padding: 0.75rem 2rem;
+  color: #a09eb0;
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: white;
+}
+
+.nav-item.active {
+  background-color: var(--primary-purple);
+  color: white;
+  font-weight: 600;
+  margin: 0 1rem;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+}
+
+.sidebar-footer {
+  padding: 0 2rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+}
+
+/* Main Content */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.top-header {
+  background-color: white;
+  padding: 1.25rem 2.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.top-header h1 {
+  font-size: 1.1rem;
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+.page-content {
+  padding: 2rem 2.5rem;
+  max-width: 1200px;
+}
+
+.page-title-area {
+  margin-bottom: 1.75rem;
+}
+
+.page-title-area h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.page-title-area p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* Profile Layout */
+.profile-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  border: 1px solid var(--border-color);
+}
+
+/* Left Profile Card */
+.profile-sidebar-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.25rem 1.5rem;
+}
+
+.profile-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.profile-avatar {
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
+  background-color: var(--avatar-bg);
+  color: var(--primary-purple);
+  font-size: 2.35rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.profile-avatar-section h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.profile-avatar-section p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.profile-subnav {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 0.75rem;
+}
+
+.subnav-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+}
+
+.subnav-btn:hover {
+  color: var(--text-main);
+}
+
+.subnav-btn.active {
+  background-color: var(--secondary-purple);
+  color: var(--primary-purple);
+  font-weight: 700;
+}
+
+.logout-btn {
+  margin-top: 0.25rem;
+}
+
+/* Right Details Card */
+.profile-details-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.section-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 1.25rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  margin-bottom: 1.1rem;
+}
+
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.form-group input {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--input-bg);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+  border-color: var(--primary-purple);
+  background-color: #ffffff;
+}
+
+/* Payment Settings Section */
+.payment-settings-section {
+  margin-top: 0.75rem;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: 330px 1fr;
+  align-items: center;
+  margin-bottom: 1.35rem;
+  font-size: 0.85rem;
+}
+
+.payment-label {
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.payment-value {
+  color: var(--text-main);
+  font-weight: 700;
+}
+
+/* Save Button */
+.save-btn-wrapper {
+  margin-top: auto;
+  padding-top: 2.5rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-save-changes {
+  background-color: var(--primary-purple);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.75rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-save-changes:hover {
+  opacity: 0.9;
+}

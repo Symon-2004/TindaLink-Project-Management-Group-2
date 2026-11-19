@@ -1,0 +1,171 @@
+.sm-page {
+  padding: 28px 36px;
+  background-color: #fafafc;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    sans-serif;
+  color: #1f1b38;
+  box-sizing: border-box;
+}
+
+/* Header */
+.sm-header {
+  margin-bottom: 22px;
+}
+
+.sm-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1f1b38;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.02em;
+}
+
+.sm-subtitle {
+  font-size: 13.5px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Store Information Card */
+.sm-card {
+  background: #ffffff;
+  border: 1px solid #ececf3;
+  border-radius: 16px;
+  padding: 24px 28px 26px;
+  box-shadow: 0 1px 3px rgba(16, 24, 40, 0.02);
+}
+
+.sm-card-title {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #1f1b38;
+  margin: 0 0 18px 0;
+}
+
+/* Top Store Banner Preview */
+.sm-banner-preview {
+  background-color: #efeafd;
+  border-radius: 14px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.sm-store-avatar {
+  width: 68px;
+  height: 68px;
+  border-radius: 16px;
+  background-color: #d6c8fc;
+  flex-shrink: 0;
+}
+
+.sm-banner-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sm-banner-name {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1f1b38;
+}
+
+.sm-banner-desc {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* Form Fields */
+.sm-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.sm-form-group {
+  margin-bottom: 14px;
+}
+
+.sm-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.sm-input {
+  width: 100%;
+  padding: 13px 16px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: #1f1b38;
+  background-color: #fafafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.sm-input:focus {
+  border-color: #8b3dff;
+  background-color: #ffffff;
+}
+
+/* Save Actions */
+.sm-actions {
+  margin-top: 136px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+}
+
+.sm-saved-msg {
+  font-size: 13px;
+  font-weight: 700;
+  color: #16a34a;
+}
+
+.sm-save-btn {
+  background-color: #8b3dff;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.sm-save-btn:hover {
+  background-color: #7c3aed;
+}
+
+@media (max-width: 640px) {
+  .sm-page {
+    padding: 20px 16px;
+  }
+
+  .sm-banner-preview {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .sm-actions {
+    margin-top: 40px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sm-save-btn {
+    width: 100%;
+  }
+}
