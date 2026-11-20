@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Login.css';
 
-export default function Login() {
+export default function Login({ onAuthSuccess }) {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail] = useState('peachy@email.com');
   const [password, setPassword] = useState('•••••••••');
