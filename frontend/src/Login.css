@@ -1,100 +1,89 @@
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-body,
-html,
-#root {
+.tl-auth-page {
   min-height: 100vh;
   width: 100%;
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  color: #1e1b39;
-  background-color: #ffffff;
-  -webkit-font-smoothing: antialiased;
-}
-
-.tindalink-auth-layout {
   display: grid;
   grid-template-columns: 41.5% 58.5%;
-  min-height: 100vh;
-  width: 100%;
+  background: #ffffff;
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  color: #1e1b39;
+  box-sizing: border-box;
 }
 
-/* Left Lavender-Blush Brand Panel */
-.tindalink-brand-panel {
-  background: linear-gradient(180deg, #f2e5fa 0%, #f6e7f5 52%, #fcebef 100%);
-  padding: 68px 54px;
+.tl-auth-page *,
+.tl-auth-page *::before,
+.tl-auth-page *::after {
+  box-sizing: border-box;
+}
+
+/* Left Brand Panel */
+.tl-auth-brand-panel {
+  background: linear-gradient(180deg, #f2e5fa 0%, #f6e7f5 50%, #fcebef 100%);
+  padding: 48px 64px;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+}
+
+.tl-auth-brand-content {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   text-align: center;
+  user-select: none;
 }
 
-.tindalink-brand-centered {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 420px;
-}
-
-.tindalink-logo-icon {
-  width: 60px;
-  height: 60px;
+.tl-auth-logo-box {
+  width: 64px;
+  height: 64px;
   border-radius: 18px;
-  background: linear-gradient(135deg, #5b34f2 0%, #8839ef 55%, #d668b6 100%);
+  background: linear-gradient(135deg, #5b34f2 0%, #8839ef 50%, #d668b6 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 6px 18px rgba(124, 58, 237, 0.2);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.22);
 }
 
-.tindalink-logo-icon svg {
-  width: 36px;
-  height: 36px;
+.tl-auth-logo-box svg {
+  width: 40px;
+  height: 40px;
 }
 
-/* System Title: TindaLink Centered Directly Below Logo */
-.tindalink-brand-title {
-  font-size: 38px;
+.tl-auth-brand-title {
+  font-size: 40px;
   font-weight: 800;
   letter-spacing: -0.025em;
   color: #1e1b39;
-  margin-top: 18px;
-  margin-bottom: 8px;
+  margin: 16px 0 8px;
   line-height: 1;
 }
 
-.tindalink-brand-highlight {
+.tl-auth-brand-title span {
   color: #7c3aed;
 }
 
-.tindalink-brand-tagline {
+.tl-auth-brand-tagline {
   font-size: 13.5px;
-  font-weight: 400;
-  line-height: 1.5;
   color: #6b6882;
   max-width: 340px;
+  margin: 6px 0 0;
+  line-height: 1.6;
 }
 
-/* Right White Form Panel */
-.tindalink-form-panel {
-  background-color: #ffffff;
+/* Right Auth Panel */
+.tl-auth-main {
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 48px 32px;
+  padding: 40px 48px;
 }
 
-.tindalink-auth-card {
+.tl-auth-card {
   width: 100%;
   max-width: 560px;
   min-height: 580px;
-  background-color: #ffffff;
+  background: #ffffff;
   border: 1px solid #eceaf4;
   border-radius: 22px;
   padding: 50px 48px;
@@ -104,38 +93,38 @@ html,
   box-shadow: 0 10px 36px rgba(30, 27, 57, 0.025);
 }
 
-.tindalink-card-header {
+.tl-auth-header {
   text-align: center;
   margin-bottom: 32px;
 }
 
-.tindalink-card-header h2 {
-  font-size: 29px;
+.tl-auth-header h2 {
+  font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.02em;
   color: #1e1b39;
-  margin-bottom: 6px;
+  margin: 0 0 6px;
 }
 
-.tindalink-card-header p {
+.tl-auth-header p {
   font-size: 14px;
-  font-weight: 500;
   color: #7d7a94;
+  font-weight: 500;
+  margin: 0;
 }
 
-/* Form Fields with Labels Above Inputs */
-.tindalink-form {
+.tl-auth-form {
   display: flex;
   flex-direction: column;
 }
 
-.tindalink-form-group {
+.tl-auth-field {
   display: flex;
   flex-direction: column;
   margin-bottom: 16px;
 }
 
-.tindalink-field-label {
+.tl-auth-field label {
   display: block;
   font-size: 13px;
   font-weight: 700;
@@ -144,109 +133,176 @@ html,
   text-align: left;
 }
 
-.tindalink-label-row {
+.tl-auth-label-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 6px;
 }
 
-.tindalink-form-group input {
+.tl-auth-label-row label {
+  margin-bottom: 0;
+}
+
+.tl-auth-inline-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7c3aed;
+  cursor: pointer;
+}
+
+.tl-auth-inline-link:hover {
+  color: #6d28d9;
+  text-decoration: underline;
+}
+
+.tl-auth-field input {
+  width: 100%;
   height: 46px;
   border-radius: 11px;
   border: 1px solid #e6e4f0;
-  background-color: #f6f6fa;
+  background: #f6f6fa;
   padding: 0 16px;
-  font-family: inherit;
   font-size: 13.5px;
   color: #1e1b39;
   outline: none;
-  transition: all 0.16s ease;
-  width: 100%;
+  transition: all 0.15s ease;
 }
 
-.tindalink-form-group input:focus {
+.tl-auth-field input::placeholder {
+  color: #7d7a94;
+}
+
+.tl-auth-field input:focus {
   border-color: #7c3aed;
-  background-color: #ffffff;
+  background: #ffffff;
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.12);
 }
 
-.tindalink-form-group input.has-error {
-  border: 1.5px solid #f87171 !important;
-  background-color: #ffffff !important;
+.tl-auth-field input.with-toggle {
+  padding-right: 44px;
 }
 
-.tindalink-inline-error {
-  margin-top: 6px;
+.tl-auth-field input.has-error {
+  border: 1.5px solid #f87171;
+  background: #ffffff;
+}
+
+.tl-auth-field input.has-error:focus {
+  box-shadow: 0 0 0 3px rgba(244, 63, 94, 0.12);
+}
+
+.tl-auth-password-wrap {
+  position: relative;
+}
+
+.tl-auth-eye-btn {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: #7d7a94;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tl-auth-eye-btn:hover {
+  color: #2b2842;
+}
+
+.tl-auth-eye-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.tl-auth-field-error {
+  margin: 6px 0 0;
   font-size: 11.5px;
   font-weight: 600;
   color: #e11d48;
   text-align: left;
 }
 
-.tindalink-link-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  font-family: inherit;
+.tl-auth-feedback {
+  margin: 4px 0 16px;
+  padding: 10px 14px;
+  border-radius: 10px;
   font-size: 12.5px;
-  font-weight: 700;
-  color: #7c3aed;
-  cursor: pointer;
-  text-align: left;
+  font-weight: 600;
 }
 
-.tindalink-link-btn:hover {
+.tl-auth-feedback.success {
+  background: #f3ecff;
   color: #6d28d9;
-  text-decoration: underline;
+  border: 1px solid #d8b4fe;
 }
 
-.tindalink-submit-btn {
+.tl-auth-feedback.error {
+  background: #fef2f2;
+  color: #dc2626;
+  border: 1px solid #fecaca;
+}
+
+.tl-auth-submit-btn {
+  width: 100%;
   height: 46px;
+  margin-top: 8px;
   border-radius: 11px;
   border: none;
-  background-color: #7c3aed;
+  background: #7c3aed;
   color: #ffffff;
-  font-family: inherit;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.16s ease, transform 0.1s ease;
-  width: 100%;
+  transition: background 0.15s ease, transform 0.1s ease;
+  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.2);
 }
 
-.tindalink-submit-btn:hover {
-  background-color: #6d28d9;
+.tl-auth-submit-btn:hover:not(:disabled) {
+  background: #6d28d9;
 }
 
-.tindalink-submit-btn:active {
+.tl-auth-submit-btn:active:not(:disabled) {
   transform: scale(0.995);
 }
 
-/* Validation Alert Banner */
-.tindalink-val-alert {
+.tl-auth-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.tl-auth-alert-banner {
   margin-top: 20px;
   padding: 14px 16px;
   border-radius: 12px;
-  background-color: #fff0f2;
-  border: 1px solid rgba(254, 205, 211, 0.6);
+  background: #fff0f2;
+  border: 1px solid rgba(255, 228, 230, 0.8);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.tindalink-val-alert strong {
-  display: block;
+.tl-auth-alert-banner strong {
   font-size: 12.5px;
   font-weight: 700;
   color: #d92d40;
 }
 
-.tindalink-val-alert p {
-  margin-top: 2px;
+.tl-auth-alert-banner span {
   font-size: 11.5px;
   color: #e05260;
 }
 
-.tindalink-signup-prompt {
+.tl-auth-footer {
   margin-top: 28px;
   display: flex;
   flex-direction: column;
@@ -257,24 +313,36 @@ html,
   color: #7c3aed;
 }
 
-@media (max-width: 960px) {
-  .tindalink-auth-layout {
+.tl-auth-footer-link {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #7c3aed;
+  cursor: pointer;
+}
+
+.tl-auth-footer-link:hover {
+  color: #6d28d9;
+  text-decoration: underline;
+}
+
+@media (max-width: 1024px) {
+  .tl-auth-page {
     grid-template-columns: 1fr;
   }
-  .tindalink-brand-panel {
-    padding: 36px 28px;
+
+  .tl-auth-brand-panel {
+    padding: 40px 24px;
   }
-  .tindalink-auth-card {
+
+  .tl-auth-main {
+    padding: 32px 20px;
+  }
+
+  .tl-auth-card {
     padding: 36px 24px;
     min-height: auto;
-  }
-  .tindalink-form-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 6px;
-  }
-  .tindalink-row-label {
-    text-align: left;
-    width: auto;
   }
 }
