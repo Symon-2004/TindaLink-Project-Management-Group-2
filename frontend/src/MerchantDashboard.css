@@ -244,12 +244,9 @@
 }
 
 /* =========================================
-   4. MIDDLE ROW: SALES OVERVIEW & RECENT ORDERS
+   4. RECENT ORDERS
    ========================================= */
-.md-mid-grid {
-  display: grid;
-  grid-template-columns: 1.8fr 1fr;
-  gap: 20px;
+.md-recent-section {
   margin-bottom: 22px;
 }
 
@@ -261,70 +258,11 @@
   box-shadow: 0 2px 12px rgba(30, 27, 57, 0.015);
 }
 
-.md-card-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 16px;
-}
-
 .md-card-title {
   font-size: 16px;
   font-weight: 800;
   color: #1e1b39;
   margin: 0 0 16px 0;
-}
-
-.md-card-head .md-card-title {
-  margin-bottom: 0;
-}
-
-.md-chart-readout {
-  font-size: 12.5px;
-  font-weight: 700;
-  color: #7c3aed;
-  font-variant-numeric: tabular-nums;
-}
-
-.md-chart-area {
-  padding-top: 12px;
-}
-
-.md-bars-row {
-  height: 168px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 22px;
-  padding: 0 28px 0 12px;
-}
-
-.md-bar-col {
-  flex: 1;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.md-bar {
-  width: 100%;
-  max-width: 44px;
-  background: linear-gradient(180deg, #9333ea 0%, #8b5cf6 100%);
-  border-radius: 7px 7px 3px 3px;
-  transition: transform 0.16s ease, opacity 0.16s ease;
-  cursor: pointer;
-}
-
-.md-bar:hover {
-  transform: translateY(-3px);
-  opacity: 0.92;
-}
-
-.md-chart-baseline {
-  height: 1px;
-  width: 100%;
-  background-color: #e4e1f0;
 }
 
 /* Recent Orders */
@@ -493,7 +431,6 @@
   .md-kpi-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  .md-mid-grid,
   .md-bottom-grid {
     grid-template-columns: 1fr;
   }
@@ -527,9 +464,5 @@
   .md-kpi-grid,
   .md-quick-grid {
     grid-template-columns: 1fr;
-  }
-  .md-bars-row {
-    gap: 10px;
-    padding: 0;
   }
 }
