@@ -18,16 +18,6 @@ const DEFAULT_ORDERS = [
   { id: '#00098', customer: 'L. Garcia', total: 299, paymentStatus: 'Rejected', status: 'Cancelled' },
 ];
 
-const SALES_BARS = [
-  { day: 'Mon', amount: 3400, heightPct: 30 },
-  { day: 'Tue', amount: 6150, heightPct: 54 },
-  { day: 'Wed', amount: 4650, heightPct: 41 },
-  { day: 'Thu', amount: 8900, heightPct: 76 },
-  { day: 'Fri', amount: 7100, heightPct: 62 },
-  { day: 'Sat', amount: 10550, heightPct: 92 },
-  { day: 'Sun', amount: 7900, heightPct: 68 },
-];
-
 export default function MerchantDashboard({
   products = DEFAULT_PRODUCTS,
   orders = DEFAULT_ORDERS,
@@ -36,7 +26,6 @@ export default function MerchantDashboard({
   onSwitchToCustomer,
   onLogout,
 }) {
-  const [hoveredBar, setHoveredBar] = useState(null);
   const [portalNotice, setPortalNotice] = useState('');
 
   const lowStockItems = products.filter((item) => item.stock <= (item.lowThreshold ?? 5));
@@ -112,27 +101,30 @@ export default function MerchantDashboard({
             <button
               type="button"
               className="md-nav-item"
-              onClick={() => navigateTo('orders', 'New Orders')}
+              onClick={() => navigateTo('payments')}
             >
               Payments
             </button>
 
-            <div className="md-nav-spacer" />
+            <button
+              type="button"
+              className="md-nav-item"
+              onClick={() =>
+                onNavigate
+                  ? navigateTo('store')
+                  : setPortalNotice('Storefront catalog is live and synced with Merchant Dashboard.')
+              }
+            >
+              Store
+            </button>
 
             <button
               type="button"
               className="md-nav-item"
               onClick={() =>
-                setPortalNotice('Social Media integrations are synced with your active catalog.')
-              }
-            >
-              Social Media
-            </button>
-            <button
-              type="button"
-              className="md-nav-item"
-              onClick={() =>
-                setPortalNotice('Store settings: Auto-low stock alert threshold set to 5 units.')
+                onNavigate
+                  ? navigateTo('settings')
+                  : setPortalNotice('Store settings: Auto-low stock alert threshold set to 5 units.')
               }
             >
               Settings
@@ -218,41 +210,8 @@ export default function MerchantDashboard({
             </div>
           </section>
 
-          {/* Middle Grid: Sales Overview + Recent Orders */}
-          <section className="md-mid-grid">
-            {/* Sales Overview Bar Chart */}
-            <div className="md-card">
-              <div className="md-card-head">
-                <h2 className="md-card-title">Sales Overview</h2>
-                {hoveredBar && (
-                  <span className="md-chart-readout">
-                    {hoveredBar.day}: ₱{hoveredBar.amount.toLocaleString()}
-                  </span>
-                )}
-              </div>
-
-              <div className="md-chart-area">
-                <div className="md-bars-row">
-                  {SALES_BARS.map((bar) => (
-                    <div
-                      key={bar.day}
-                      className="md-bar-col"
-                      onMouseEnter={() => setHoveredBar(bar)}
-                      onMouseLeave={() => setHoveredBar(null)}
-                    >
-                      <div
-                        className="md-bar"
-                        style={{ height: `${bar.heightPct}%` }}
-                        title={`${bar.day}: ₱${bar.amount.toLocaleString()}`}
-                      />
-                    </div>
-                  ))}
-                </div>
-                <div className="md-chart-baseline" />
-              </div>
-            </div>
-
-            {/* Recent Orders */}
+          {/* Recent Orders */}
+          <section className="md-recent-section">
             <div className="md-card">
               <h2 className="md-card-title">Recent Orders</h2>
               <div className="md-recent-list">
@@ -341,7 +300,7 @@ export default function MerchantDashboard({
                 <button
                   type="button"
                   className="md-quick-btn md-quick-secondary"
-                  onClick={() => navigateTo('orders', 'New Orders')}
+                  onClick={() => navigateTo('payments')}
                 >
                   Review Payments
                 </button>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../Customer Pages Styling/ordertracker.css';
+import './ordertracker.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 const TIMELINE_STEPS = [

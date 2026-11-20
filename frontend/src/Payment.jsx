@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import '../Customer Pages Styling/Payment.css';
+import './Payment.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 export default function Payment({

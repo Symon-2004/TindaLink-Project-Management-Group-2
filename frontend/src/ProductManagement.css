@@ -269,6 +269,7 @@
   color: #6e6c85;
   padding: 12px 10px 14px 10px;
   border-bottom: 1px solid #eceaf4;
+  white-space: nowrap;
 }
 
 .pm-table tbody td {
@@ -332,36 +333,64 @@
 }
 
 .pm-col-actions {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
+  gap: 8px;
+  white-space: nowrap;
 }
 
-.pm-action-edit,
-.pm-action-delete {
-  border: none;
-  background: transparent;
+.pm-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 8px;
   font-family: inherit;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
   cursor: pointer;
-  padding: 4px 2px;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
 }
 
-.pm-action-edit {
+.pm-action-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.pm-action-share {
+  background-color: #f3ecff;
+  border: 1px solid #dfd2fe;
   color: #7c3aed;
 }
 
+.pm-action-share:hover {
+  background-color: #e9dcff;
+  border-color: #c4b5fd;
+}
+
+.pm-action-edit {
+  background-color: #f5f4fa;
+  border: 1px solid #e4e2ee;
+  color: #4a4665;
+}
+
 .pm-action-edit:hover {
-  text-decoration: underline;
+  background-color: #eceaf5;
+  color: #1e1b39;
 }
 
 .pm-action-delete {
+  background-color: #fff1f4;
+  border: 1px solid #fecdd3;
   color: #e11d48;
 }
 
 .pm-action-delete:hover {
-  text-decoration: underline;
+  background-color: #ffe4ea;
+  border-color: #fda4af;
 }
 
 .pm-empty-row {
@@ -371,13 +400,14 @@
 }
 
 /* =========================================
-   5. MODALS (EDIT & DELETE)
+   5. MODALS (SHARE, EDIT & DELETE)
    ========================================= */
 .pm-modal-backdrop {
   position: fixed;
   inset: 0;
   z-index: 60;
   background-color: rgba(28, 22, 53, 0.45);
+  backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -391,7 +421,7 @@
   border: 1px solid #eceaf4;
   border-radius: 18px;
   padding: 24px 26px;
-  box-shadow: 0 20px 44px rgba(28, 22, 53, 0.2);
+  box-shadow: 0 22px 48px rgba(28, 22, 53, 0.22);
 }
 
 .pm-modal-sm {
@@ -423,9 +453,248 @@
 .pm-modal-close {
   border: none;
   background: transparent;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 22px;
+  line-height: 1;
   color: #6e6c85;
   cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.pm-modal-close:hover {
+  background-color: #f3ecff;
+  color: #1e1b39;
+}
+
+/* Share Product Modal */
+.pm-share-modal {
+  max-width: 520px;
+  padding: 26px 28px;
+}
+
+.pm-share-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pm-share-header h2 {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #1e1b39;
+  margin: 0 0 4px 0;
+}
+
+.pm-share-product-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #6e6c85;
+}
+
+.pm-share-section {
+  margin-bottom: 22px;
+}
+
+.pm-share-section-title {
+  font-size: 14.5px;
+  font-weight: 800;
+  color: #1e1b39;
+  margin: 0 0 12px 0;
+}
+
+.pm-link-group {
+  margin-bottom: 14px;
+}
+
+.pm-link-group:last-child {
+  margin-bottom: 0;
+}
+
+.pm-link-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6e6c85;
+  margin-bottom: 6px;
+  text-align: left;
+}
+
+.pm-link-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pm-link-input {
+  flex: 1;
+  min-width: 0;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #e4e2ee;
+  background-color: #faf9fe;
+  padding: 0 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: #1e1b39;
+  outline: none;
+}
+
+.pm-link-input:focus {
+  border-color: #8b5cf6;
+  background-color: #ffffff;
+}
+
+.pm-copy-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 40px;
+  min-width: 110px;
+  padding: 0 14px;
+  border-radius: 10px;
+  border: 1px solid #dfd2fe;
+  background-color: #ffffff;
+  color: #7c3aed;
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+
+.pm-copy-btn:hover {
+  background-color: #f6f1ff;
+  border-color: #c4b5fd;
+}
+
+.pm-copy-btn.is-copied {
+  background-color: #e6f7f0;
+  border-color: #a7f3d0;
+  color: #0d9468;
+}
+
+.pm-copy-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+.pm-copy-confirm {
+  margin: 6px 0 0 0;
+  font-size: 11.5px;
+  font-weight: 600;
+  color: #0d9468;
+}
+
+.pm-social-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pm-social-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 6px;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1e1b39;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.pm-social-option:hover {
+  background-color: #faf7ff;
+  transform: translateY(-2px);
+}
+
+.pm-social-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(30, 27, 57, 0.12);
+}
+
+.pm-social-circle svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pm-social-whatsapp {
+  background-color: #25d366;
+}
+
+.pm-social-facebook {
+  background-color: #1877f2;
+}
+
+.pm-social-x {
+  background-color: #111111;
+}
+
+.pm-social-email {
+  background-color: #f43f5e;
+}
+
+.pm-social-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #1e1b39;
+  white-space: nowrap;
+}
+
+.pm-share-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background-color: #f6f1ff;
+  border: 1px solid #ece3fe;
+}
+
+.pm-share-tip-icon {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: #7c3aed;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.pm-share-tip p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: #5b21b6;
+  font-weight: 500;
 }
 
 .pm-modal-form {
@@ -539,5 +808,18 @@
     flex-direction: column;
     align-items: stretch;
     padding: 12px;
+  }
+  .pm-share-modal {
+    padding: 20px 18px;
+  }
+  .pm-link-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .pm-copy-btn {
+    width: 100%;
+  }
+  .pm-social-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

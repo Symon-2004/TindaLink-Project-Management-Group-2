@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../Customer Pages Styling/myorders.css';
+import './myorders.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 const INITIAL_ORDERS = [

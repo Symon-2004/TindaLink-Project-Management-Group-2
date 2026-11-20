@@ -1,4 +1,4 @@
-import '../Customer Pages Styling/orderconfirm.css';
+import './orderconfirm.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 export default function OrderConfirm({

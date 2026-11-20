@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../Customer Pages Styling/checkout.css';
+import './checkout.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 const DEFAULT_ORDER_ITEMS = [

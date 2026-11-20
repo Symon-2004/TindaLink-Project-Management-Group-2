@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../Customer Pages Styling/Cart.css';
+import './Cart.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 const INITIAL_CART_ITEMS = [

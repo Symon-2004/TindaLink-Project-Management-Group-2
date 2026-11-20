@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../Customer Pages Styling/customerprofile.css';
+import './customerprofile.css';
 import CustomerNavbar from './CustomerNavbar.jsx';
 
 export default function CustomerProfile({

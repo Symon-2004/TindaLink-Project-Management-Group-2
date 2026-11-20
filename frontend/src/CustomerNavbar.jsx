@@ -1,5 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react';
-import '../Customer Pages Styling/CustomerNavbar.css';
+import './CustomerNavbar.css';
 
 export default function CustomerNavbar({
   activePage = '',
