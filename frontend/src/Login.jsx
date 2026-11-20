@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './Login.css';
 
-export default function Login({ onAuthSuccess }) {
+export default function Login() {
   const [authView, setAuthView] = useState('login'); // 'login' | 'signup' | 'forgot'
   const [email, setEmail] = useState('peachy@email.com');
   const [password, setPassword] = useState('•••••••••');
@@ -52,13 +52,6 @@ export default function Login({ onAuthSuccess }) {
     setStatusMessage({
       type: 'success'
     });
-
-    if (onAuthSuccess) {
-      onAuthSuccess({
-        name: fullName || (email === 'peachy@email.com' ? 'Peachy Mangaoang' : email.split('@')[0]),
-        email,
-      });
-    }
   };
 
   let loginSubtitle = 'Please login to your account';
