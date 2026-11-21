@@ -41,4 +41,6 @@ public class User implements Serializable {
 
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+
 }

@@ -6,9 +6,10 @@ spring:
   application:
     name: tindalink-service
 
-    mongodb:
-      uri: mongodb://localhost:27017/UserDatabase
-      database: UserDatabase
+  mongodb:
+    uri: mongodb://localhost:27017/UserDatabase
+    database: UserDatabase
+
 
 
 inventory:
