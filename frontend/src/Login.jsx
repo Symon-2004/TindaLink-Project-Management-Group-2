@@ -34,28 +34,27 @@ export default function Login({ customers = [], onLoginSuccess }) {
     setValidationError('none');
 
     try {
-      /*
-       * BACKEND INTEGRATION EXAMPLE:
-       * Replace this block with your real API call when your backend endpoint is ready:
-       *
-       * const response = await fetch('http://localhost:8080/api/auth/login', {
-       *   method: 'POST',
-       *   headers: { 'Content-Type': 'application/json' },
-       *   body: JSON.stringify({ email: cleanEmail, password }),
-       * });
-       * if (response.status === 404) {
-       *   setValidationError('email_not_found');
-       *   return;
-       * }
-       * if (!response.ok) {
-       *   setValidationError('incorrect_password');
-       *   return;
-       * }
-       * const data = await response.json();
-       * if (data.token) localStorage.setItem('tindalink_token', data.token);
-       * onLoginSuccess({ email: data.email, name: data.name, role: data.role });
-       * return;
-       */
+       // BACKEND INTEGRATION EXAMPLE:
+       // Replace this block with your real API call when your backend endpoint is ready:
+
+        const response = await fetch('http://localhost:8080/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: cleanEmail, password }),
+        });
+        if (response.status === 404) {
+          setValidationError('email_not_found');
+          return;
+        }
+        if (!response.ok) {
+          setValidationError('incorrect_password');
+          return;
+        }
+        const data = await response.json();
+        if (data.token) localStorage.setItem('tindalink_token', data.token);
+        onLoginSuccess({ email: data.email, name: data.name, role: data.role });
+        return;
+
 
       const isMerchantOrAdmin =
         cleanEmail.includes('merchant') ||
@@ -121,22 +120,22 @@ export default function Login({ customers = [], onLoginSuccess }) {
     setIsSubmitting(true);
 
     try {
-      /*
-       * BACKEND INTEGRATION EXAMPLE:
-       * const response = await fetch('http://localhost:8080/api/auth/register', {
-       *   method: 'POST',
-       *   headers: { 'Content-Type': 'application/json' },
-       *   body: JSON.stringify({ fullName: cleanName, email: cleanEmail, password }),
-       * });
-       * if (!response.ok) {
-       *   const err = await response.json();
-       *   setFeedback({ type: 'error', message: err.message || 'Registration failed.' });
-       *   return;
-       * }
-       * const data = await response.json();
-       * onLoginSuccess({ email: data.email, name: data.name, role: data.role || 'customer' }, true);
-       * return;
-       */
+
+        // BACKEND INTEGRATION EXAMPLE:
+        const response = await fetch('http://localhost:8080/api/users', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ fullName: cleanName, email: cleanEmail, password }),
+        });
+       if (!response.ok) {
+          const err = await response.json();
+          setFeedback({ type: 'error', message: err.message || 'Registration failed.' });
+          return;
+        }
+        const data = await response.json();
+        onLoginSuccess({ email: data.email, name: data.name, role: data.role || 'customer' }, true);
+       return;
+
 
       setValidationError('none');
       onLoginSuccess?.(
